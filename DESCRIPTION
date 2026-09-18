@@ -1,0 +1,21 @@
+Package: magreport
+Title: Explore and Report MAG Recovery Results
+Version: 0.1.0
+Authors@R: 
+    person("Antonio", "Puriel Hernández", email = "apurielh@gmail.com",
+           role = c("aut", "cre"), comment = c(ORCID = "0009-0000-7631-1102"))
+Description: Reads the output tables of the mag-pipeline metagenomics workflow
+    (assembly statistics, read mapping, bin statistics, CheckM2 quality and
+    GTDB-Tk taxonomy) into tidy data frames, and summarises MAG recovery
+    following the MIMAG quality standards.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends: 
+    R (>= 4.1)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+URL: https://github.com/AntonioPuriel/magreport
+BugReports: https://github.com/AntonioPuriel/magreport/issues
+Config/roxygen2/version: 8.1.0
