@@ -29,3 +29,32 @@ test_that("read_depth reshapes the depth table", {
   expect_equal(nrow(long), nrow(wide) * 2)
   expect_false(anyNA(long$depth))
 })
+
+test_that("read_depth copes with different depth headers", {
+  write_depth <- function(header) {
+    path <- withr::local_tempfile(fileext = ".depth.txt", .local_envir = parent.frame())
+    writeLines(c(header, "k141_1\t1325\t3.0\t1.0\t0.5\t5.0\t2.5"), path)
+    path
+  }
+
+  headers <- c(
+    "contigName\tcontigLen\ttotalAvgDepth\tA.sorted.bam\tA.sorted.bam-var\tB.sorted.bam\tB.sorted.bam-var",
+    "contigName\tcontigLen\ttotalAvgDepth\tA\tA-var\tB\tB-var",
+    "contigName\tcontigLen\ttotalAvgDepth\tA.bam\tA.bam.var\tB.bam\tB.bam.var",
+    "contigName\tcontigLen\ttotalAvgDepth\tA.sorted\tA.sorted-var\tB.sorted\tB.sorted-var"
+  )
+
+  for (header in headers) {
+    depth <- read_depth(write_depth(header))
+    expect_setequal(unique(depth$sample), c("A", "B"))
+    expect_equal(depth$depth, c(1, 5))
+    expect_equal(depth$depth_var, c(0.5, 2.5))
+  }
+})
+
+test_that("read_depth reports a file without sample columns", {
+  path <- withr::local_tempfile(fileext = ".depth.txt")
+  writeLines(c("contigName\tcontigLen\ttotalAvgDepth", "k141_1\t1325\t3.0"), path)
+
+  expect_error(read_depth(path), "No per-sample depth columns")
+})

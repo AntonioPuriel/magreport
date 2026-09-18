@@ -10,7 +10,7 @@ R package to explore and report MAG recovery results from
 The pipeline writes plain tables; `magreport` reads them into tidy data frames
 with the right types, so you can go straight to analysis and figures.
 
-> 🚧 Work in progress — readers and plots are implemented; the HTML report is next.
+
 
 ## Installation
 
@@ -32,6 +32,10 @@ mapping <- read_mapping_summary(file.path(results, "03_mapping/mapping_summary.t
 depth   <- read_depth(file.path(results, "03_mapping/coassembly.depth.txt"))
 
 count_quality(mags, by = "binner")
+
+# Everything at once, plus an HTML report
+run <- read_pipeline(results)
+mag_report(results, "mag_report.html")
 
 plot_mag_quality(mags, facet_by = "binner")
 plot_mapping_rates(mapping)
@@ -58,6 +62,8 @@ head(read_mag_quality(path))
 | `read_mapping_summary()` | `03_mapping/mapping_summary.tsv` (alignment rate per sample) |
 | `read_depth()` | `03_mapping/*.depth.txt` (contig coverage per sample) |
 | `count_quality()` | Counts MAGs per MIMAG quality category |
+| `read_pipeline()` | Finds and reads every table of a run in one call |
+| `mag_report()` | Renders a full HTML report of a run |
 
 ## Plots
 
@@ -84,6 +90,13 @@ MAGs per taxon at any rank. Unclassified MAGs are kept as their own group
 instead of being dropped.
 
 ![Taxonomy](man/figures/README-taxonomy.png)
+
+## Report
+
+`mag_report()` takes a results directory and writes a self-contained HTML report
+with the mapping, assembly, binning, MAG quality and taxonomy sections. Sections
+without data are skipped with a note, so a run without GTDB-Tk or CheckM2 still
+produces a valid report.
 
 ## Documentation
 

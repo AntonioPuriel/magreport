@@ -27,21 +27,22 @@ read_depth <- function(path, long = TRUE) {
     return(x)
   }
 
-  depth_cols <- grep("\\.bam$", names(x), value = TRUE)
+  # Everything after the fixed columns is per-sample: <name> and <name>-var
+  # (read.delim turns the dash into a dot). Some versions of the tool also
+  # write the columns without the .bam suffix.
+  sample_cols <- setdiff(names(x), c("contigName", "contigLen", "totalAvgDepth"))
+  var_cols <- grep("[.-]var$", sample_cols, value = TRUE)
+  depth_cols <- setdiff(sample_cols, var_cols)
 
   if (length(depth_cols) == 0) {
     stop("No per-sample depth columns found in ", basename(path), call. = FALSE)
   }
 
   pieces <- lapply(depth_cols, function(column) {
-    sample <- sub("\\.sorted\\.bam$", "", column)
-    sample <- sub("\\.bam$", "", sample)
+    sample <- sub("\\.bam$", "", column)
+    sample <- sub("\\.sorted$", "", sample)
 
-    var_col <- grep(
-      paste0("^", column, "[.-]var$"),
-      names(x),
-      value = TRUE
-    )
+    var_col <- var_cols[sub("[.-]var$", "", var_cols) == column]
 
     data.frame(
       contig = x$contigName,

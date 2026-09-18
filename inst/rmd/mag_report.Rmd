@@ -1,0 +1,134 @@
+---
+params:
+  run: NULL
+  title: "MAG recovery report"
+  results_dir: ""
+title: "`r params$title`"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+    self_contained: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
+                      fig.width = 8, fig.height = 4.5, dpi = 120)
+library(magreport)
+run <- params$run
+has <- function(x) !is.null(x) && nrow(x) > 0
+```
+
+Report generated from `` `r params$results_dir` `` with the
+[magreport](https://github.com/AntonioPuriel/magreport) R package.
+
+## Summary
+
+```{r summary}
+lines <- character()
+
+if (has(run$mapping)) {
+  lines <- c(lines, sprintf("- **Samples:** %d", nrow(run$mapping)))
+}
+if (has(run$assembly)) {
+  kept <- run$assembly[nrow(run$assembly), , drop = FALSE]
+  lines <- c(lines, sprintf(
+    "- **Assembly:** %s contigs, %.1f Mb, N50 %s bp",
+    format(kept$n_contigs, big.mark = ","),
+    kept$total_length / 1e6,
+    format(kept$n50, big.mark = ",")
+  ))
+}
+if (has(run$bins)) {
+  lines <- c(lines, sprintf("- **Bins:** %d from %s",
+                            nrow(run$bins),
+                            paste(sort(unique(run$bins$binner)), collapse = ", ")))
+}
+if (has(run$mags)) {
+  counts <- count_quality(run$mags)
+  lines <- c(lines, sprintf(
+    "- **MAGs assessed:** %d (%s)",
+    nrow(run$mags),
+    paste(sprintf("%d %s", counts$n, counts$quality), collapse = ", ")
+  ))
+}
+
+knitr::asis_output(paste(lines, collapse = "\n"))
+```
+
+## Read mapping
+
+```{r mapping, eval = has(run$mapping)}
+plot_mapping_rates(run$mapping)
+```
+
+```{r mapping-table, eval = has(run$mapping)}
+knitr::kable(run$mapping, caption = "Reads and alignment rate per sample")
+```
+
+```{r no-mapping, eval = !has(run$mapping)}
+knitr::asis_output("_No mapping summary found._")
+```
+
+## Assembly
+
+```{r assembly, eval = has(run$assembly)}
+knitr::kable(run$assembly, caption = "Contigs before and after length filtering")
+```
+
+```{r no-assembly, eval = !has(run$assembly)}
+knitr::asis_output("_No assembly statistics found._")
+```
+
+## Bins
+
+```{r bins, eval = has(run$bins)}
+knitr::kable(
+  as.data.frame(table(binner = run$bins$binner)),
+  col.names = c("Binner", "Bins"),
+  caption = "Bins per binner"
+)
+```
+
+## MAG quality
+
+```{r quality-plot, eval = has(run$mags)}
+plot_mag_quality(run$mags, facet_by = if (length(unique(run$mags$binner)) > 1) "binner" else NULL)
+```
+
+```{r quality-counts, eval = has(run$mags)}
+knitr::kable(count_quality(run$mags, by = "binner"),
+             caption = "MAGs per quality category (MIMAG thresholds)")
+```
+
+```{r quality-table, eval = has(run$mags)}
+mags <- run$mags[order(-run$mags$completeness), ]
+knitr::kable(
+  utils::head(mags, 25),
+  row.names = FALSE,
+  digits = 2,
+  caption = "MAGs, best completeness first (up to 25 shown)"
+)
+```
+
+```{r no-mags, eval = !has(run$mags)}
+knitr::asis_output("_No CheckM2 results found: run the pipeline without --skip_checkm2._")
+```
+
+## Taxonomy
+
+```{r taxonomy, eval = has(run$mags) && "phylum" %in% names(run$mags) && !all(is.na(run$mags$phylum))}
+plot_taxonomy(run$mags, rank = "phylum", fill_by = "quality")
+```
+
+```{r no-taxonomy, eval = !(has(run$mags) && "phylum" %in% names(run$mags) && !all(is.na(run$mags$phylum)))}
+knitr::asis_output("_No taxonomy available: run the pipeline with --gtdbtk_db to classify the MAGs._")
+```
+
+## Session
+
+```{r session}
+sessionInfo()
+```
