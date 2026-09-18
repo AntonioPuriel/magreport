@@ -1,0 +1,25 @@
+url: https://antoniopuriel.github.io/magreport/
+
+template:
+  bootstrap: 5
+
+reference:
+- title: Read pipeline output
+  desc: Read the tables written by mag-pipeline into data frames
+  contents:
+  - read_mag_quality
+  - read_bin_summary
+  - read_mapping_summary
+  - read_depth
+- title: Summarise
+  contents:
+  - count_quality
+- title: Plot
+  contents:
+  - plot_mag_quality
+  - plot_mapping_rates
+  - plot_taxonomy
+- title: Helpers
+  contents:
+  - quality_levels
+  - quality_colours

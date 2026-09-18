@@ -1,5 +1,9 @@
 # magreport
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/AntonioPuriel/magreport/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AntonioPuriel/magreport/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 R package to explore and report MAG recovery results from
 [mag-pipeline](https://github.com/AntonioPuriel/mag-pipeline).
 
@@ -57,11 +61,33 @@ head(read_mag_quality(path))
 
 ## Plots
 
-| Function | Shows |
-|----------|-------|
-| `plot_mag_quality()` | Completeness vs contamination, with the MIMAG thresholds |
-| `plot_mapping_rates()` | Alignment rate per sample, highlighting low ones |
-| `plot_taxonomy()` | MAGs per taxon at any rank, keeping unclassified MAGs visible |
+All figures below come from the example output shipped with the package, and are
+regenerated with `data-raw/make_readme_figures.R`.
+
+### `plot_mag_quality()`
+
+Completeness against contamination, with the MIMAG thresholds and the
+high-quality corner shaded. Point size is the size of the MAG.
+
+![MAG quality](man/figures/README-mag-quality.png)
+
+### `plot_mapping_rates()`
+
+Share of reads of each sample that map back to the assembly. Samples below the
+threshold are highlighted, since their coverage is less trustworthy.
+
+![Mapping rates](man/figures/README-mapping-rates.png)
+
+### `plot_taxonomy()`
+
+MAGs per taxon at any rank. Unclassified MAGs are kept as their own group
+instead of being dropped.
+
+![Taxonomy](man/figures/README-taxonomy.png)
+
+## Documentation
+
+Full function reference: <https://antoniopuriel.github.io/magreport/>
 
 ## License
 
