@@ -35,3 +35,26 @@ read_pipeline_table <- function(path, required = character()) {
 quality_levels <- function() {
   c("high", "medium", "low")
 }
+
+#' Colours used for the quality categories
+#'
+#' @return A named character vector of colours, one per level of
+#'   [quality_levels()].
+#' @export
+#' @examples
+#' quality_colours()
+quality_colours <- function() {
+  c(high = "#1B9E77", medium = "#D95F02", low = "#7570B3")
+}
+
+#' @keywords internal
+check_ggplot2 <- function() {
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    stop(
+      "Package 'ggplot2' is needed for the plotting functions. ",
+      "Install it with install.packages(\'ggplot2\').",
+      call. = FALSE
+    )
+  }
+  invisible(TRUE)
+}

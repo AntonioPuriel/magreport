@@ -6,7 +6,7 @@ R package to explore and report MAG recovery results from
 The pipeline writes plain tables; `magreport` reads them into tidy data frames
 with the right types, so you can go straight to analysis and figures.
 
-> 🚧 Work in progress — readers are implemented; plots and the HTML report are next.
+> 🚧 Work in progress — readers and plots are implemented; the HTML report is next.
 
 ## Installation
 
@@ -28,7 +28,14 @@ mapping <- read_mapping_summary(file.path(results, "03_mapping/mapping_summary.t
 depth   <- read_depth(file.path(results, "03_mapping/coassembly.depth.txt"))
 
 count_quality(mags, by = "binner")
+
+plot_mag_quality(mags, facet_by = "binner")
+plot_mapping_rates(mapping)
+plot_taxonomy(mags, rank = "phylum", fill_by = "quality")
 ```
+
+The plotting functions need ggplot2, which is a suggested dependency:
+`install.packages("ggplot2")`.
 
 Every function ships an example that runs on the output included in the package,
 so you can try it without your own data:
@@ -47,6 +54,14 @@ head(read_mag_quality(path))
 | `read_mapping_summary()` | `03_mapping/mapping_summary.tsv` (alignment rate per sample) |
 | `read_depth()` | `03_mapping/*.depth.txt` (contig coverage per sample) |
 | `count_quality()` | Counts MAGs per MIMAG quality category |
+
+## Plots
+
+| Function | Shows |
+|----------|-------|
+| `plot_mag_quality()` | Completeness vs contamination, with the MIMAG thresholds |
+| `plot_mapping_rates()` | Alignment rate per sample, highlighting low ones |
+| `plot_taxonomy()` | MAGs per taxon at any rank, keeping unclassified MAGs visible |
 
 ## License
 
