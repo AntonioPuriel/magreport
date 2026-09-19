@@ -9,7 +9,8 @@ read_pipeline_table <- function(path, required = character()) {
     sep = "\t",
     header = TRUE,
     stringsAsFactors = FALSE,
-    na.strings = c("NA", "")
+    # GTDB-Tk writes N/A, CheckM2 and the pipeline write NA
+    na.strings = c("NA", "N/A", "na", "")
   )
 
   missing <- setdiff(required, names(x))

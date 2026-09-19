@@ -40,3 +40,26 @@ test_that("count_quality keeps empty categories", {
 
   expect_error(count_quality(mags, by = "not_a_column"), "not found")
 })
+
+test_that("N/A from GTDB-Tk is read as a missing value", {
+  path <- withr::local_tempfile(fileext = ".tsv")
+  writeLines(
+    c(
+      paste("assembly", "binner", "bin", "n_contigs", "total_length", "n50",
+            "gc_pct", "completeness", "contamination", "quality", "domain",
+            "phylum", "closest_ani", sep = "\t"),
+      paste("asm", "dastool", "bin.1", "10", "1000", "500", "45", "95", "1",
+            "high", "Bacteria", "Pseudomonadota", "98.02", sep = "\t"),
+      paste("asm", "dastool", "bin.2", "5", "500", "200", "40", "30", "0",
+            "low", "NA", "NA", "N/A", sep = "\t")
+    ),
+    path
+  )
+
+  mags <- read_mag_quality(path)
+
+  expect_true(is.na(mags$closest_ani[2]))
+  expect_true(is.na(mags$phylum[2]))
+  expect_equal(mags$closest_ani[1], 98.02)
+  expect_type(mags$closest_ani, "double")
+})
