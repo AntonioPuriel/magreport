@@ -11,6 +11,9 @@ reference:
   - read_bin_summary
   - read_mapping_summary
   - read_depth
+  - read_ko_table
+  - read_annotation_stats
+  - read_pipeline
 - title: Summarise
   contents:
   - count_quality
@@ -20,6 +23,9 @@ reference:
   - plot_mapping_rates
   - plot_taxonomy
   - plot_pathway_presence
+- title: Report
+  contents:
+  - mag_report
 - title: Helpers
   contents:
   - quality_levels
