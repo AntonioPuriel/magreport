@@ -127,6 +127,21 @@ plot_taxonomy(run$mags, rank = "phylum", fill_by = "quality")
 knitr::asis_output("_No taxonomy available: run the pipeline with --gtdbtk_db to classify the MAGs._")
 ```
 
+## Functional annotation
+
+```{r annotation, eval = has(run$annotation)}
+knitr::kable(run$annotation, digits = 1,
+             caption = "Genes called, annotated and distinct KEGG orthologues per MAG")
+```
+
+```{r pathways, eval = has(run$kos), fig.height = 3 + 0.35 * length(unique(run$kos$bin))}
+plot_pathway_presence(run$kos, mags = run$mags)
+```
+
+```{r no-function, eval = !has(run$kos)}
+knitr::asis_output("_No functional annotation found: run the pipeline with --eggnog_db._")
+```
+
 ## Session
 
 ```{r session}

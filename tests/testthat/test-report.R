@@ -5,7 +5,7 @@ example_dir <- function() {
 test_that("read_pipeline finds every table", {
   run <- read_pipeline(example_dir())
 
-  expect_named(run, c("mags", "bins", "mapping", "depth", "assembly"))
+  expect_named(run, c("mags", "bins", "mapping", "depth", "assembly", "kos", "annotation"))
   expect_s3_class(run$mags, "data.frame")
   expect_s3_class(run$bins, "data.frame")
   expect_equal(nrow(run$mapping), 2)

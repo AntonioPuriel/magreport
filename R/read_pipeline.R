@@ -6,8 +6,9 @@
 #'
 #' @param results_dir Directory to search, recursively.
 #'
-#' @return A list with the elements `mags`, `bins`, `mapping`, `depth` and
-#'   `assembly`, each one a data frame or `NULL` when the table is not found.
+#' @return A list with the elements `mags`, `bins`, `mapping`, `depth`,
+#'   `assembly`, `kos` and `annotation`, each one a data frame or `NULL` when
+#'   the table is not found.
 #'   The attribute `"files"` holds the paths that were used.
 #' @export
 #'
@@ -31,7 +32,9 @@ read_pipeline <- function(results_dir) {
     bins     = find_one("^bin_summary\\.tsv$"),
     mapping  = find_one("^mapping_summary\\.tsv$"),
     depth    = find_one("\\.depth\\.txt$"),
-    assembly = find_one("\\.contigs\\.stats\\.tsv$")
+    assembly = find_one("\\.contigs\\.stats\\.tsv$"),
+    kos        = find_one("^ko_per_mag\\.tsv$"),
+    annotation = find_one("^annotation_stats\\.tsv$")
   )
 
   read_if <- function(path, reader) {
@@ -43,7 +46,9 @@ read_pipeline <- function(results_dir) {
     bins     = read_if(files$bins, read_bin_summary),
     mapping  = read_if(files$mapping, read_mapping_summary),
     depth    = read_if(files$depth, read_depth),
-    assembly = read_if(files$assembly, function(p) read_pipeline_table(p))
+    assembly = read_if(files$assembly, function(p) read_pipeline_table(p)),
+    kos        = read_if(files$kos, read_ko_table),
+    annotation = read_if(files$annotation, read_annotation_stats)
   )
 
   attr(out, "files") <- files

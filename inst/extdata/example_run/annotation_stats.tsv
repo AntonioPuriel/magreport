@@ -1,0 +1,4 @@
+assembly	binner	bin	n_genes	n_annotated	n_kos
+coassembly	dastool	coassembly.concoct.1	404	281	22
+coassembly	dastool	coassembly.concoct.16	1063	802	24
+coassembly	dastool	coassembly.metabat2.1	770	601	17

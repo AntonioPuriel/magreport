@@ -32,3 +32,11 @@ ggsave(
 )
 
 message("Figures written to man/figures/")
+
+kos <- read_ko_table(example_path("ko_per_mag.tsv"))
+
+ggsave(
+  "man/figures/README-pathways.png",
+  plot_pathway_presence(kos, mags = mags),
+  width = 8, height = 3, dpi = 150
+)

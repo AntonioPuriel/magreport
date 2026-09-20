@@ -61,6 +61,8 @@ head(read_mag_quality(path))
 | `read_bin_summary()` | `04_binning/bin_summary.tsv` (size, N50 and GC per bin) |
 | `read_mapping_summary()` | `03_mapping/mapping_summary.tsv` (alignment rate per sample) |
 | `read_depth()` | `03_mapping/*.depth.txt` (contig coverage per sample) |
+| `read_ko_table()` | `07_function/ko_per_mag.tsv` (KEGG orthologues per MAG) |
+| `read_annotation_stats()` | `07_function/annotation_stats.tsv` (annotated fraction per MAG) |
 | `count_quality()` | Counts MAGs per MIMAG quality category |
 | `read_pipeline()` | Finds and reads every table of a run in one call |
 | `mag_report()` | Renders a full HTML report of a run |
@@ -90,6 +92,20 @@ MAGs per taxon at any rank. Unclassified MAGs are kept as their own group
 instead of being dropped.
 
 ![Taxonomy](man/figures/README-taxonomy.png)
+
+## Marker genes
+
+`plot_pathway_presence()` crosses the KEGG orthologues of each MAG with a set of
+marker genes and answers the question that follows MAG recovery in a polluted
+site: which genomes can do what. The package ships `hydrocarbon_kos()`, a curated
+set covering aerobic alkane, aromatic and PAH degradation, anaerobic degradation
+through fumarate addition and the benzoyl-CoA route, oxidative stress, and sulfur
+and nitrogen cycling as environmental context. Any data frame with `pathway` and
+`ko` columns can be used instead.
+
+### `plot_pathway_presence()`
+
+![Marker genes](man/figures/README-pathways.png)
 
 ## Report
 
