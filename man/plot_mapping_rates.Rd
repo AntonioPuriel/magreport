@@ -17,7 +17,9 @@ A \code{ggplot} object.
 }
 \description{
 A low alignment rate means that a large part of a sample is not represented
-in the assembly, which is worth checking before interpreting coverage.
+in the assembly, which is worth checking before interpreting coverage. When
+samples were mapped against several assemblies (mag-pipeline with
+\verb{--assembly_mode group} or \code{per_sample}), each assembly gets its own panel.
 }
 \examples{
 path <- system.file("extdata", "example_run", "mapping_summary.tsv",

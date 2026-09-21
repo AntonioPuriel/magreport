@@ -62,3 +62,19 @@ test_that("plot_taxonomy explains a missing taxonomy column", {
 
   expect_error(plot_taxonomy(mags, rank = "phylum"), "gtdbtk_db")
 })
+
+test_that("plot_mapping_rates handles samples mapped against several assemblies", {
+  skip_if_not_installed("ggplot2")
+
+  mapping <- data.frame(
+    assembly = rep(c("T0", "T1"), each = 2),
+    sample = rep(c("A", "B"), times = 2),
+    read_pairs = 1000,
+    overall_alignment_rate_pct = c(90, 20, 15, 85)
+  )
+
+  p <- plot_mapping_rates(mapping)
+  expect_s3_class(p, "ggplot")
+  expect_no_error(ggplot2::ggplot_build(p))
+  expect_s3_class(p$facet, "FacetWrap")
+})
