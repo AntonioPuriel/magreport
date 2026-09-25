@@ -42,9 +42,11 @@ plot_mapping_rates <- function(mapping, warn_below = 70) {
     ggplot2::geom_col(width = 0.7, show.legend = FALSE) +
     ggplot2::geom_text(
       ggplot2::aes(label = sprintf("%.1f%%", .data$overall_alignment_rate_pct)),
-      hjust = -0.15, size = 3
+      hjust = -0.15, size = 3, colour = magreport_colours()[["olive_dark"]]
     ) +
-    ggplot2::scale_fill_manual(values = c(ok = "#2C7FB8", low = "#D95F02")) +
+    ggplot2::scale_fill_manual(
+      values = c(ok = magreport_colours()[["olive"]], low = magreport_colours()[["terracotta"]])
+    ) +
     ggplot2::scale_y_continuous(limits = c(0, 105), expand = c(0, 0)) +
     ggplot2::coord_flip() +
     ggplot2::labs(
@@ -52,7 +54,7 @@ plot_mapping_rates <- function(mapping, warn_below = 70) {
       y = "Reads aligned to the assembly (%)",
       title = "Read mapping per sample"
     ) +
-    ggplot2::theme_bw()
+    theme_magreport()
 
   if (several_assemblies) {
     p <- p + ggplot2::facet_wrap(~assembly)

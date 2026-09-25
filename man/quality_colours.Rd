@@ -11,7 +11,8 @@ A named character vector of colours, one per level of
 \code{\link[=quality_levels]{quality_levels()}}.
 }
 \description{
-Colours used for the quality categories
+Olive for high, ochre for medium and terracotta for low quality, taken from
+\code{\link[=magreport_colours]{magreport_colours()}}.
 }
 \examples{
 quality_colours()

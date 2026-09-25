@@ -39,8 +39,12 @@ plot_mag_quality <- function(mags, facet_by = NULL, label_high = FALSE) {
       xmin = 90, xmax = 100, ymin = 0, ymax = 5,
       fill = quality_colours()[["high"]], alpha = 0.12
     ) +
-    ggplot2::geom_vline(xintercept = c(50, 90), linetype = "dashed", colour = "grey60") +
-    ggplot2::geom_hline(yintercept = c(5, 10), linetype = "dashed", colour = "grey60")
+    ggplot2::geom_vline(
+      xintercept = c(50, 90), linetype = "dashed", colour = magreport_colours()[["sand_mid"]]
+    ) +
+    ggplot2::geom_hline(
+      yintercept = c(5, 10), linetype = "dashed", colour = magreport_colours()[["sand_mid"]]
+    )
 
   if ("total_length" %in% names(mags)) {
     p <- p + ggplot2::geom_point(
@@ -58,7 +62,8 @@ plot_mag_quality <- function(mags, facet_by = NULL, label_high = FALSE) {
       p <- p + ggplot2::geom_text(
         data = high,
         ggplot2::aes(label = .data$bin),
-        hjust = 1.1, vjust = -0.6, size = 3, show.legend = FALSE
+        hjust = 1.1, vjust = -0.6, size = 3, show.legend = FALSE,
+        colour = magreport_colours()[["olive_dark"]]
       )
     }
   }
@@ -81,5 +86,5 @@ plot_mag_quality <- function(mags, facet_by = NULL, label_high = FALSE) {
       title = "MAG quality",
       caption = "Dashed lines: MIMAG thresholds"
     ) +
-    ggplot2::theme_bw()
+    theme_magreport()
 }

@@ -2,6 +2,17 @@ url: https://antoniopuriel.github.io/magreport/
 
 template:
   bootstrap: 5
+  bslib:
+    bg: "#FDFBF7"
+    fg: "#2B3119"
+    primary: "#5E6B2F"
+    secondary: "#9C8B6E"
+    link-color: "#A8552F"
+    link-hover-color: "#7A3B1E"
+    code-color: "#7A3B1E"
+
+navbar:
+  bg: primary
 
 reference:
 - title: Read pipeline output
@@ -26,8 +37,16 @@ reference:
 - title: Report
   contents:
   - mag_report
+- title: Colours and theme
+  desc: The olive and desert palette used by every plot
+  contents:
+  - magreport_colours
+  - magreport_palette
+  - scale_colour_magreport
+  - scale_fill_magreport_c
+  - theme_magreport
+  - quality_colours
 - title: Helpers
   contents:
   - quality_levels
-  - quality_colours
   - hydrocarbon_kos

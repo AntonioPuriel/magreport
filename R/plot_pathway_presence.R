@@ -70,20 +70,29 @@ plot_pathway_presence <- function(kos,
 
   counts$pathway <- factor(counts$pathway, levels = unique(markers$pathway))
 
+  # Light text on the dark end of the scale, dark text elsewhere
+  span <- range(counts$n_genes)
+  dark_tile <- diff(span) > 0 & counts$n_genes >= span[1] + 0.55 * diff(span)
+  counts$text_colour <- ifelse(dark_tile, "white", magreport_colours()[["olive_dark"]])
+
   ggplot2::ggplot(
     counts,
     ggplot2::aes(x = .data$pathway, y = .data$label, fill = .data$n_genes)
   ) +
     ggplot2::geom_tile(colour = "white", linewidth = 0.4) +
-    ggplot2::geom_text(ggplot2::aes(label = .data$n_genes), size = 3, colour = "grey15") +
-    ggplot2::scale_fill_gradient(name = "Genes", low = "#DEEBF7", high = "#08519C") +
+    ggplot2::geom_text(
+      ggplot2::aes(label = .data$n_genes, colour = .data$text_colour),
+      size = 3
+    ) +
+    ggplot2::scale_colour_identity() +
+    scale_fill_magreport_c(name = "Genes") +
     ggplot2::labs(
       x = NULL,
       y = NULL,
       title = "Marker genes per MAG",
       caption = "Empty cells: no gene of that process was annotated"
     ) +
-    ggplot2::theme_bw() +
+    theme_magreport() +
     ggplot2::theme(
       axis.text.x = ggplot2::element_text(angle = 30, hjust = 1),
       panel.grid = ggplot2::element_blank()

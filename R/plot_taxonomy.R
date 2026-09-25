@@ -59,7 +59,7 @@ plot_taxonomy <- function(mags, rank = "phylum", top = 15, fill_by = NULL) {
 
   p <- if (is.null(fill_by)) {
     ggplot2::ggplot(mags, ggplot2::aes(x = .data$taxon)) +
-      ggplot2::geom_bar(fill = "#2C7FB8", width = 0.7)
+      ggplot2::geom_bar(fill = magreport_colours()[["olive"]], width = 0.7)
   } else {
     if (!fill_by %in% names(mags)) {
       stop("Column not found in mags: ", fill_by, call. = FALSE)
@@ -70,6 +70,8 @@ plot_taxonomy <- function(mags, rank = "phylum", top = 15, fill_by = NULL) {
       p <- p + ggplot2::scale_fill_manual(
         name = "Quality", values = quality_colours(), drop = FALSE
       )
+    } else {
+      p <- p + scale_fill_magreport(name = fill_by)
     }
     p
   }
@@ -81,5 +83,5 @@ plot_taxonomy <- function(mags, rank = "phylum", top = 15, fill_by = NULL) {
       y = "MAGs",
       title = paste0("MAGs per ", rank)
     ) +
-    ggplot2::theme_bw()
+    theme_magreport()
 }

@@ -21,6 +21,22 @@ run <- params$run
 has <- function(x) !is.null(x) && nrow(x) > 0
 ```
 
+```{css palette}
+/* magreport palette: olive greens and desert tones */
+body { color: #2B3119; background-color: #FDFBF7; }
+h1, h2, h3, h4, .title { color: #353D1F; }
+h2 { border-bottom: 2px solid #D8C8A8; padding-bottom: 4px; }
+a, a:visited { color: #A8552F; }
+a:hover, a:focus { color: #7A3B1E; }
+code { color: #7A3B1E; background-color: #F3EBDD; }
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+  background-color: #5E6B2F; border-color: #5E6B2F; color: #FFFFFF;
+}
+.table > thead > tr > th { border-bottom: 2px solid #9C8B6E; }
+.table > tbody > tr:nth-child(odd) { background-color: #F7F2E8; }
+caption { color: #9C8B6E; }
+```
+
 Report generated from `` `r params$results_dir` `` with the
 [magreport](https://github.com/AntonioPuriel/magreport) R package.
 

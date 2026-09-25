@@ -39,13 +39,17 @@ quality_levels <- function() {
 
 #' Colours used for the quality categories
 #'
+#' Olive for high, ochre for medium and terracotta for low quality, taken from
+#' [magreport_colours()].
+#'
 #' @return A named character vector of colours, one per level of
 #'   [quality_levels()].
 #' @export
 #' @examples
 #' quality_colours()
 quality_colours <- function() {
-  c(high = "#1B9E77", medium = "#D95F02", low = "#7570B3")
+  col <- magreport_colours()
+  c(high = col[["olive"]], medium = col[["ochre"]], low = col[["terracotta"]])
 }
 
 #' @keywords internal

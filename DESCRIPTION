@@ -1,6 +1,6 @@
 Package: magreport
 Title: Explore and Report MAG Recovery Results
-Version: 0.3.1
+Version: 0.4.0
 Authors@R: 
     person("Antonio", "Puriel Hernández", email = "apurielh@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "0009-0000-7631-1102"))
@@ -14,7 +14,9 @@ Roxygen: list(markdown = TRUE)
 Depends: 
     R (>= 4.1)
 Imports: 
-    rlang
+    grDevices,
+    rlang,
+    utils
 Suggests: 
     ggplot2,
     knitr,
@@ -22,6 +24,6 @@ Suggests:
     testthat (>= 3.0.0),
     withr
 Config/testthat/edition: 3
-URL: https://github.com/AntonioPuriel/magreport
+URL: https://antoniopuriel.github.io/magreport, https://github.com/AntonioPuriel/magreport
 BugReports: https://github.com/AntonioPuriel/magreport/issues
 Config/roxygen2/version: 8.1.0
