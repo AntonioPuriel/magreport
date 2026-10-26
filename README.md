@@ -141,6 +141,25 @@ Low-quality MAGs are not incomplete: their median completeness is higher than
 that of medium ones. They fail on contamination, which is what the next steps
 (dereplication and, if needed, manual curation) have to deal with.
 
+DAS Tool keeps the name of the bin it picked, so each final MAG can be traced
+back to the binner that produced it:
+
+![MAG quality by assembly and binner, Marine Honour T0–T2](man/figures/README-marine-honour-binners.png)
+
+| Assembly | Binner | MAGs | High | Medium | Low |
+|---|---|---:|---:|---:|---:|
+| T0 | MetaBAT2 | 80 | 20 | 47 | 13 |
+| T0 | CONCOCT | 92 | 16 | 56 | 20 |
+| T1 | MetaBAT2 | 98 | 26 | 57 | 15 |
+| T1 | CONCOCT | 82 | 13 | 54 | 15 |
+| T2 | MetaBAT2 | 87 | 19 | 60 | 8 |
+| T2 | CONCOCT | 76 | 14 | 47 | 15 |
+
+The pattern holds in all three assemblies: MetaBAT2 contributes more
+high-quality MAGs, and CONCOCT adds many medium-quality ones that MetaBAT2 does
+not recover. This shows which binner gave the version DAS Tool kept, not how
+each binner performs on its own.
+
 Quality follows the MIMAG thresholds: high is ≥ 90 % complete and < 5 %
 contaminated, medium is ≥ 50 % and < 10 %. The run is still going; this section
 will be updated with all eight assemblies, dereplication and taxonomy.
