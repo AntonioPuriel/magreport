@@ -120,12 +120,26 @@ assembly, so the counts will drop once galah merges the eight.
 
 ![MAG quality, Marine Honour T0–T2](man/figures/README-marine-honour-quality.png)
 
-| Assembly | MAGs | High | Medium | Low | Median completeness | Median contamination |
-|---|---:|---:|---:|---:|---:|---:|
-| T0 | 172 | 36 | 103 | 33 | 83.5 % | 4.0 % |
-| T1 | 180 | 39 | 111 | 30 | 87.4 % | 3.8 % |
-| T2 | 163 | 33 | 107 | 23 | 83.7 % | 3.9 % |
-| **Total** | **515** | **108** | **321** | **86** | 85.1 % | 3.9 % |
+MAGs per assembly and quality:
+
+| Assembly | MAGs | High | Medium | Low |
+|---|---:|---:|---:|---:|
+| T0 | 172 | 36 | 103 | 33 |
+| T1 | 180 | 39 | 111 | 30 |
+| T2 | 163 | 33 | 107 | 23 |
+| **Total** | **515** | **108** | **321** | **86** |
+
+Median completeness and contamination within each quality class (T0–T2):
+
+| Quality | MAGs | Median completeness | Median contamination |
+|---|---:|---:|---:|
+| High | 108 | 94.9 % | 2.2 % |
+| Medium | 321 | 80.0 % | 4.2 % |
+| Low | 86 | 83.1 % | 14.5 % |
+
+Low-quality MAGs are not incomplete: their median completeness is higher than
+that of medium ones. They fail on contamination, which is what the next steps
+(dereplication and, if needed, manual curation) have to deal with.
 
 Quality follows the MIMAG thresholds: high is ≥ 90 % complete and < 5 %
 contaminated, medium is ≥ 50 % and < 10 %. The run is still going; this section
