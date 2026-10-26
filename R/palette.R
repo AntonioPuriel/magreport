@@ -108,7 +108,7 @@ scale_fill_magreport <- function(...) {
 #' @export
 #' @examples
 #' if (requireNamespace("ggplot2", quietly = TRUE)) {
-#'   ggplot2::ggplot(faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
+#'   ggplot2::ggplot(ggplot2::faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
 #'     ggplot2::geom_raster() +
 #'     scale_fill_magreport_c()
 #' }

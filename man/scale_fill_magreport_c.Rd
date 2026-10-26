@@ -17,7 +17,7 @@ A sequential scale from sand to dark olive, used for heatmaps.
 }
 \examples{
 if (requireNamespace("ggplot2", quietly = TRUE)) {
-  ggplot2::ggplot(faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
+  ggplot2::ggplot(ggplot2::faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
     ggplot2::geom_raster() +
     scale_fill_magreport_c()
 }
