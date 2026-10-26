@@ -107,6 +107,30 @@ and nitrogen cycling as environmental context. Any data frame with `pathway` and
 
 ![Marker genes](man/figures/README-pathways.png)
 
+## Real data: Marine Honour oil spill (preliminary)
+
+The figures above use the small test set. This one comes from a real run of
+[mag-pipeline](https://github.com/AntonioPuriel/mag-pipeline) on the public
+study of the 2024 Marine Honour oil spill in Singapore
+([PRJNA1263040](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1263040)):
+48 intertidal sediment samples, co-assembled by time point (8 assemblies).
+It shows the first three assemblies, T0 to T2, after DAS Tool refinement and
+CheckM2, **before dereplication**: the same organism can appear in more than one
+assembly, so the counts will drop once galah merges the eight.
+
+![MAG quality, Marine Honour T0–T2](man/figures/README-marine-honour-quality.png)
+
+| Assembly | MAGs | High | Medium | Low | Median completeness | Median contamination |
+|---|---:|---:|---:|---:|---:|---:|
+| T0 | 172 | 36 | 103 | 33 | 83.5 % | 4.0 % |
+| T1 | 180 | 39 | 111 | 30 | 87.4 % | 3.8 % |
+| T2 | 163 | 33 | 107 | 23 | 83.7 % | 3.9 % |
+| **Total** | **515** | **108** | **321** | **86** | 85.1 % | 3.9 % |
+
+Quality follows the MIMAG thresholds: high is ≥ 90 % complete and < 5 %
+contaminated, medium is ≥ 50 % and < 10 %. The run is still going; this section
+will be updated with all eight assemblies, dereplication and taxonomy.
+
 ## Report
 
 `mag_report()` takes a results directory and writes a self-contained HTML report
