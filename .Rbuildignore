@@ -7,3 +7,4 @@
 ^data-raw$
 ^\.RData$
 ^\.Rhistory$
+^CITATION\.cff$
