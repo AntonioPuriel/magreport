@@ -146,7 +146,9 @@ samples$day <- c(T0 = 2, T1 = 17, T2 = 33, T3 = 48,
 plot_abundance_timeline(abundance, samples,
                         groups = hydrocarbon_groups(genes),
                         time = "day", condition = "condition",
-                        time_label = "Days after oil arrival")
+                        time_label = "Days after oil arrival",
+                        condition_labels = c(C = "L (low)", O = "H (high)"),
+                        condition_title = "Oil impact")
 ```
 
 ![Hydrocarbon degraders over time, Marine Honour](man/figures/README-marine-honour-timeline.png)

@@ -1,3 +1,9 @@
+# magreport 0.5.1
+
+* `plot_abundance_timeline()` gains `condition_labels` and `condition_title`, to
+  show readable names in the legend instead of the codes of the sample names
+  (for example "H (high)" instead of "O").
+
 # magreport 0.5.0
 
 ## New features

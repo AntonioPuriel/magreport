@@ -10,7 +10,7 @@ authors:
     affiliation: "Université de Pau et des Pays de l'Adour"
 repository-code: "https://github.com/AntonioPuriel/magreport"
 license: MIT
-version: "0.5.0"
+version: "0.5.1"
 keywords:
   - metagenomics
   - metagenome-assembled genomes

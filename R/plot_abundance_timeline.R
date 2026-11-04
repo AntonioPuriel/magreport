@@ -18,6 +18,10 @@
 #' @param condition Optional column of `samples` used to draw one line per
 #'   condition.
 #' @param time_label Title of the x axis.
+#' @param condition_labels Optional named character vector to show readable
+#'   names in the legend instead of the codes used in the sample names, for
+#'   example `c(C = "Low impact", O = "High impact")`.
+#' @param condition_title Title of the legend.
 #'
 #' @return A `ggplot` object. The summarised values are in its `data` element.
 #' @export
@@ -38,14 +42,18 @@
 #'   abundance, samples,
 #'   groups = hydrocarbon_groups(genes),
 #'   time = "day", condition = "condition",
-#'   time_label = "Days after oil arrival"
+#'   time_label = "Days after oil arrival",
+#'   condition_labels = c(C = "L (low)", O = "H (high)"),
+#'   condition_title = "Oil impact"
 #' )
 plot_abundance_timeline <- function(abundance,
                                     samples,
                                     groups = NULL,
                                     time = "time",
                                     condition = NULL,
-                                    time_label = time) {
+                                    time_label = time,
+                                    condition_labels = NULL,
+                                    condition_title = condition) {
   check_ggplot2()
   stopifnot(is.data.frame(abundance), is.data.frame(samples))
 
@@ -141,7 +149,15 @@ plot_abundance_timeline <- function(abundance,
     p <- p + ggplot2::aes(colour = NULL) +
       ggplot2::scale_colour_manual(values = magreport_colours()[["olive"]], guide = "none")
   } else {
-    p <- p + scale_colour_magreport(name = condition)
+    if (is.null(condition_labels)) {
+      p <- p + scale_colour_magreport(name = condition_title)
+    } else {
+      unknown <- setdiff(unique(as.character(summary[[condition]])), names(condition_labels))
+      if (length(unknown) > 0) {
+        stop("condition_labels has no label for: ", paste(unknown, collapse = ", "), call. = FALSE)
+      }
+      p <- p + scale_colour_magreport(name = condition_title, labels = condition_labels)
+    }
   }
 
   p

@@ -10,7 +10,9 @@ plot_abundance_timeline(
   groups = NULL,
   time = "time",
   condition = NULL,
-  time_label = time
+  time_label = time,
+  condition_labels = NULL,
+  condition_title = condition
 )
 }
 \arguments{
@@ -31,6 +33,12 @@ placed to scale; anything else is kept in order of appearance.}
 condition.}
 
 \item{time_label}{Title of the x axis.}
+
+\item{condition_labels}{Optional named character vector to show readable
+names in the legend instead of the codes used in the sample names, for
+example \code{c(C = "Low impact", O = "High impact")}.}
+
+\item{condition_title}{Title of the legend.}
 }
 \value{
 A \code{ggplot} object. The summarised values are in its \code{data} element.
@@ -58,6 +66,8 @@ plot_abundance_timeline(
   abundance, samples,
   groups = hydrocarbon_groups(genes),
   time = "day", condition = "condition",
-  time_label = "Days after oil arrival"
+  time_label = "Days after oil arrival",
+  condition_labels = c(C = "L (low)", O = "H (high)"),
+  condition_title = "Oil impact"
 )
 }

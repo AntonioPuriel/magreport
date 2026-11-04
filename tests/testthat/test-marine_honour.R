@@ -104,6 +104,18 @@ test_that("plot_abundance_timeline summarises groups over time", {
   expect_equal(total$data$sd, rep(0, 8), tolerance = 1e-8)
   expect_no_error(ggplot2::ggplot_build(total))
 
+  labelled <- plot_abundance_timeline(ab, samples, time = "day", condition = "condition",
+                                      condition_labels = c(C = "Low impact", O = "High impact"),
+                                      condition_title = "Site")
+  built <- ggplot2::ggplot_build(labelled)
+  colour <- built$plot$scales$get_scales("colour")
+  expect_equal(as.character(colour$get_labels()), c("Low impact", "High impact"))
+  expect_equal(colour$name, "Site")
+  expect_error(
+    plot_abundance_timeline(ab, samples, condition = "condition", condition_labels = c(C = "x")),
+    "no label for: O"
+  )
+
   expect_error(plot_abundance_timeline(ab, samples[-1, ]), "missing from samples")
   expect_error(plot_abundance_timeline(ab, samples, time = "nope"), "not found")
 })

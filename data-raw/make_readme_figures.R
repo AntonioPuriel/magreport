@@ -55,7 +55,9 @@ ggsave(
   "man/figures/README-marine-honour-timeline.png",
   plot_abundance_timeline(abundance, samples, groups = hydrocarbon_groups(genes),
                           time = "day", condition = "condition",
-                          time_label = "Days after oil arrival"),
+                          time_label = "Days after oil arrival",
+                          condition_labels = c(C = "L (low)", O = "H (high)"),
+                          condition_title = "Oil impact"),
   width = 10, height = 6, dpi = 150
 )
 
