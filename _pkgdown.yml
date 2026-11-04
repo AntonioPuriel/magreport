@@ -58,3 +58,9 @@ reference:
   - quality_levels
   - hydrocarbon_kos
   - hydrocarbon_groups
+
+articles:
+- title: Case study
+  navbar: Case study
+  contents:
+  - articles/marine-honour-tree

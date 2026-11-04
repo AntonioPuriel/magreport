@@ -154,7 +154,9 @@ browser: pointing at a MAG shows its name, taxonomy, MIMAG quality, CANT-HYD
 markers and abundance, and highlights it in every ring; pointing at a coloured
 cell of a hydrocarbon ring highlights all the MAGs of that process. Save it as
 a single HTML file with `htmlwidgets::saveWidget(widget, "mag_tree.html")`.
-This needs ggiraph.
+This needs ggiraph. You can try it on the
+[Marine Honour article](https://antoniopuriel.github.io/magreport/articles/marine-honour-tree.html)
+of the package website.
 
 It needs ggtree from Bioconductor:
 `BiocManager::install("ggtree")`, plus `ape` and `ggnewscale`.

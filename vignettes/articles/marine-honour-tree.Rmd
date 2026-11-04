@@ -1,0 +1,53 @@
+---
+title: "Marine Honour: interactive MAG tree"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+This page shows the catalogue of 281 species-level MAGs recovered by
+[mag-pipeline](https://github.com/AntonioPuriel/mag-pipeline) v1.9.1 from the
+public metagenomes of the 2024 Marine Honour oil spill in Singapore
+([PRJNA1263040](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1263040)):
+48 intertidal sediment samples from 8 sampling times (2 to 185 days after the
+oil arrived), a low-impact (L) and a high-impact (H) site, 3 replicates each.
+
+The tree holds the 280 bacterial MAGs; the single archaeal MAG is left out. It
+was built from the GTDB-Tk alignment of 120 marker genes with FastTree and is
+rooted on the Patescibacteriota.
+
+## How to read it
+
+- **Point at a MAG** in any ring: it is highlighted in every ring and a card
+  shows its name, taxonomy, novelty against GTDB, MIMAG quality, CANT-HYD
+  markers, highest abundance and response to the spill.
+- **Point at a dark cell of a hydrocarbon ring** (alkanes, short-chain alkanes,
+  aromatics, anaerobic): every MAG carrying markers of that process is
+  highlighted, and the card gives how many there are.
+- The buttons at the top right save the figure as an image or show it full
+  screen.
+
+Rings, from the inside out: lineage, novelty against GTDB r232, MIMAG quality,
+CANT-HYD processes, log2 of the mean abundance in H over L, and bars with the
+highest relative abundance of each MAG in any sample (square-root scale).
+
+```{r tree, out.width = "100%"}
+library(magreport)
+
+dir <- system.file("extdata", "marine_honour", package = "magreport")
+mags      <- read_mimag_quality(file.path(dir, "mimag_quality.tsv"))
+genes     <- read_hydrocarbon_genes(file.path(dir, "hydrocarbon_per_mag.tsv"))
+abundance <- read_mag_abundance(file.path(dir, "mag_abundance.tsv.gz"))
+samples   <- parse_sample_names(abundance$sample,
+                                into = c("time", "site", "condition", "replicate"))
+
+plot_mag_tree(file.path(dir, "bac120.tree"), mags,
+              genes = genes, abundance = abundance,
+              samples = samples, condition = "condition",
+              contrast = c(O = "H", C = "L"),
+              interactive = TRUE)
+```
+
+The same call without `interactive = TRUE` gives the static figure, ready to
+save with `ggplot2::ggsave()`.

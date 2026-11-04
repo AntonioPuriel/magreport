@@ -8,3 +8,4 @@
 ^\.RData$
 ^\.Rhistory$
 ^CITATION\.cff$
+^vignettes/articles$
