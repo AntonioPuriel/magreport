@@ -11,17 +11,18 @@ Reads the output tables of the mag-pipeline metagenomics workflow (assembly stat
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://antoniopuriel.github.io/magreport}
   \item \url{https://github.com/AntonioPuriel/magreport}
   \item Report bugs at \url{https://github.com/AntonioPuriel/magreport/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Antonio Puriel HernÃ¡ndez \email{apurielh@gmail.com} (\href{https://orcid.org/0009-0000-7631-1102}{ORCID})
+\strong{Maintainer}: Antonio Puriel Hern<c3><a1>ndez \email{apurielh@gmail.com} (\href{https://orcid.org/0009-0000-7631-1102}{ORCID})
 
 Authors:
 \itemize{
-  \item Antonio Puriel HernÃ¡ndez \email{apurielh@gmail.com} (\href{https://orcid.org/0009-0000-7631-1102}{ORCID})
+  \item Antonio Puriel Hern<c3><a1>ndez \email{apurielh@gmail.com} (\href{https://orcid.org/0009-0000-7631-1102}{ORCID})
 }
 
 }

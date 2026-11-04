@@ -6,9 +6,11 @@
 #'
 #' @param results_dir Directory to search, recursively.
 #'
-#' @return A list with the elements `mags`, `bins`, `mapping`, `depth`,
-#'   `assembly`, `kos` and `annotation`, each one a data frame or `NULL` when
-#'   the table is not found.
+#' @return A list with the elements `mags`, `mimag`, `bins`, `mapping`,
+#'   `depth`, `assembly`, `kos`, `annotation`, `hydrocarbon` and `abundance`,
+#'   each one a data frame or `NULL` when the table is not found. When the MIMAG
+#'   table exists, `abundance` is restricted to its genomes (the dereplicated
+#'   representatives).
 #'   The attribute `"files"` holds the paths that were used.
 #' @export
 #'
@@ -34,7 +36,10 @@ read_pipeline <- function(results_dir) {
     depth    = find_one("\\.depth\\.txt$"),
     assembly = find_one("\\.contigs\\.stats\\.tsv$"),
     kos        = find_one("^ko_per_mag\\.tsv$"),
-    annotation = find_one("^annotation_stats\\.tsv$")
+    annotation = find_one("^annotation_stats\\.tsv$"),
+    mimag       = find_one("^mimag_quality\\.tsv$"),
+    hydrocarbon = find_one("^hydrocarbon_per_mag\\.tsv$"),
+    abundance   = find_one("^mag_abundance\\.tsv(\\.gz)?$")
   )
 
   read_if <- function(path, reader) {
@@ -48,8 +53,15 @@ read_pipeline <- function(results_dir) {
     depth    = read_if(files$depth, read_depth),
     assembly = read_if(files$assembly, function(p) read_pipeline_table(p)),
     kos        = read_if(files$kos, read_ko_table),
-    annotation = read_if(files$annotation, read_annotation_stats)
+    annotation = read_if(files$annotation, read_annotation_stats),
+    mimag       = read_if(files$mimag, read_mimag_quality),
+    hydrocarbon = read_if(files$hydrocarbon, read_hydrocarbon_genes)
   )
+
+  # list() keeps the element when the table is missing (NULL)
+  out["abundance"] <- list(read_if(files$abundance, function(p) {
+    read_mag_abundance(p, bins = if (is.null(out$mimag)) NULL else out$mimag$bin)
+  }))
 
   attr(out, "files") <- files
   out

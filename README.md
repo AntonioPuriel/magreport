@@ -63,6 +63,10 @@ head(read_mag_quality(path))
 | `read_depth()` | `03_mapping/*.depth.txt` (contig coverage per sample) |
 | `read_ko_table()` | `07_function/ko_per_mag.tsv` (KEGG orthologues per MAG) |
 | `read_annotation_stats()` | `07_function/annotation_stats.tsv` (annotated fraction per MAG) |
+| `read_mimag_quality()` | `05_quality/mimag_quality.tsv` (MIMAG category, rRNA and tRNA genes, taxonomy) |
+| `read_hydrocarbon_genes()` | `07_function/hydrocarbon_per_mag.tsv` (CANT-HYD and HADEG markers per MAG) |
+| `read_mag_abundance()` | `04_binning/mag_abundance.tsv` (depth and relative abundance per MAG and sample) |
+| `parse_sample_names()` | Splits sample names such as `T3-BB-O-2` into design columns |
 | `count_quality()` | Counts MAGs per MIMAG quality category |
 | `read_pipeline()` | Finds and reads every table of a run in one call |
 | `mag_report()` | Renders a full HTML report of a run |
@@ -107,62 +111,52 @@ and nitrogen cycling as environmental context. Any data frame with `pathway` and
 
 ![Marker genes](man/figures/README-pathways.png)
 
-## Real data: Marine Honour oil spill (preliminary)
+## Real data: Marine Honour oil spill
 
-The figures above use the small test set. This one comes from a real run of
-[mag-pipeline](https://github.com/AntonioPuriel/mag-pipeline) on the public
-study of the 2024 Marine Honour oil spill in Singapore
+The package ships real output of
+[mag-pipeline](https://github.com/AntonioPuriel/mag-pipeline) v1.9.1 on the
+public study of the 2024 Marine Honour oil spill in Singapore
 ([PRJNA1263040](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1263040)):
-48 intertidal sediment samples, co-assembled by time point (8 assemblies).
-It shows the first three assemblies, T0 to T2, after DAS Tool refinement and
-CheckM2, **before dereplication**: the same organism can appear in more than one
-assembly, so the counts will drop once galah merges the eight.
+48 intertidal sediment samples from 8 sampling times (2 to 185 days after the oil
+arrived), a low-impact (C) and a high-impact (O) site, 3 replicates each. The
+eight co-assemblies gave 1,161 refined bins. After removing 157 chimeric bins
+(GUNC) and 184 of low quality, galah grouped the remaining 820 into
+**281 species-level MAGs**: 6 of high and 275 of medium MIMAG quality, 280
+bacterial and 1 archaeal. 244 of them have no species representative in GTDB.
 
-![MAG quality, Marine Honour T0–T2](man/figures/README-marine-honour-quality.png)
+`inst/extdata/marine_honour` holds 74 of those MAGs (the 62 with a CANT-HYD
+marker, the high-quality ones and the strongest responders) and the abundance of
+all 281 in the 48 samples.
 
-MAGs per assembly and quality:
+### `plot_abundance_timeline()`
 
-| Assembly | MAGs | High | Medium | Low |
-|---|---:|---:|---:|---:|
-| T0 | 172 | 36 | 103 | 33 |
-| T1 | 180 | 39 | 111 | 30 |
-| T2 | 163 | 33 | 107 | 23 |
-| **Total** | **515** | **108** | **321** | **86** |
+Follows groups of MAGs over time. Here, the MAGs grouped by the hydrocarbon
+degradation markers that CANT-HYD found in them (`hydrocarbon_groups()`):
 
-Median completeness and contamination within each quality class (T0–T2):
+```r
+dir <- system.file("extdata", "marine_honour", package = "magreport")
+abundance <- read_mag_abundance(file.path(dir, "mag_abundance.tsv.gz"))
+genes     <- read_hydrocarbon_genes(file.path(dir, "hydrocarbon_per_mag.tsv"))
 
-| Quality | MAGs | Median completeness | Median contamination |
-|---|---:|---:|---:|
-| High | 108 | 94.9 % | 2.2 % |
-| Medium | 321 | 80.0 % | 4.2 % |
-| Low | 86 | 83.1 % | 14.5 % |
+samples <- parse_sample_names(abundance$sample,
+                              into = c("time", "site", "condition", "replicate"))
+samples$day <- c(T0 = 2, T1 = 17, T2 = 33, T3 = 48,
+                 T4 = 63, T5 = 93, T6 = 124, T7 = 185)[samples$time]
 
-Low-quality MAGs are not incomplete: their median completeness is higher than
-that of medium ones. They fail on contamination, which is what the next steps
-(dereplication and, if needed, manual curation) have to deal with.
+plot_abundance_timeline(abundance, samples,
+                        groups = hydrocarbon_groups(genes),
+                        time = "day", condition = "condition",
+                        time_label = "Days after oil arrival")
+```
 
-DAS Tool keeps the name of the bin it picked, so each final MAG can be traced
-back to the binner that produced it:
+![Hydrocarbon degraders over time, Marine Honour](man/figures/README-marine-honour-timeline.png)
 
-![MAG quality by assembly and binner, Marine Honour T0–T2](man/figures/README-marine-honour-binners.png)
+### `plot_hydrocarbon_genes()`
 
-| Assembly | Binner | MAGs | High | Medium | Low |
-|---|---|---:|---:|---:|---:|
-| T0 | MetaBAT2 | 80 | 20 | 47 | 13 |
-| T0 | CONCOCT | 92 | 16 | 56 | 20 |
-| T1 | MetaBAT2 | 98 | 26 | 57 | 15 |
-| T1 | CONCOCT | 82 | 13 | 54 | 15 |
-| T2 | MetaBAT2 | 87 | 19 | 60 | 8 |
-| T2 | CONCOCT | 76 | 14 | 47 | 15 |
+Which markers each MAG carries, labelled with its GTDB taxonomy. MAGs without a
+genus name take the closest named rank, marked with its initial.
 
-The pattern holds in all three assemblies: MetaBAT2 contributes more
-high-quality MAGs, and CONCOCT adds many medium-quality ones that MetaBAT2 does
-not recover. This shows which binner gave the version DAS Tool kept, not how
-each binner performs on its own.
-
-Quality follows the MIMAG thresholds: high is ≥ 90 % complete and < 5 %
-contaminated, medium is ≥ 50 % and < 10 %. The run is still going; this section
-will be updated with all eight assemblies, dereplication and taxonomy.
+![CANT-HYD markers per MAG, Marine Honour](man/figures/README-marine-honour-genes.png)
 
 ## Report
 

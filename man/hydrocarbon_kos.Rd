@@ -25,8 +25,10 @@ for \code{\link[=plot_pathway_presence]{plot_pathway_presence()}}, not as an exh
 \details{
 Marker genes are grouped as follows.
 \itemize{
-\item \emph{Alkanes (aerobic)}: alkane 1-monooxygenase (\code{alkB}), long-chain alkane
-monooxygenase (\code{ladA}) and cytochrome P450 CYP153.
+\item \emph{Alkanes (aerobic)}: alkane 1-monooxygenase (\code{alkB}) and the alcohol and
+aldehyde dehydrogenases that follow it. KEGG has no specific orthologue
+for CYP153 or \code{almA}: use \code{\link[=read_hydrocarbon_genes]{read_hydrocarbon_genes()}} with CANT-HYD for
+those.
 \item \emph{Aromatics (aerobic)}: ring-hydroxylating dioxygenases and the central
 benzoate and catechol routes.
 \item \emph{PAHs (aerobic)}: naphthalene and related polycyclic routes.

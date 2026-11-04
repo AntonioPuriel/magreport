@@ -10,9 +10,11 @@ read_pipeline(results_dir)
 \item{results_dir}{Directory to search, recursively.}
 }
 \value{
-A list with the elements \code{mags}, \code{bins}, \code{mapping}, \code{depth},
-\code{assembly}, \code{kos} and \code{annotation}, each one a data frame or \code{NULL} when
-the table is not found.
+A list with the elements \code{mags}, \code{mimag}, \code{bins}, \code{mapping},
+\code{depth}, \code{assembly}, \code{kos}, \code{annotation}, \code{hydrocarbon} and \code{abundance},
+each one a data frame or \code{NULL} when the table is not found. When the MIMAG
+table exists, \code{abundance} is restricted to its genomes (the dereplicated
+representatives).
 The attribute \code{"files"} holds the paths that were used.
 }
 \description{

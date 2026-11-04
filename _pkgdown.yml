@@ -24,6 +24,10 @@ reference:
   - read_depth
   - read_ko_table
   - read_annotation_stats
+  - read_mimag_quality
+  - read_hydrocarbon_genes
+  - read_mag_abundance
+  - parse_sample_names
   - read_pipeline
 - title: Summarise
   contents:
@@ -34,6 +38,8 @@ reference:
   - plot_mapping_rates
   - plot_taxonomy
   - plot_pathway_presence
+  - plot_hydrocarbon_genes
+  - plot_abundance_timeline
 - title: Report
   contents:
   - mag_report
@@ -50,3 +56,4 @@ reference:
   contents:
   - quality_levels
   - hydrocarbon_kos
+  - hydrocarbon_groups

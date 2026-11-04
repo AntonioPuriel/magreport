@@ -40,3 +40,27 @@ ggsave(
   plot_pathway_presence(kos, mags = mags),
   width = 8, height = 3, dpi = 150
 )
+
+# Marine Honour (real data)
+mh <- function(file) system.file("extdata", "marine_honour", file, package = "magreport")
+abundance <- read_mag_abundance(mh("mag_abundance.tsv.gz"))
+genes     <- read_hydrocarbon_genes(mh("hydrocarbon_per_mag.tsv"))
+mh_mags   <- read_mimag_quality(mh("mimag_quality.tsv"))
+samples   <- parse_sample_names(abundance$sample,
+                                into = c("time", "site", "condition", "replicate"))
+samples$day <- c(T0 = 2, T1 = 17, T2 = 33, T3 = 48,
+                 T4 = 63, T5 = 93, T6 = 124, T7 = 185)[samples$time]
+
+ggsave(
+  "man/figures/README-marine-honour-timeline.png",
+  plot_abundance_timeline(abundance, samples, groups = hydrocarbon_groups(genes),
+                          time = "day", condition = "condition",
+                          time_label = "Days after oil arrival"),
+  width = 10, height = 6, dpi = 150
+)
+
+ggsave(
+  "man/figures/README-marine-honour-genes.png",
+  plot_hydrocarbon_genes(genes, mags = mh_mags, top = 25),
+  width = 8, height = 7, dpi = 150
+)

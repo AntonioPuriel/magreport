@@ -14,8 +14,10 @@
 #' @details
 #' Marker genes are grouped as follows.
 #'
-#' * *Alkanes (aerobic)*: alkane 1-monooxygenase (`alkB`), long-chain alkane
-#'   monooxygenase (`ladA`) and cytochrome P450 CYP153.
+#' * *Alkanes (aerobic)*: alkane 1-monooxygenase (`alkB`) and the alcohol and
+#'   aldehyde dehydrogenases that follow it. KEGG has no specific orthologue
+#'   for CYP153 or `almA`: use [read_hydrocarbon_genes()] with CANT-HYD for
+#'   those.
 #' * *Aromatics (aerobic)*: ring-hydroxylating dioxygenases and the central
 #'   benzoate and catechol routes.
 #' * *PAHs (aerobic)*: naphthalene and related polycyclic routes.
@@ -34,7 +36,7 @@
 hydrocarbon_kos <- function() {
   data.frame(
     pathway = c(
-      rep("Alkanes (aerobic)", 5),
+      rep("Alkanes (aerobic)", 3),
       rep("Aromatics (aerobic)", 7),
       rep("PAHs (aerobic)", 5),
       rep("Hydrocarbons (anaerobic)", 5),
@@ -43,8 +45,9 @@ hydrocarbon_kos <- function() {
       rep("Nitrogen cycling", 5)
     ),
     ko = c(
-      # alkB, almA/ladA, CYP153, alcohol and aldehyde dehydrogenases
-      "K00496", "K10944", "K18089", "K00114", "K00128",
+      # alkB, alcohol and aldehyde dehydrogenases
+      # (K10944 is amoA/pmoA, not an alkane monooxygenase: removed in 0.5.0)
+      "K00496", "K00114", "K00128",
       # benzoate dioxygenase, catechol 1,2- and 2,3-dioxygenase, muconate route
       "K05549", "K05550", "K03381", "K00446", "K01055", "K01821", "K01856",
       # naphthalene dioxygenase and downstream steps

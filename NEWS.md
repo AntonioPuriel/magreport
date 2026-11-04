@@ -1,0 +1,28 @@
+# magreport 0.5.0
+
+## New features
+
+* `read_mimag_quality()` reads `mimag_quality.tsv` (mag-pipeline >= 1.8.0): MIMAG
+  category, rRNA and tRNA genes, and the GTDB-Tk classification split into
+  ranks. The result works with `count_quality()`, `plot_mag_quality()` and
+  `plot_taxonomy()`.
+* `read_hydrocarbon_genes()` reads `hydrocarbon_per_mag.tsv` (mag-pipeline >=
+  1.9.0), the CANT-HYD and HADEG markers of each MAG, and
+  `hydrocarbon_groups()` groups the CANT-HYD markers by process.
+* `read_mag_abundance()` reads `mag_abundance.tsv` and adds the relative
+  abundance of each MAG in each sample. `parse_sample_names()` turns sample
+  names into design columns.
+* `plot_abundance_timeline()` follows the abundance of groups of MAGs over time,
+  per condition, with the mean and standard deviation of the replicates.
+* `plot_hydrocarbon_genes()` draws the markers carried by each MAG.
+* `read_pipeline()` also finds the MIMAG, hydrocarbon and abundance tables.
+* New example data from the Marine Honour oil spill (PRJNA1263040), produced by
+  mag-pipeline v1.9.1.
+
+## Bug fixes
+
+* `hydrocarbon_kos()` listed K10944 (`amoA`/`pmoA`, ammonia or methane
+  monooxygenase) as an alkane monooxygenase, so `plot_pathway_presence()`
+  counted nitrifiers and methanotrophs as alkane degraders. It is removed, as is
+  K18089, which was listed as CYP153: KEGG has no specific orthologue for
+  CYP153.
