@@ -1,3 +1,15 @@
+# magreport 0.6.0
+
+* `plot_mag_tree()` draws the MAGs as a circular tree with iTOL-style rings:
+  lineage, novelty against GTDB, MIMAG quality (with its thresholds), one ring
+  per hydrocarbon degradation process, the response to a disturbance (log2 of
+  the mean abundance between two conditions) and bars with the highest
+  abundance of each MAG, on a square-root scale by default. Every ring after the
+  lineage is optional. It needs ggtree (Bioconductor), ape and ggnewscale, all
+  suggested.
+* The Marine Honour example data now hold the whole catalogue (281 MAGs) and the
+  tree of the 280 bacterial ones (`bac120.tree`).
+
 # magreport 0.5.1
 
 * `plot_abundance_timeline()` gains `condition_labels` and `condition_title`, to

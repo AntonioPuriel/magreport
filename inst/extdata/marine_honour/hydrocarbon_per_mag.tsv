@@ -1,5 +1,6 @@
 genome	database	marker	category	pathway	n_genes
-T0.concoct.119	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T0.concoct.117	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T0.concoct.119	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T0.concoct.119	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.concoct.119	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.concoct.119	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
@@ -8,14 +9,20 @@ T0.concoct.119	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
 T0.concoct.119	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
 T0.concoct.119	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
 T0.concoct.119	HADEG	AeEMA_est	E_Plastics	E_PET	1
-T0.concoct.19	CANT-HYD	AlkB	alkane hydrolase		1
+T0.concoct.15	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T0.concoct.15	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T0.concoct.15	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T0.concoct.15	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T0.concoct.15	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T0.concoct.19	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T0.concoct.19	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.concoct.19	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T0.concoct.207	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T0.concoct.205	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T0.concoct.207	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T0.concoct.207	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T0.concoct.20_sub	CANT-HYD	AlkB	alkane hydrolase		1
-T0.concoct.20_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		5
-T0.concoct.20_sub	CANT-HYD	TmoA_BmoA	toluene monooxygenase subunit A		1
+T0.concoct.20_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
+T0.concoct.20_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	5
+T0.concoct.20_sub	CANT-HYD	TmoA_BmoA	toluene monooxygenase subunit A	NA	1
 T0.concoct.20_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T0.concoct.20_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.concoct.20_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -35,9 +42,36 @@ T0.concoct.20_sub	HADEG	AeCZGII_tmoB	C_Aromatics	C_Toluene_degradation	1
 T0.concoct.20_sub	HADEG	AeCZGII_tmoD	C_Aromatics	C_Toluene_degradation	1
 T0.concoct.20_sub	HADEG	AeCZGII_tmoE	C_Aromatics	C_Toluene_degradation	1
 T0.concoct.20_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
-T0.concoct.257	CANT-HYD	AlkB	alkane hydrolase		1
+T0.concoct.212_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
+T0.concoct.212_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.concoct.212_sub	HADEG	AeCI_bphB	C_Aromatics	C_Biphenyl degradation	1
+T0.concoct.219_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T0.concoct.219_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T0.concoct.219_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.225_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.concoct.225_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T0.concoct.225_sub	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T0.concoct.225_sub	HADEG	AeCT_hpcH	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T0.concoct.225_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.225_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.225_sub	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.225_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T0.concoct.232_sub	HADEG	AeCB_amnB	C_Aromatics	C_2-Aminophenol_degradation	1
+T0.concoct.232_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T0.concoct.232_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T0.concoct.255_sub	HADEG	AeAA_ssuD	A_Alkanes	A_Auxiliar_alkane_gene	1
+T0.concoct.255_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T0.concoct.255_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T0.concoct.255_sub	HADEG	AeEP_est	E_Plastics	E_PLA	1
+T0.concoct.257	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T0.concoct.257	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T0.concoct.288	CANT-HYD	non_NdoB_type	similar to benzene/toluene/naphtalene dioxygenase subunit alpha		1
+T0.concoct.261	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.concoct.261	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T0.concoct.262	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T0.concoct.262	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T0.concoct.274_sub	HADEG	AeCFI_andAb	C_Aromatics	C_Anthranilate degradation	1
+T0.concoct.274_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T0.concoct.288	CANT-HYD	non_NdoB_type	similar to benzene/toluene/naphtalene dioxygenase subunit alpha	NA	1
 T0.concoct.288	HADEG	AeCHI_benA	C_Aromatics	C_Benzoate_degradation	1
 T0.concoct.288	HADEG	AeCHI_benB	C_Aromatics	C_Benzoate_degradation	1
 T0.concoct.288	HADEG	AeCHI_benD	C_Aromatics	C_Benzoate_degradation	1
@@ -48,7 +82,13 @@ T0.concoct.288	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T0.concoct.288	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
 T0.concoct.288	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	2
 T0.concoct.288	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
-T0.concoct.314	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		12
+T0.concoct.296_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.concoct.296_sub	HADEG	AeCKII_pcaC	C_Aromatics	C_Catechol_degradation	1
+T0.concoct.296_sub	HADEG	AeCQ_desB	C_Aromatics	C_Gallate_degradation	1
+T0.concoct.296_sub	HADEG	AeCRI_nagK	C_Aromatics	C_Gentisate_degradation	1
+T0.concoct.296_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T0.concoct.307_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T0.concoct.314	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	12
 T0.concoct.314	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.concoct.314	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	12
 T0.concoct.314	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -59,7 +99,37 @@ T0.concoct.314	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T0.concoct.314	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
 T0.concoct.314	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T0.concoct.314	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T0.metabat2.122	CANT-HYD	PrmA	propane 2-monooxygenase large subunit		1
+T0.concoct.3_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.concoct.3_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T0.concoct.3_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T0.concoct.5	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	2
+T0.concoct.5	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T0.concoct.5	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T0.concoct.5	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T0.concoct.5	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T0.concoct.5	HADEG	AeCHII_GI:23664434	C_Aromatics	C_Benzoate degradation	1
+T0.concoct.5	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T0.concoct.5	HADEG	AeCRI_xlnE	C_Aromatics	C_Gentisate_degradation	1
+T0.concoct.5	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T0.concoct.5	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	2
+T0.concoct.5	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T0.concoct.5	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T0.concoct.5	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T0.concoct.5	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T0.concoct.5	HADEG	AeEP_est	E_Plastics	E_PLA	1
+T0.concoct.58	HADEG	AeAE_chnE	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.concoct.58	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T0.concoct.58	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T0.concoct.78	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T0.concoct.78	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.85	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T0.concoct.85	HADEG	AeCI_bphF	C_Aromatics	C_Biphenyl_degradation	1
+T0.concoct.85	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T0.concoct.85	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.85	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.85	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T0.concoct.85	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.122	CANT-HYD	PrmA	propane 2-monooxygenase large subunit	NA	1
 T0.metabat2.122	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T0.metabat2.122	HADEG	AeAD_prmA	A_Alkanes	A_Subterminal_oxidation	1
 T0.metabat2.122	HADEG	AeAD_prmB	A_Alkanes	A_Subterminal_oxidation	1
@@ -82,18 +152,24 @@ T0.metabat2.122	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
 T0.metabat2.122	HADEG	AeCZBI_proD	C_Aromatics	C_Protocatechuate_degradation	1
 T0.metabat2.122	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.122	HADEG	AeEP_est	E_Plastics	E_PLA	2
-T0.metabat2.154	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T0.metabat2.140_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.metabat2.140_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.metabat2.140_sub	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T0.metabat2.140_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T0.metabat2.140_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T0.metabat2.140_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T0.metabat2.154	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T0.metabat2.154	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.154	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T0.metabat2.154	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
 T0.metabat2.154	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T0.metabat2.154	HADEG	AeEL_pegC	E_Plastics	E_PEG	2
-T0.metabat2.156	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha		2
-T0.metabat2.156	CANT-HYD	MAH_beta	benzene/toluene/naphtalene dioxygenase subunit beta		2
-T0.metabat2.156	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		1
-T0.metabat2.156	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		2
-T0.metabat2.156	CANT-HYD	TmoA_BmoA	toluene monooxygenase subunit A		1
-T0.metabat2.156	CANT-HYD	TmoE	toluene monooxygenase system protein E		1
+T0.metabat2.156	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	2
+T0.metabat2.156	CANT-HYD	MAH_beta	benzene/toluene/naphtalene dioxygenase subunit beta	NA	2
+T0.metabat2.156	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	1
+T0.metabat2.156	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	2
+T0.metabat2.156	CANT-HYD	TmoA_BmoA	toluene monooxygenase subunit A	NA	1
+T0.metabat2.156	CANT-HYD	TmoE	toluene monooxygenase system protein E	NA	1
 T0.metabat2.156	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
 T0.metabat2.156	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	3
 T0.metabat2.156	HADEG	AeCG_bedC2	C_Aromatics	C_Benzene degradation	1
@@ -123,12 +199,12 @@ T0.metabat2.156	HADEG	AeCZGII_tmoD	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.156	HADEG	AeCZGII_tmoE	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.156	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.156	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
-T0.metabat2.161_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T0.metabat2.161_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T0.metabat2.161_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T0.metabat2.161_sub	HADEG	AeEP_est	E_Plastics	E_PLA	1
-T0.metabat2.194	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha		1
-T0.metabat2.194	CANT-HYD	MAH_beta	benzene/toluene/naphtalene dioxygenase subunit beta		1
-T0.metabat2.194	CANT-HYD	non_NdoB_type	similar to benzene/toluene/naphtalene dioxygenase subunit alpha		1
+T0.metabat2.194	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	1
+T0.metabat2.194	CANT-HYD	MAH_beta	benzene/toluene/naphtalene dioxygenase subunit beta	NA	1
+T0.metabat2.194	CANT-HYD	non_NdoB_type	similar to benzene/toluene/naphtalene dioxygenase subunit alpha	NA	1
 T0.metabat2.194	HADEG	AeCI_bphAa	C_Aromatics	C_Biphenyl degradation	1
 T0.metabat2.194	HADEG	AeCI_bphAb	C_Aromatics	C_Biphenyl degradation	1
 T0.metabat2.194	HADEG	AeCI_bphF	C_Aromatics	C_Biphenyl_degradation	1
@@ -146,9 +222,36 @@ T0.metabat2.194	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.194	HADEG	AeCZGII_todB	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.194	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T0.metabat2.194	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
-T0.metabat2.264	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
-T0.metabat2.264	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		2
-T0.metabat2.264	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		3
+T0.metabat2.201_sub	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
+T0.metabat2.201_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.metabat2.201_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.metabat2.201_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.metabat2.201_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T0.metabat2.201_sub	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T0.metabat2.201_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T0.metabat2.201_sub	HADEG	AeCT_hpcH	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T0.metabat2.201_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T0.metabat2.201_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T0.metabat2.201_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T0.metabat2.201_sub	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T0.metabat2.201_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	2
+T0.metabat2.259	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T0.metabat2.259	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T0.metabat2.259	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T0.metabat2.259	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	1
+T0.metabat2.259	HADEG	AeCRI_nagK	C_Aromatics	C_Gentisate_degradation	1
+T0.metabat2.259	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T0.metabat2.259	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T0.metabat2.259	HADEG	AeCZBII_pcaF	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.259	HADEG	AeCZBII_pcaR	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.259	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.259	HADEG	AeCZBI_ligC	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.259	HADEG	AeCZBI_proA	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.259	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.259	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T0.metabat2.264	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
+T0.metabat2.264	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	2
+T0.metabat2.264	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	3
 T0.metabat2.264	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.264	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	4
 T0.metabat2.264	HADEG	AeCFI_andAd	C_Aromatics	C_Anthranilate degradation	1
@@ -177,14 +280,30 @@ T0.metabat2.264	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
 T0.metabat2.264	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	2
 T0.metabat2.264	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.264	HADEG	AeENB_phaZ1	E_Plastics	E_PHA/PHB	1
-T0.metabat2.295	CANT-HYD	AlkB	alkane hydrolase		1
+T0.metabat2.265	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T0.metabat2.265	HADEG	AeCRI_nagK	C_Aromatics	C_Gentisate_degradation	1
+T0.metabat2.265	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T0.metabat2.265	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.265	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T0.metabat2.265	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T0.metabat2.265	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T0.metabat2.266	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T0.metabat2.295	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T0.metabat2.295	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.295	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
 T0.metabat2.295	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
 T0.metabat2.295	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T0.metabat2.295	HADEG	AeCZBI_ligC	C_Aromatics	C_Protocatechuate_degradation	1
 T0.metabat2.295	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T0.metabat2.341	CANT-HYD	AlkB	alkane hydrolase		1
+T0.metabat2.301	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
+T0.metabat2.301	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.metabat2.301	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T0.metabat2.301	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T0.metabat2.301	HADEG	AeCI_bphX3	C_Aromatics	C_Biphenyl_degradation	1
+T0.metabat2.301	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	2
+T0.metabat2.301	HADEG	AeCKI_xylJ	C_Aromatics	C_Catechol_degradation	1
+T0.metabat2.301	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T0.metabat2.341	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T0.metabat2.341	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T0.metabat2.341	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
 T0.metabat2.341	HADEG	AeAB_alkMb	A_Alkanes	A_Finnerty_pathway	1
@@ -194,9 +313,9 @@ T0.metabat2.341	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.341	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.341	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.341	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
-T0.metabat2.355	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha		1
-T0.metabat2.355	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		2
-T0.metabat2.355	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		1
+T0.metabat2.355	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	1
+T0.metabat2.355	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	2
+T0.metabat2.355	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	1
 T0.metabat2.355	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T0.metabat2.355	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	3
 T0.metabat2.355	HADEG	AeCHI_benA	C_Aromatics	C_Benzoate degradation	1
@@ -211,7 +330,12 @@ T0.metabat2.355	HADEG	AeCV_cmtB	C_Aromatics	C_p-Cumate_degradation	1
 T0.metabat2.355	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
 T0.metabat2.355	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
 T0.metabat2.355	HADEG	AeENB_phaZ5	E_Plastics	E_PHA/PHB	1
-T0.metabat2.51	CANT-HYD	AlkB	alkane hydrolase		1
+T0.metabat2.386_sub	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
+T0.metabat2.398	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T0.metabat2.398	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T0.metabat2.398	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T0.metabat2.398	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T0.metabat2.51	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T0.metabat2.51	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.51	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.51	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	2
@@ -219,20 +343,93 @@ T0.metabat2.51	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
 T0.metabat2.51	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T0.metabat2.51	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
 T0.metabat2.51	HADEG	AeEGA_est	E_Plastics	E_PBAT	2
-T0.metabat2.64	CANT-HYD	AlkB	alkane hydrolase		1
+T0.metabat2.64	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T0.metabat2.64	HADEG	AeAA_alkJ_adh	A_Alkanes	A_Auxiliar_alkane_gene	1
 T0.metabat2.64	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.64	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T0.metabat2.64	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T0.metabat2.83	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T0.metabat2.83	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
+T0.metabat2.83	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T0.metabat2.83	HADEG	AeEO_ALC24_4107	E_Plastics	E_PHB	1
 T0.metabat2.86_sub	HADEG	AeAA_alkJ_adh	A_Alkanes	A_Auxiliar_alkane_gene	1
 T0.metabat2.86_sub	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	2
 T0.metabat2.86_sub	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T0.metabat2.86_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T0.metabat2.86_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T0.metabat2.86_sub	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T1.concoct.333	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
-T1.concoct.333	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		2
-T1.concoct.333	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		3
+T1.concoct.123	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
+T1.concoct.123	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T1.concoct.144_sub	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T1.concoct.144_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.144_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.144_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.144_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.145	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T1.concoct.145	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.145	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.concoct.145	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.145	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.145	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.concoct.145	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.concoct.162_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
+T1.concoct.162_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T1.concoct.162_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.167	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.167	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.concoct.185	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T1.concoct.185	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T1.concoct.185	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.185	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.185	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.concoct.185	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.185	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.185	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.185	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.concoct.185	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.concoct.185	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T1.concoct.211_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.211_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.concoct.211_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.211_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.22	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.22	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.229	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T1.concoct.242	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T1.concoct.256	HADEG	AeAA_alkJ_adh	A_Alkanes	A_Auxiliar_alkane_gene	1
+T1.concoct.256	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.concoct.256	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.256	HADEG	AeCKI_xylG	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.256	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.256	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.256	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.256	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T1.concoct.256	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T1.concoct.258	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.concoct.258	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T1.concoct.258	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T1.concoct.279	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T1.concoct.279	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
+T1.concoct.279	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
+T1.concoct.279	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.concoct.279	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.concoct.279	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.concoct.279	HADEG	AeCHI_benA	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.279	HADEG	AeCHI_benB	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.279	HADEG	AeCHI_xylL	C_Aromatics	C_Benzoate degradation	1
+T1.concoct.279	HADEG	AeCHI_xylZ	C_Aromatics	C_Benzoate degradation	1
+T1.concoct.279	HADEG	AeCKII_catA	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.279	HADEG	AeCKII_catB	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.279	HADEG	AeCKII_catC	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.279	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T1.concoct.318	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.concoct.318	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.318	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.318	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.318	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T1.concoct.333	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
+T1.concoct.333	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	2
+T1.concoct.333	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	3
 T1.concoct.333	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T1.concoct.333	HADEG	AeCD_hpaB	C_Aromatics	C_4-Hydroxyphenylacetate_degradation	1
 T1.concoct.333	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	4
@@ -256,7 +453,7 @@ T1.concoct.333	HADEG	AeCV_cmtAc	C_Aromatics	C_p-Cumate_degradation	1
 T1.concoct.333	HADEG	AeCV_cmtB	C_Aromatics	C_p-Cumate_degradation	1
 T1.concoct.333	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
 T1.concoct.333	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
-T1.concoct.350_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T1.concoct.350_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T1.concoct.350_sub	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T1.concoct.350_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.concoct.350_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	2
@@ -267,18 +464,144 @@ T1.concoct.350_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
 T1.concoct.350_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T1.concoct.350_sub	HADEG	AeEIB_ABO_2449	E_Plastics	E_PBSA/PCL/PES/PHA/PHBV/PLA	1
 T1.concoct.350_sub	HADEG	AeEID_estC	E_Plastics	E_PBSA/PLA	1
-T1.metabat2.10	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T1.concoct.353_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.concoct.353_sub	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.353_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.concoct.36_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.36_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.36_sub	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.36_sub	HADEG	AeCZBI_proA	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.36_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.concoct.36_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T1.concoct.56_sub	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T1.concoct.56_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.56_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T1.concoct.56_sub	HADEG	AeCRI_nagK	C_Aromatics	C_Gentisate_degradation	1
+T1.concoct.56_sub	HADEG	AeCZAII_pht4	C_Aromatics	C_Phthalate_degradation	1
+T1.concoct.56_sub	HADEG	AeCZBII_pcaC	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.56_sub	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.56_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.56_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T1.concoct.56_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	2
+T1.concoct.59_sub	HADEG	AeCHII_boxA	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.59_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.59_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T1.concoct.59_sub	HADEG	AeCHII_GI:23664434	C_Aromatics	C_Benzoate degradation	1
+T1.concoct.59_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.59_sub	HADEG	AeCRI_xlnD	C_Aromatics	C_Gentisate_degradation	1
+T1.concoct.59_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.concoct.59_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.59_sub	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T1.concoct.59_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.concoct.59_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	2
+T1.concoct.59_sub	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T1.concoct.98_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T1.concoct.98_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.98_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.concoct.98_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	2
+T1.metabat2.10	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T1.metabat2.10	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.10	HADEG	AeAE_CYP153	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.10	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.10	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T1.metabat2.10	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T1.metabat2.17	CANT-HYD	AlkB	alkane hydrolase		1
+T1.metabat2.105_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.metabat2.105_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.105_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.105_sub	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.105_sub	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T1.metabat2.134	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.134	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	2
+T1.metabat2.134	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	2
+T1.metabat2.134	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.134	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.134	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.144_sub	HADEG	AeCZBII_pcaJ	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.144_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.144_sub	HADEG	AeENB_phaZ1	E_Plastics	E_PHA/PHB	1
+T1.metabat2.152	HADEG	AeAA_alkJ_adh	A_Alkanes	A_Auxiliar_alkane_gene	1
+T1.metabat2.152	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T1.metabat2.152	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T1.metabat2.155_sub	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
+T1.metabat2.16	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T1.metabat2.16	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
+T1.metabat2.16	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.17	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T1.metabat2.17	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.17	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.17	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T1.metabat2.352_sub	CANT-HYD	AlkB	alkane hydrolase		1
-T1.metabat2.352_sub	CANT-HYD	AlmA_GroupI	flavin-binding alkane monooxygenase		2
+T1.metabat2.176	HADEG	AeCHII_GI:23664434	C_Aromatics	C_Benzoate degradation	1
+T1.metabat2.176	HADEG	AeCI_bphF	C_Aromatics	C_Biphenyl_degradation	1
+T1.metabat2.176	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T1.metabat2.176	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T1.metabat2.176	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.176	HADEG	AeCKI_xylG	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.176	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T1.metabat2.176	HADEG	AeCRI_xlnD	C_Aromatics	C_Gentisate_degradation	1
+T1.metabat2.176	HADEG	AeCRI_xlnE	C_Aromatics	C_Gentisate_degradation	1
+T1.metabat2.176	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.metabat2.176	HADEG	AeCT_hpcH	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T1.metabat2.176	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.176	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.176	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.176	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.176	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.metabat2.176	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.176	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T1.metabat2.180	HADEG	AeAA_alkJ_adh	A_Alkanes	A_Auxiliar_alkane_gene	1
+T1.metabat2.180	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.180	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.180	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.207	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCHII_boxA	C_Aromatics	C_Benzoate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCHII_GI:23664434	C_Aromatics	C_Benzoate degradation	2
+T1.metabat2.215_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.215_sub	HADEG	AeCRI_nagK	C_Aromatics	C_Gentisate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCT_hpcH	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.215_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.metabat2.215_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.215_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T1.metabat2.215_sub	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T1.metabat2.222_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.222_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.222_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.228	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.228	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.262	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.269	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.269	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.metabat2.269	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.274	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T1.metabat2.277	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.285_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.285_sub	HADEG	AeCQ_galC	C_Aromatics	C_Gallate_degradation	1
+T1.metabat2.285_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.metabat2.285_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T1.metabat2.285_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.285_sub	HADEG	AeENB_phaZ2	E_Plastics	E_PHA/PHB	1
+T1.metabat2.311_sub	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T1.metabat2.311_sub	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
+T1.metabat2.311_sub	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
+T1.metabat2.311_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.311_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.311_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.311_sub	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.311_sub	HADEG	AeCV_cmtAc	C_Aromatics	C_p-Cumate_degradation	1
+T1.metabat2.311_sub	HADEG	AeEIB_ABO_2449	E_Plastics	E_PBSA/PCL/PES/PHA/PHBV/PLA	1
+T1.metabat2.311_sub	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T1.metabat2.332	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T1.metabat2.348	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.348	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.348	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.352_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
+T1.metabat2.352_sub	CANT-HYD	AlmA_GroupI	flavin-binding alkane monooxygenase	NA	2
 T1.metabat2.352_sub	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T1.metabat2.352_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	4
 T1.metabat2.352_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	3
@@ -287,13 +610,24 @@ T1.metabat2.352_sub	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.352_sub	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
 T1.metabat2.352_sub	HADEG	AeEIB_ABO_2449	E_Plastics	E_PBSA/PCL/PES/PHA/PHBV/PLA	1
 T1.metabat2.352_sub	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T1.metabat2.359_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.359_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.359_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.359_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	2
+T1.metabat2.386	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T1.metabat2.386	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T1.metabat2.386	HADEG	AeEO_ALC24_4107	E_Plastics	E_PHB	1
+T1.metabat2.39	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
 T1.metabat2.395_sub	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T1.metabat2.395_sub	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T1.metabat2.395_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.395_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	3
 T1.metabat2.395_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.395_sub	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T1.metabat2.406	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T1.metabat2.401	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T1.metabat2.401	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T1.metabat2.401	HADEG	AeENB_phaZ5	E_Plastics	E_PHA/PHB	1
+T1.metabat2.406	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T1.metabat2.406	HADEG	AeAA_alkH_ald	A_Alkanes	A_Auxiliar_alkane_gene	2
 T1.metabat2.406	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T1.metabat2.406	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
@@ -301,14 +635,20 @@ T1.metabat2.406	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T1.metabat2.406	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.406	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T1.metabat2.406	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
-T1.metabat2.436	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T1.metabat2.420	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T1.metabat2.420	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.420	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.420	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T1.metabat2.420	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.432	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T1.metabat2.436	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T1.metabat2.436	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.436	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
 T1.metabat2.436	HADEG	AeDC_wzb	D_Biosurfactants	D_Emulsan	1
 T1.metabat2.436	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T1.metabat2.436	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
 T1.metabat2.436	HADEG	AeEMA_est	E_Plastics	E_PET	1
-T1.metabat2.437	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T1.metabat2.437	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T1.metabat2.437	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T1.metabat2.437	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
 T1.metabat2.437	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -328,15 +668,21 @@ T1.metabat2.437	HADEG	AeCZBI_ligC	C_Aromatics	C_Protocatechuate_degradation	1
 T1.metabat2.437	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
 T1.metabat2.437	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
 T1.metabat2.437	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T1.metabat2.96	CANT-HYD	AlkB	alkane hydrolase		1
+T1.metabat2.464_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.464_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T1.metabat2.82	HADEG	AeAA_alkH_ald	A_Alkanes	A_Auxiliar_alkane_gene	1
+T1.metabat2.82	HADEG	AeAA_alkJ_adh	A_Alkanes	A_Auxiliar_alkane_gene	1
+T1.metabat2.82	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T1.metabat2.82	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T1.metabat2.96	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T1.metabat2.96	HADEG	AeAA_alkH_ald	A_Alkanes	A_Auxiliar_alkane_gene	1
 T1.metabat2.96	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T1.metabat2.96	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.96	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.96	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T1.metabat2.96	HADEG	AeEMA_est	E_Plastics	E_PET	1
-T2.concoct.125_sub	CANT-HYD	AlkB	alkane hydrolase		1
-T2.concoct.125_sub	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		1
+T2.concoct.125_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
+T2.concoct.125_sub	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	1
 T2.concoct.125_sub	HADEG	AeAB_alkMa	A_Alkanes	A_Finnerty_pathway	1
 T2.concoct.125_sub	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T2.concoct.125_sub	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
@@ -352,7 +698,8 @@ T2.concoct.125_sub	HADEG	AeEC_latA	E_Plastics	E_NR	1
 T2.concoct.125_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T2.concoct.125_sub	HADEG	AeEJC_BSQ33_03270	E_Plastics	E_PCL/PET	2
 T2.concoct.125_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T2.concoct.132	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		5
+T2.concoct.130_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T2.concoct.132	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	5
 T2.concoct.132	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T2.concoct.132	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.concoct.132	HADEG	AeAE_CYP153	A_Alkanes	A_Terminal/biterminal_oxidation	2
@@ -362,7 +709,7 @@ T2.concoct.132	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
 T2.concoct.132	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T2.concoct.132	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
 T2.concoct.132	HADEG	AeEP_est	E_Plastics	E_PLA	1
-T2.concoct.14	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T2.concoct.14	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T2.concoct.14	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.concoct.14	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T2.concoct.14	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
@@ -370,14 +717,63 @@ T2.concoct.14	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
 T2.concoct.14	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
 T2.concoct.14	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T2.concoct.14	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
-T2.concoct.248_sub	CANT-HYD	AlkB	alkane hydrolase		1
+T2.concoct.150_sub	HADEG	AeCI_bphB	C_Aromatics	C_Biphenyl_degradation	1
+T2.concoct.150_sub	HADEG	AeCI_bphF	C_Aromatics	C_Biphenyl_degradation	1
+T2.concoct.150_sub	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T2.concoct.150_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T2.concoct.150_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T2.concoct.168	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.concoct.174_sub	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T2.concoct.174_sub	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
+T2.concoct.174_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
+T2.concoct.174_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.concoct.174_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.concoct.174_sub	HADEG	AeCI_bphX3	C_Aromatics	C_Biphenyl_degradation	1
+T2.concoct.174_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T2.concoct.174_sub	HADEG	AeEC_latA	E_Plastics	E_NR	1
+T2.concoct.174_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T2.concoct.174_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	2
+T2.concoct.191	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T2.concoct.191	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T2.concoct.192_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T2.concoct.192_sub	HADEG	AeCV_cmtAb	C_Aromatics	C_p-Cumate_degradation	1
+T2.concoct.192_sub	HADEG	AeCV_cmtAc	C_Aromatics	C_p-Cumate_degradation	1
+T2.concoct.235	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.concoct.235	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T2.concoct.237_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T2.concoct.237_sub	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T2.concoct.248_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T2.concoct.248_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.concoct.248_sub	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
 T2.concoct.248_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
 T2.concoct.248_sub	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
 T2.concoct.248_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T2.concoct.248_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T2.metabat2.118	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T2.concoct.325	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T2.concoct.332	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	3
+T2.concoct.332	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T2.concoct.332	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T2.concoct.332	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T2.concoct.332	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T2.concoct.332	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	2
+T2.concoct.332	HADEG	AeCRI_nagI	C_Aromatics	C_Gentisate_degradation	1
+T2.concoct.332	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T2.concoct.332	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T2.concoct.332	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	2
+T2.concoct.332	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T2.concoct.332	HADEG	AeCZBI_ligC	C_Aromatics	C_Protocatechuate_degradation	1
+T2.concoct.332	HADEG	AeCZBI_proA	C_Aromatics	C_Protocatechuate_degradation	1
+T2.concoct.332	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
+T2.concoct.332	HADEG	AeCZBI_proL	C_Aromatics	C_Protocatechuate_degradation	1
+T2.concoct.332	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T2.concoct.332	HADEG	AeEP_est	E_Plastics	E_PLA	1
+T2.concoct.46_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T2.concoct.46_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T2.concoct.46_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T2.concoct.46_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T2.concoct.46_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T2.metabat2.101_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T2.metabat2.118	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T2.metabat2.118	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.metabat2.118	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T2.metabat2.118	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
@@ -389,8 +785,27 @@ T2.metabat2.132	HADEG	AeCRI_nagK	C_Aromatics	C_Gentisate_degradation	1
 T2.metabat2.132	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.132	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.132	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T2.metabat2.17_sub	CANT-HYD	AlkB	alkane hydrolase		1
-T2.metabat2.17_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		4
+T2.metabat2.169	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.169	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.169	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
+T2.metabat2.169	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.metabat2.173_sub	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.173_sub	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.173_sub	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
+T2.metabat2.173_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
+T2.metabat2.173_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	2
+T2.metabat2.173_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.metabat2.173_sub	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T2.metabat2.173_sub	HADEG	AeCI_bphX3	C_Aromatics	C_Biphenyl_degradation	1
+T2.metabat2.173_sub	HADEG	AeCKI_xylJ	C_Aromatics	C_Catechol_degradation	1
+T2.metabat2.173_sub	HADEG	AeEC_latA	E_Plastics	E_NR	2
+T2.metabat2.173_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T2.metabat2.173_sub	HADEG	AeEJC_BSQ33_03270	E_Plastics	E_PCL/PET	1
+T2.metabat2.173_sub	HADEG	AeEJC_lipIAF5-2	E_Plastics	E_PCL/PET	1
+T2.metabat2.173_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T2.metabat2.173_sub	HADEG	AeEMA_cut	E_Plastics	E_PET	2
+T2.metabat2.17_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
+T2.metabat2.17_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	4
 T2.metabat2.17_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.metabat2.17_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.metabat2.17_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	7
@@ -403,7 +818,13 @@ T2.metabat2.23	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T2.metabat2.23	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.metabat2.23	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.metabat2.23	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T2.metabat2.302_sub	CANT-HYD	AlkB	alkane hydrolase		1
+T2.metabat2.299	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.299	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.299	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
+T2.metabat2.299	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T2.metabat2.299	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T2.metabat2.299	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T2.metabat2.302_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T2.metabat2.302_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.metabat2.302_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T2.metabat2.302_sub	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
@@ -412,8 +833,32 @@ T2.metabat2.302_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.302_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.302_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T2.metabat2.302_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	2
-T2.metabat2.398	CANT-HYD	AlmA_GroupI	flavin-binding alkane monooxygenase		2
-T2.metabat2.398	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T2.metabat2.330_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.metabat2.330_sub	HADEG	AeAE_rdxR	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.metabat2.330_sub	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T2.metabat2.330_sub	HADEG	AeCI_bphX3	C_Aromatics	C_Biphenyl_degradation	1
+T2.metabat2.330_sub	HADEG	AeCKI_xylJ	C_Aromatics	C_Catechol_degradation	1
+T2.metabat2.330_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T2.metabat2.332_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T2.metabat2.332_sub	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T2.metabat2.332_sub	HADEG	AeCZGII_pchA	C_Aromatics	C_Toluene_degradation	1
+T2.metabat2.354	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.354	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.metabat2.354	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T2.metabat2.382_sub	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T2.metabat2.382_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T2.metabat2.382_sub	HADEG	AeCKI_xylE	C_Aromatics	C_Catechol_degradation	1
+T2.metabat2.382_sub	HADEG	AeCZAII_pht3	C_Aromatics	C_Phthalate_degradation	1
+T2.metabat2.382_sub	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T2.metabat2.382_sub	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
+T2.metabat2.382_sub	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
+T2.metabat2.382_sub	HADEG	AeCZGII_tomA2	C_Aromatics	C_Toluene_degradation	1
+T2.metabat2.382_sub	HADEG	AeCZGII_tomA3	C_Aromatics	C_Toluene_degradation	1
+T2.metabat2.382_sub	HADEG	AeCZGII_tomA5	C_Aromatics	C_Toluene_degradation	1
+T2.metabat2.382_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T2.metabat2.382_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T2.metabat2.398	CANT-HYD	AlmA_GroupI	flavin-binding alkane monooxygenase	NA	2
+T2.metabat2.398	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T2.metabat2.398	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T2.metabat2.398	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T2.metabat2.398	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -434,7 +879,7 @@ T2.metabat2.40	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.40	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.40	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
 T2.metabat2.40	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
-T2.metabat2.400_sub	CANT-HYD	AlkB	alkane hydrolase		1
+T2.metabat2.400_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T2.metabat2.400_sub	HADEG	AeAB_alkMa	A_Alkanes	A_Finnerty_pathway	1
 T2.metabat2.400_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T2.metabat2.400_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	2
@@ -454,11 +899,27 @@ T2.metabat2.46	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.46	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
 T2.metabat2.46	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T2.metabat2.46	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
-T2.metabat2.71_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T2.metabat2.56	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T2.metabat2.56	HADEG	AeCQ_galC	C_Aromatics	C_Gallate_degradation	1
+T2.metabat2.56	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	1
+T2.metabat2.56	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T2.metabat2.56	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T2.metabat2.56	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T2.metabat2.56	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T2.metabat2.56	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T2.metabat2.56	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
+T2.metabat2.56	HADEG	AeCZBI_ligC	C_Aromatics	C_Protocatechuate_degradation	1
+T2.metabat2.56	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
+T2.metabat2.56	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T2.metabat2.71_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T2.metabat2.71_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T2.metabat2.71_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T3.concoct.162	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		3
-T3.concoct.162	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		2
+T3.concoct.125_sub	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T3.concoct.125_sub	HADEG	AeCI_bphB	C_Aromatics	C_Biphenyl_degradation	1
+T3.concoct.125_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T3.concoct.125_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T3.concoct.162	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	3
+T3.concoct.162	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	2
 T3.concoct.162	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T3.concoct.162	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.concoct.162	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	6
@@ -484,15 +945,43 @@ T3.concoct.162	HADEG	AeCV_cmtB	C_Aromatics	C_p-Cumate_degradation	1
 T3.concoct.162	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
 T3.concoct.162	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
 T3.concoct.162	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
-T3.concoct.311	CANT-HYD	AlkB	alkane hydrolase		1
-T3.concoct.311	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T3.concoct.222_sub	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T3.concoct.222_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T3.concoct.222_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.222_sub	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.243	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T3.concoct.243	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T3.concoct.246	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T3.concoct.246	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T3.concoct.246	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.246	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.246	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.246	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.246	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T3.concoct.246	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T3.concoct.246	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T3.concoct.290	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T3.concoct.292	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T3.concoct.292	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T3.concoct.292	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T3.concoct.292	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T3.concoct.292	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T3.concoct.304	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T3.concoct.311	CANT-HYD	AlkB	alkane hydrolase	NA	1
+T3.concoct.311	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T3.concoct.311	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T3.concoct.311	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
 T3.concoct.311	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T3.concoct.311	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.concoct.311	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T3.concoct.311	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T3.concoct.52_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T3.concoct.313	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T3.concoct.313	HADEG	AeCI_bphF	C_Aromatics	C_Biphenyl_degradation	1
+T3.concoct.313	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T3.concoct.313	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.313	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.313	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T3.concoct.52_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T3.concoct.52_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.concoct.52_sub	HADEG	AeCB_amnC	C_Aromatics	C_2-Aminophenol_degradation	1
 T3.concoct.52_sub	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
@@ -513,15 +1002,16 @@ T3.concoct.52_sub	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
 T3.concoct.52_sub	HADEG	AeCZF_tphA2I	C_Aromatics	C_Terephthalate_degradation	1
 T3.concoct.52_sub	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
 T3.concoct.52_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T3.concoct.82	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		9
+T3.concoct.78_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T3.concoct.82	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	9
 T3.concoct.82	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T3.concoct.82	HADEG	AeAE_CYP153	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.concoct.82	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	9
 T3.concoct.82	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.concoct.82	HADEG	AeEMA_est	E_Plastics	E_PET	1
 T3.concoct.82	HADEG	AeEP_est	E_Plastics	E_PLA	1
-T3.metabat2.112_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		4
-T3.metabat2.112_sub	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha		2
+T3.metabat2.112_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	4
+T3.metabat2.112_sub	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	2
 T3.metabat2.112_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	5
 T3.metabat2.112_sub	HADEG	AeCG_bedB	C_Aromatics	C_Benzene degradation	1
 T3.metabat2.112_sub	HADEG	AeCI_bphAa	C_Aromatics	C_Biphenyl degradation	2
@@ -534,7 +1024,27 @@ T3.metabat2.112_sub	HADEG	AeCV_cmtB	C_Aromatics	C_p-Cumate_degradation	2
 T3.metabat2.112_sub	HADEG	AeCZGII_todB	C_Aromatics	C_Toluene_degradation	1
 T3.metabat2.112_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T3.metabat2.112_sub	HADEG	AeEP_est	E_Plastics	E_PLA	1
-T3.metabat2.238_sub	CANT-HYD	AlkB	alkane hydrolase		1
+T3.metabat2.126_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T3.metabat2.126_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T3.metabat2.126_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T3.metabat2.126_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T3.metabat2.126_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T3.metabat2.13_sub	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T3.metabat2.13_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T3.metabat2.13_sub	HADEG	AeCZBII_pcaC	C_Aromatics	C_Protocatechuate_degradation	2
+T3.metabat2.13_sub	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T3.metabat2.13_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T3.metabat2.13_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	2
+T3.metabat2.197_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T3.metabat2.197_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T3.metabat2.197_sub	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	1
+T3.metabat2.197_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T3.metabat2.197_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T3.metabat2.197_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T3.metabat2.197_sub	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T3.metabat2.197_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T3.metabat2.197_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T3.metabat2.238_sub	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T3.metabat2.238_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.metabat2.238_sub	HADEG	AeCHII_boxA	C_Aromatics	C_Benzoate_degradation	1
 T3.metabat2.238_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
@@ -553,10 +1063,11 @@ T3.metabat2.238_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
 T3.metabat2.238_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T3.metabat2.238_sub	HADEG	AeEL_pegA	E_Plastics	E_PEG	1
 T3.metabat2.238_sub	HADEG	AeENB_phaZ5	E_Plastics	E_PHA/PHB	1
-T3.metabat2.258_sub	CANT-HYD	AhyA	molybdopterin-family alkane C2 methylene hydroxylase		1
-T3.metabat2.258_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
-T3.metabat2.258_sub	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		4
-T3.metabat2.258_sub	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		3
+T3.metabat2.250	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T3.metabat2.258_sub	CANT-HYD	AhyA	molybdopterin-family alkane C2 methylene hydroxylase	NA	1
+T3.metabat2.258_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
+T3.metabat2.258_sub	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	4
+T3.metabat2.258_sub	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	3
 T3.metabat2.258_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T3.metabat2.258_sub	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	5
 T3.metabat2.258_sub	HADEG	AeCHI_benA	C_Aromatics	C_Benzoate degradation	1
@@ -578,10 +1089,11 @@ T3.metabat2.258_sub	HADEG	AeCV_cmtAc	C_Aromatics	C_p-Cumate_degradation	1
 T3.metabat2.258_sub	HADEG	AeCV_cmtB	C_Aromatics	C_p-Cumate_degradation	1
 T3.metabat2.258_sub	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
 T3.metabat2.258_sub	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
-T3.metabat2.347	CANT-HYD	AhyA	molybdopterin-family alkane C2 methylene hydroxylase		1
-T3.metabat2.347	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
-T3.metabat2.347	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		3
-T3.metabat2.347	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		3
+T3.metabat2.338_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T3.metabat2.347	CANT-HYD	AhyA	molybdopterin-family alkane C2 methylene hydroxylase	NA	1
+T3.metabat2.347	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
+T3.metabat2.347	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	3
+T3.metabat2.347	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	3
 T3.metabat2.347	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.metabat2.347	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.metabat2.347	HADEG	AeCFI_andAc	C_Aromatics	C_Anthranilate degradation	1
@@ -606,8 +1118,8 @@ T3.metabat2.347	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
 T3.metabat2.347	HADEG	AeCZGII_todD	C_Aromatics	C_Toluene_degradation	1
 T3.metabat2.347	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
 T3.metabat2.347	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
-T3.metabat2.351	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
-T3.metabat2.351	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		1
+T3.metabat2.351	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
+T3.metabat2.351	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	1
 T3.metabat2.351	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.metabat2.351	HADEG	AeCKI_xylK	C_Aromatics	C_Catechol_degradation	1
 T3.metabat2.351	HADEG	AeCV_cmtAb	C_Aromatics	C_p-Cumate_degradation	1
@@ -615,16 +1127,24 @@ T3.metabat2.351	HADEG	AeCV_cmtAc	C_Aromatics	C_p-Cumate_degradation	1
 T3.metabat2.351	HADEG	AeCV_cmtB	C_Aromatics	C_p-Cumate_degradation	1
 T3.metabat2.351	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T3.metabat2.351	HADEG	AeENB_phaZ1	E_Plastics	E_PHA/PHB	1
-T3.metabat2.40	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		5
+T3.metabat2.40	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	5
 T3.metabat2.40	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T3.metabat2.40	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T3.metabat2.40	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	5
 T3.metabat2.40	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T3.metabat2.40	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T3.metabat2.40	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T3.metabat2.65_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		3
+T3.metabat2.65_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	3
 T3.metabat2.65_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	3
-T4.concoct.176_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T4.concoct.155_sub	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T4.concoct.155_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T4.concoct.155_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.155_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.16	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T4.concoct.16	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.16	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.16	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.176_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T4.concoct.176_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T4.concoct.176_sub	HADEG	AeAE_CYP153	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.concoct.176_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
@@ -636,9 +1156,9 @@ T4.concoct.176_sub	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
 T4.concoct.176_sub	HADEG	AeCZBI_ligC	C_Aromatics	C_Protocatechuate_degradation	2
 T4.concoct.176_sub	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
 T4.concoct.176_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
-T4.concoct.185	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		5
-T4.concoct.185	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha		1
-T4.concoct.185	CANT-HYD	MAH_beta	benzene/toluene/naphtalene dioxygenase subunit beta		1
+T4.concoct.185	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	5
+T4.concoct.185	CANT-HYD	MAH_alpha	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	1
+T4.concoct.185	CANT-HYD	MAH_beta	benzene/toluene/naphtalene dioxygenase subunit beta	NA	1
 T4.concoct.185	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
 T4.concoct.185	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T4.concoct.185	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -647,8 +1167,14 @@ T4.concoct.185	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.concoct.185	HADEG	AeCI_bphAa	C_Aromatics	C_Biphenyl degradation	1
 T4.concoct.185	HADEG	AeCI_bphB	C_Aromatics	C_Biphenyl_degradation	1
 T4.concoct.185	HADEG	AeCI_bphE	C_Aromatics	C_Biphenyl_degradation	1
-T4.concoct.21	CANT-HYD	AlmA_GroupI	flavin-binding alkane monooxygenase		1
-T4.concoct.21	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T4.concoct.209_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	2
+T4.concoct.209_sub	HADEG	AeBC_isoH	B_Alkenes	B_Isoprene degradation	1
+T4.concoct.209_sub	HADEG	AeCKI_xylG	C_Aromatics	C_Catechol_degradation	1
+T4.concoct.209_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T4.concoct.209_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T4.concoct.209_sub	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T4.concoct.21	CANT-HYD	AlmA_GroupI	flavin-binding alkane monooxygenase	NA	1
+T4.concoct.21	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T4.concoct.21	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.concoct.21	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.concoct.21	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -656,21 +1182,87 @@ T4.concoct.21	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
 T4.concoct.21	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
 T4.concoct.21	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T4.concoct.21	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T4.concoct.67_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T4.concoct.215	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T4.concoct.215	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.215	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.296_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T4.concoct.296_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T4.concoct.296_sub	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.296_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.296_sub	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.296_sub	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.296_sub	HADEG	AeCZBI_proL	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.2_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T4.concoct.2_sub	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T4.concoct.2_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	2
+T4.concoct.2_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T4.concoct.2_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T4.concoct.2_sub	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T4.concoct.39_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
+T4.concoct.39_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.concoct.39_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T4.concoct.67_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T4.concoct.67_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.concoct.67_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T4.metabat2.219	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T4.concoct.8_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T4.concoct.8_sub	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T4.concoct.8_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T4.concoct.8_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T4.concoct.8_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T4.concoct.8_sub	HADEG	AeCQ_galB	C_Aromatics	C_Gallate_degradation	1
+T4.concoct.8_sub	HADEG	AeCQ_galC	C_Aromatics	C_Gallate_degradation	1
+T4.concoct.8_sub	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	1
+T4.concoct.8_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T4.concoct.8_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.8_sub	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T4.concoct.8_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.8_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T4.concoct.8_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T4.concoct.8_sub	HADEG	AeENB_phaZ5	E_Plastics	E_PHA/PHB	1
+T4.metabat2.105	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T4.metabat2.105	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T4.metabat2.150	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.metabat2.150	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T4.metabat2.150	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T4.metabat2.150	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T4.metabat2.150	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T4.metabat2.150	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T4.metabat2.150	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T4.metabat2.150	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.150	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.150	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T4.metabat2.150	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T4.metabat2.150	HADEG	AeENB_Rru_A1969	E_Plastics	E_PHA/PHB	1
+T4.metabat2.164_sub	HADEG	AeCQ_galB	C_Aromatics	C_Gallate_degradation	1
+T4.metabat2.164_sub	HADEG	AeCQ_galC	C_Aromatics	C_Gallate_degradation	1
+T4.metabat2.164_sub	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	1
+T4.metabat2.164_sub	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.164_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.164_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T4.metabat2.164_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T4.metabat2.164_sub	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T4.metabat2.203	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T4.metabat2.203	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T4.metabat2.203	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.203	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.203	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T4.metabat2.203	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T4.metabat2.203	HADEG	AeENB_phaZc	E_Plastics	E_PHA/PHB	1
+T4.metabat2.211_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T4.metabat2.211_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.219	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T4.metabat2.219	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T4.metabat2.219	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T4.metabat2.219	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T4.metabat2.233	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T4.metabat2.233	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T4.metabat2.233	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T4.metabat2.233	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.metabat2.233	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.metabat2.233	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.metabat2.233	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
 T4.metabat2.233	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T4.metabat2.302	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T4.metabat2.265_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.302	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T4.metabat2.302	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T4.metabat2.302	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T4.metabat2.302	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -684,7 +1276,15 @@ T4.metabat2.302	HADEG	AeCUIII_nahC	C_Aromatics	C_Naphthalene_degradation	2
 T4.metabat2.302	HADEG	AeCV_cmtAb	C_Aromatics	C_p-Cumate_degradation	1
 T4.metabat2.302	HADEG	AeCV_cmtAc	C_Aromatics	C_p-Cumate_degradation	1
 T4.metabat2.302	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
-T4.metabat2.336	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T4.metabat2.317_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
+T4.metabat2.317_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.metabat2.317_sub	HADEG	AeCD_hpaB	C_Aromatics	C_4-Hydroxyphenylacetate_degradation	1
+T4.metabat2.317_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T4.metabat2.317_sub	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	1
+T4.metabat2.317_sub	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.317_sub	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
+T4.metabat2.317_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T4.metabat2.336	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T4.metabat2.336	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
 T4.metabat2.336	HADEG	AeAB_ahpF	A_Alkanes	A_Finnerty_pathway	1
 T4.metabat2.336	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
@@ -692,17 +1292,148 @@ T4.metabat2.336	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T4.metabat2.336	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T4.metabat2.336	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T4.metabat2.336	HADEG	AeEL_pegA	E_Plastics	E_PEG	1
+T4.metabat2.44	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.metabat2.44	HADEG	AeCI_bphX3	C_Aromatics	C_Biphenyl_degradation	1
+T4.metabat2.44	HADEG	AeEP_est	E_Plastics	E_PLA	1
+T4.metabat2.53_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.metabat2.53_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.metabat2.53_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T4.metabat2.53_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T4.metabat2.53_sub	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T4.metabat2.87	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.metabat2.87	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T4.metabat2.90	HADEG	AeAA_alkH_ald	A_Alkanes	A_Auxiliar_alkane_gene	1
+T5.concoct.0	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T5.concoct.0	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T5.concoct.0	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T5.concoct.0	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.0	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.120_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T5.concoct.120_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T5.concoct.206_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T5.concoct.216_sub	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T5.concoct.216_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T5.concoct.216_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T5.concoct.238_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T5.concoct.238_sub	HADEG	AeCI_bphF	C_Aromatics	C_Biphenyl_degradation	1
+T5.concoct.238_sub	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T5.concoct.238_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T5.concoct.238_sub	HADEG	AeCKI_xylH	C_Aromatics	C_Catechol_degradation	1
+T5.concoct.238_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T5.concoct.238_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.238_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.238_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.306_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.306_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T5.concoct.5_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T5.concoct.5_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T5.concoct.5_sub	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T5.concoct.5_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T5.concoct.5_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.5_sub	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T5.concoct.5_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T5.concoct.5_sub	HADEG	AeCZBII_pcaJ	C_Aromatics	C_Protocatechuate_degradation	1
+T5.concoct.5_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T5.concoct.64_sub	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T5.concoct.64_sub	HADEG	AeCQ_galC	C_Aromatics	C_Gallate_degradation	2
+T5.concoct.64_sub	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T5.concoct.64_sub	HADEG	AeCZBI_proD	C_Aromatics	C_Protocatechuate_degradation	1
+T5.concoct.64_sub	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
+T5.concoct.64_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T5.concoct.78	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T5.metabat2.142_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	2
+T5.metabat2.162	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T5.metabat2.231	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	2
+T5.metabat2.231	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T5.metabat2.231	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T5.metabat2.231	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T5.metabat2.231	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T5.metabat2.231	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
 T5.metabat2.274	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T5.metabat2.274	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
-T5.metabat2.308	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		1
+T5.metabat2.308	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	1
 T5.metabat2.308	HADEG	AeAC_alkN_mcp	A_Alkanes	A_Hydrocarbon_uptake	1
 T5.metabat2.308	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T5.metabat2.308	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	1
-T5.metabat2.90_sub	CANT-HYD	AlkB	alkane hydrolase		2
+T5.metabat2.90_sub	CANT-HYD	AlkB	alkane hydrolase	NA	2
 T5.metabat2.90_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T5.metabat2.90_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	2
 T5.metabat2.90_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
-T6.concoct.93_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		2
+T6.concoct.144_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.144_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T6.concoct.144_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T6.concoct.144_sub	HADEG	AeCHII_GI:23664434	C_Aromatics	C_Benzoate degradation	1
+T6.concoct.144_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.144_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.144_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.144_sub	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.144_sub	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T6.concoct.144_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T6.concoct.144_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	2
+T6.concoct.151	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T6.concoct.168_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.168_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.16_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.16_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.16_sub	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.16_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T6.concoct.17	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T6.concoct.20	HADEG	AeAA_alkJ_adh	A_Alkanes	A_Auxiliar_alkane_gene	1
+T6.concoct.20	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T6.concoct.20	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T6.concoct.20	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.20	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.20	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.20	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.20	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.200_sub	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T6.concoct.200_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T6.concoct.241	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.241	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.241	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T6.concoct.241	HADEG	AeCHII_GI:23664434	C_Aromatics	C_Benzoate degradation	1
+T6.concoct.241	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.241	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T6.concoct.241	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T6.concoct.274_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.274_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T6.concoct.282	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.29_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.29_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.29_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T6.concoct.32_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.32_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T6.concoct.32_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T6.concoct.77	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T6.concoct.77	HADEG	AeCD_hpaB	C_Aromatics	C_4-Hydroxyphenylacetate_degradation	1
+T6.concoct.77	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T6.concoct.77	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T6.concoct.77	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T6.concoct.77	HADEG	AeCI_bphJ	C_Aromatics	C_Biphenyl_degradation	1
+T6.concoct.77	HADEG	AeCI_bphX3	C_Aromatics	C_Biphenyl_degradation	1
+T6.concoct.77	HADEG	AeCJ_carAa	C_Aromatics	C_Carbazole_degradation	1
+T6.concoct.77	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	2
+T6.concoct.77	HADEG	AeCKI_xylE	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.77	HADEG	AeCKI_xylG	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.77	HADEG	AeCKI_xylI	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.77	HADEG	AeCKI_xylJ	C_Aromatics	C_Catechol_degradation	1
+T6.concoct.77	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T6.concoct.77	HADEG	AeCT_hpcB	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T6.concoct.77	HADEG	AeCT_hpcC	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T6.concoct.77	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
+T6.concoct.77	HADEG	AeCX_dmpN	C_Aromatics	C_Phenol_degradation	1
+T6.concoct.77	HADEG	AeCX_dmpP	C_Aromatics	C_Phenol_degradation	1
+T6.concoct.77	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.77	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.77	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.77	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
+T6.concoct.77	HADEG	AeCZGII_pchF	C_Aromatics	C_Toluene_degradation	1
+T6.concoct.77	HADEG	AeCZGII_todB	C_Aromatics	C_Toluene_degradation	1
+T6.concoct.77	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	2
+T6.concoct.77	HADEG	AeCZGII_tomA1	C_Aromatics	C_Toluene_degradation	1
+T6.concoct.77	HADEG	AeCZGII_tomA2	C_Aromatics	C_Toluene_degradation	1
+T6.concoct.77	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T6.concoct.93_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	2
 T6.concoct.93_sub	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
 T6.concoct.93_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	2
 T6.concoct.93_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	2
@@ -719,11 +1450,35 @@ T6.concoct.93_sub	HADEG	AeCV_cmtB	C_Aromatics	C_p-Cumate_degradation	1
 T6.concoct.93_sub	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
 T6.concoct.93_sub	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T6.concoct.93_sub	HADEG	AeENB_phaZ1	E_Plastics	E_PHA/PHB	1
-T6.metabat2.251	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		4
+T6.metabat2.185	HADEG	AeAB_ahpC	A_Alkanes	A_Finnerty_pathway	1
+T6.metabat2.185	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T6.metabat2.251	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	4
 T6.metabat2.251	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	4
 T6.metabat2.251	HADEG	AeCT_hpcG	C_Aromatics	C_Homoprotocatechuate_degradation	1
 T6.metabat2.251	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T7.concoct.170	CANT-HYD	AlkB	alkane hydrolase		1
+T6.metabat2.55_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T6.metabat2.55_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T6.metabat2.55_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T6.metabat2.72_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
+T7.concoct.111_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T7.concoct.111_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.136	HADEG	AeCHII_boxA	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.136	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.136	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.136	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T7.concoct.136	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.154_sub	HADEG	AeCFII_abmG1	C_Aromatics	C_Anthranilate degradation	1
+T7.concoct.154_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.163	HADEG	AeCB_amnC	C_Aromatics	C_2-Aminophenol_degradation	1
+T7.concoct.163	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.163	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.163	HADEG	AeCKI_xylK	C_Aromatics	C_Catechol_degradation	1
+T7.concoct.163	HADEG	AeCRII_hbzF	C_Aromatics	C_Gentisate_degradation	1
+T7.concoct.163	HADEG	AeCV_cmtAb	C_Aromatics	C_p-Cumate_degradation	1
+T7.concoct.163	HADEG	AeCZF_tphA2I	C_Aromatics	C_Terephthalate_degradation	1
+T7.concoct.163	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
+T7.concoct.163	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T7.concoct.170	CANT-HYD	AlkB	alkane hydrolase	NA	1
 T7.concoct.170	HADEG	AeAC_blc	A_Alkanes	A_Hydrocarbon_uptake	1
 T7.concoct.170	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
 T7.concoct.170	HADEG	AeAE_almA	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -740,10 +1495,48 @@ T7.concoct.170	HADEG	AeCY_paaK	C_Aromatics	C_Phenylacetate_degradation	1
 T7.concoct.170	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
 T7.concoct.170	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
 T7.concoct.170	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
-T7.concoct.292_sub	CANT-HYD	AhyA	molybdopterin-family alkane C2 methylene hydroxylase		1
-T7.concoct.292_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450		3
-T7.concoct.292_sub	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha		1
-T7.concoct.292_sub	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta		2
+T7.concoct.185	HADEG	AeCB_amnD	C_Aromatics	C_2-Aminophenol_degradation	1
+T7.concoct.185	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T7.concoct.185	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T7.concoct.185	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T7.concoct.185	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T7.concoct.185	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.209	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.concoct.209	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.concoct.209	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T7.concoct.209	HADEG	AeCKI_xylG	C_Aromatics	C_Catechol_degradation	1
+T7.concoct.209	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T7.concoct.209	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T7.concoct.209	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T7.concoct.209	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T7.concoct.209	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T7.concoct.209	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T7.concoct.209	HADEG	AeEMA_est	E_Plastics	E_PET	1
+T7.concoct.234_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.concoct.234_sub	HADEG	AeCQ_galC	C_Aromatics	C_Gallate_degradation	2
+T7.concoct.234_sub	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	2
+T7.concoct.234_sub	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.234_sub	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.234_sub	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.234_sub	HADEG	AeCZBI_proL	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.238	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.concoct.238	HADEG	AeCD_hpaB	C_Aromatics	C_4-Hydroxyphenylacetate_degradation	1
+T7.concoct.238	HADEG	AeCJ_carAc	C_Aromatics	C_Carbazole_degradation	1
+T7.concoct.238	HADEG	AeCQ_desB	C_Aromatics	C_Gallate_degradation	1
+T7.concoct.238	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	1
+T7.concoct.238	HADEG	AeCRII_hbzF	C_Aromatics	C_Gentisate_degradation	1
+T7.concoct.238	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T7.concoct.238	HADEG	AeCZBI_ligA	C_Aromatics	C_Protocatechuate_degradation	2
+T7.concoct.238	HADEG	AeCZBI_ligB	C_Aromatics	C_Protocatechuate_degradation	2
+T7.concoct.238	HADEG	AeCZBI_proA	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.238	HADEG	AeCZBI_proD	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.238	HADEG	AeCZBI_proH	C_Aromatics	C_Protocatechuate_degradation	1
+T7.concoct.238	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	1
+T7.concoct.238	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T7.concoct.292_sub	CANT-HYD	AhyA	molybdopterin-family alkane C2 methylene hydroxylase	NA	1
+T7.concoct.292_sub	CANT-HYD	CYP153	alkane oxidizing cytochrome P450	NA	3
+T7.concoct.292_sub	CANT-HYD	NdoB	benzene/toluene/naphtalene dioxygenase subunit alpha	NA	1
+T7.concoct.292_sub	CANT-HYD	NdoC	benzene/toluene/naphtalene dioxygenase subunit beta	NA	2
 T7.concoct.292_sub	HADEG	AeAD_BVMO	A_Alkanes	A_Subterminal_oxidation	1
 T7.concoct.292_sub	HADEG	AeAE_CYP450	A_Alkanes	A_Terminal/biterminal_oxidation	3
 T7.concoct.292_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
@@ -768,5 +1561,59 @@ T7.concoct.292_sub	HADEG	AeCUIII_nahC	C_Aromatics	C_Naphthalene_degradation	3
 T7.concoct.292_sub	HADEG	AeCUIII_nahE	C_Aromatics	C_Naphthalene_degradation	1
 T7.concoct.292_sub	HADEG	AeCZGII_todF	C_Aromatics	C_Toluene_degradation	1
 T7.concoct.292_sub	HADEG	AeCZGI_xylB	C_Aromatics	C_Toluene_degradation	1
+T7.concoct.295	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.concoct.298_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T7.concoct.298_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T7.concoct.298_sub	HADEG	AeCV_cmtAb	C_Aromatics	C_p-Cumate_degradation	1
+T7.concoct.31	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T7.concoct.31	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.31	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T7.concoct.9_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.concoct.9_sub	HADEG	AeCKI_xylG	C_Aromatics	C_Catechol_degradation	1
+T7.concoct.9_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T7.concoct.9_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T7.concoct.9_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T7.metabat2.161_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.metabat2.161_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T7.metabat2.161_sub	HADEG	AeCRI_nagL	C_Aromatics	C_Gentisate_degradation	1
+T7.metabat2.161_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T7.metabat2.161_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T7.metabat2.161_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T7.metabat2.161_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T7.metabat2.161_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1
+T7.metabat2.168_sub	HADEG	AeED_NFA_28320	E_Plastics	E_Nylon	2
+T7.metabat2.168_sub	HADEG	AeER_amdA	E_Plastics	E_PU	1
 T7.metabat2.17	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
 T7.metabat2.17	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T7.metabat2.195_sub	HADEG	AeCKII_pcaJ	C_Aromatics	C_Catechol_degradation	1
+T7.metabat2.195_sub	HADEG	AeCQ_galD	C_Aromatics	C_Gallate_degradation	1
+T7.metabat2.195_sub	HADEG	AeCRII_hbzF	C_Aromatics	C_Gentisate_degradation	1
+T7.metabat2.195_sub	HADEG	AeCZBII_pcaI	C_Aromatics	C_Protocatechuate_degradation	1
+T7.metabat2.239_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T7.metabat2.239_sub	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	2
+T7.metabat2.239_sub	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T7.metabat2.239_sub	HADEG	AeCZBIII_praB	C_Aromatics	C_Protocatechuate_degradation	1
+T7.metabat2.249_sub	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T7.metabat2.249_sub	HADEG	AeCKII_pcaF	C_Aromatics	C_Catechol_degradation	1
+T7.metabat2.28_sub	HADEG	AeCV_cmtAb	C_Aromatics	C_p-Cumate_degradation	1
+T7.metabat2.28_sub	HADEG	AeCV_cmtAc	C_Aromatics	C_p-Cumate_degradation	1
+T7.metabat2.308	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.metabat2.308	HADEG	AeCFII_abmA	C_Aromatics	C_Anthranilate degradation	1
+T7.metabat2.308	HADEG	AeCHII_boxB	C_Aromatics	C_Benzoate_degradation	1
+T7.metabat2.308	HADEG	AeCHII_boxC	C_Aromatics	C_Benzoate_degradation	1
+T7.metabat2.308	HADEG	AeCHII_GI:23664434	C_Aromatics	C_Benzoate degradation	1
+T7.metabat2.308	HADEG	AeCRI_xlnE	C_Aromatics	C_Gentisate_degradation	1
+T7.metabat2.308	HADEG	AeCZBII_pcaG	C_Aromatics	C_Protocatechuate_degradation	1
+T7.metabat2.308	HADEG	AeCZBII_pcaH	C_Aromatics	C_Protocatechuate_degradation	1
+T7.metabat2.308	HADEG	AeCZGII_pobA	C_Aromatics	C_Toluene_degradation	2
+T7.metabat2.308	HADEG	AeEFB_hbd	E_Plastics	E_P3HV/PHA/PHBV	1
+T7.metabat2.7	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.metabat2.83_sub	HADEG	AeAE_alkB	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.metabat2.83_sub	HADEG	AeAE_rdx	A_Alkanes	A_Terminal/biterminal_oxidation	1
+T7.metabat2.83_sub	HADEG	AeCS_hmgA	C_Aromatics	C_Homogentisate_degradation	1
+T7.metabat2.83_sub	HADEG	AeCY_paaA	C_Aromatics	C_Phenylacetate_degradation	1
+T7.metabat2.83_sub	HADEG	AeCY_paaB	C_Aromatics	C_Phenylacetate_degradation	1
+T7.metabat2.83_sub	HADEG	AeCY_paaC	C_Aromatics	C_Phenylacetate_degradation	1
+T7.metabat2.83_sub	HADEG	AeCY_paaD	C_Aromatics	C_Phenylacetate_degradation	1
+T7.metabat2.83_sub	HADEG	AeEGA_est	E_Plastics	E_PBAT	1
+T7.metabat2.83_sub	HADEG	AeEL_pegC	E_Plastics	E_PEG	1

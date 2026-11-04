@@ -1,6 +1,6 @@
 Package: magreport
 Title: Explore and Report MAG Recovery Results
-Version: 0.5.1
+Version: 0.6.0
 Authors@R: 
     person("Antonio", "Puriel Hernández", email = "apurielh@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "0009-0000-7631-1102"))
@@ -19,7 +19,10 @@ Imports:
     rlang,
     utils
 Suggests: 
+    ape,
+    ggnewscale,
     ggplot2,
+    ggtree,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),

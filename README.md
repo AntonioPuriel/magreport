@@ -124,9 +124,33 @@ eight co-assemblies gave 1,161 refined bins. After removing 157 chimeric bins
 **281 species-level MAGs**: 6 of high and 275 of medium MIMAG quality, 280
 bacterial and 1 archaeal. 244 of them have no species representative in GTDB.
 
-`inst/extdata/marine_honour` holds 74 of those MAGs (the 62 with a CANT-HYD
-marker, the high-quality ones and the strongest responders) and the abundance of
-all 281 in the 48 samples.
+`inst/extdata/marine_honour` holds the 281 MAGs (MIMAG table, hydrocarbon
+markers, abundance in the 48 samples) and the tree of the 280 bacterial ones.
+
+### `plot_mag_tree()`
+
+The catalogue as a circular tree with iTOL-style rings: lineage, novelty against
+GTDB, MIMAG quality, hydrocarbon degradation markers, response to the spill and
+the highest abundance of each MAG. Every ring after the lineage is optional.
+
+```r
+dir <- system.file("extdata", "marine_honour", package = "magreport")
+mags      <- read_mimag_quality(file.path(dir, "mimag_quality.tsv"))
+genes     <- read_hydrocarbon_genes(file.path(dir, "hydrocarbon_per_mag.tsv"))
+abundance <- read_mag_abundance(file.path(dir, "mag_abundance.tsv.gz"))
+samples   <- parse_sample_names(abundance$sample,
+                                into = c("time", "site", "condition", "replicate"))
+
+plot_mag_tree(file.path(dir, "bac120.tree"), mags,
+              genes = genes, abundance = abundance,
+              samples = samples, condition = "condition",
+              contrast = c(O = "H", C = "L"))
+```
+
+![MAG tree, Marine Honour](man/figures/README-marine-honour-tree.png)
+
+It needs ggtree from Bioconductor:
+`BiocManager::install("ggtree")`, plus `ape` and `ggnewscale`.
 
 ### `plot_abundance_timeline()`
 

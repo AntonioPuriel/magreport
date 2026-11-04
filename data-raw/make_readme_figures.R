@@ -66,3 +66,12 @@ ggsave(
   plot_hydrocarbon_genes(genes, mags = mh_mags, top = 25),
   width = 8, height = 7, dpi = 150
 )
+
+ggsave(
+  "man/figures/README-marine-honour-tree.png",
+  plot_mag_tree(mh("bac120.tree"), mh_mags,
+                genes = genes, abundance = abundance,
+                samples = samples, condition = "condition",
+                contrast = c(O = "H", C = "L")),
+  width = 11, height = 9, dpi = 150, bg = "white"
+)

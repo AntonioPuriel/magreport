@@ -5,7 +5,7 @@ mh_path <- function(file) {
 test_that("read_mimag_quality types the columns and splits the taxonomy", {
   mags <- read_mimag_quality(mh_path("mimag_quality.tsv"))
 
-  expect_equal(nrow(mags), 74)
+  expect_equal(nrow(mags), 281)
   expect_equal(mags$bin, mags$genome)
   expect_s3_class(mags$quality, "factor")
   expect_equal(levels(mags$quality), quality_levels())
