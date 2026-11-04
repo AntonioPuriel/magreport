@@ -21,6 +21,8 @@ Imports:
 Suggests: 
     ape,
     ggiraph,
+    htmltools,
+    htmlwidgets,
     ggnewscale,
     ggplot2,
     ggtree,

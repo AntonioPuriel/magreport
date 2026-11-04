@@ -116,3 +116,21 @@ test_that("plot_mag_tree(interactive = TRUE) returns a widget with tooltips and 
   expect_match(tips, "CANT-HYD: NdoB, NdoC", fixed = TRUE)
   expect_match(tips, "log2 H / L: 3.46", fixed = TRUE)
 })
+
+test_that("the interactive tree has a search box with the searchable text", {
+  skip_tree()
+  skip_if_not_installed("ggiraph")
+  x <- mh_inputs()
+
+  w <- suppressMessages(plot_mag_tree(mh_path("bac120.tree"), x$mags, genes = x$genes,
+                                      interactive = TRUE))
+  html <- as.character(htmltools::tagList(w$prepend))
+  expect_match(html, "Search a MAG", fixed = TRUE)
+
+  data <- w$jsHooks$render[[1]]$data
+  i <- match("T2.metabat2.398", data$bin)
+  expect_match(data$text[i], "alcanivorax", fixed = TRUE)
+  expect_match(data$text[i], "cyp153", fixed = TRUE) # its CANT-HYD markers
+  expect_false(any(grepl("\\bna\\b", data$text)))
+  expect_equal(data$label[i], "Alcanivorax borkumensis")
+})

@@ -41,7 +41,9 @@
 #'   htmlwidget) instead of a `ggplot`. Pointing at a MAG shows its name,
 #'   taxonomy, quality, markers and abundance, and highlights it in every ring;
 #'   pointing at a coloured cell of a hydrocarbon ring highlights every MAG of
-#'   that process. Save it with `htmlwidgets::saveWidget()`. Needs ggiraph.
+#'   that process. A search box above the tree highlights and lists the MAGs
+#'   whose name, taxonomy, lineage or CANT-HYD markers contain the text typed.
+#'   Save it with `htmlwidgets::saveWidget()`. Needs ggiraph.
 #'
 #' @return A `ggplot` object, or a `girafe` htmlwidget when `interactive = TRUE`.
 #' @export
@@ -107,8 +109,12 @@ plot_mag_tree <- function(tree,
       stop("Package '", pkg, "' is needed for plot_mag_tree(): see ?plot_mag_tree", call. = FALSE)
     }
   }
-  if (isTRUE(interactive) && !requireNamespace("ggiraph", quietly = TRUE)) {
-    stop("Package 'ggiraph' is needed for interactive = TRUE", call. = FALSE)
+  if (isTRUE(interactive)) {
+    for (pkg in c("ggiraph", "htmlwidgets", "htmltools")) {
+      if (!requireNamespace(pkg, quietly = TRUE)) {
+        stop("Package '", pkg, "' is needed for interactive = TRUE", call. = FALSE)
+      }
+    }
   }
   bar_scale <- match.arg(bar_scale)
   stopifnot(is.data.frame(mags), all(c("bin", "quality") %in% names(mags)))
@@ -372,7 +378,7 @@ plot_mag_tree <- function(tree,
     return(p)
   }
 
-  ggiraph::girafe(
+  widget <- ggiraph::girafe(
     ggobj = p, width_svg = 11, height_svg = 9,
     options = list(
       ggiraph::opts_hover(css = "stroke:#1F1D1A;stroke-width:1.2px;"),
@@ -387,6 +393,81 @@ plot_mag_tree <- function(tree,
       ggiraph::opts_selection(type = "none"),
       ggiraph::opts_toolbar(saveaspng = TRUE)
     )
+  )
+  add_tree_search(widget, ann)
+}
+
+# A search box above the interactive tree: MAGs whose name, taxonomy, lineage
+# or markers contain the text are highlighted in every ring and listed
+add_tree_search <- function(widget, ann) {
+  # Empty text for missing values (GTDB names such as "JANAQB01" contain "NA")
+  taxon <- function(column) {
+    x <- if (column %in% names(ann)) as.character(ann[[column]]) else rep("", nrow(ann))
+    ifelse(is.na(x), "", x)
+  }
+  text <- tolower(paste(
+    ann$bin, taxon("phylum"), taxon("class"), taxon("order"), taxon("family"),
+    taxon("genus"), taxon("species"), as.character(ann$lineage), taxon("markers")
+  ))
+  label <- ifelse(
+    taxon("species") != "", taxon("species"),
+    ifelse(taxon("genus") != "", paste(taxon("genus"), "sp."),
+      ifelse(taxon("family") != "", paste(taxon("family"), "(family)"), as.character(ann$lineage))
+    )
+  )
+
+  box <- paste0("magreport-search-", widget$x$uid)
+  search <- htmltools::div(
+    style = "font-family:sans-serif;font-size:13px;margin:4px 0 8px 0;",
+    htmltools::tags$input(
+      id = box, type = "search",
+      placeholder = "Search a MAG, taxon or marker (e.g. Alcanivorax, AlkB)",
+      style = paste("width:360px;max-width:95%;padding:5px 8px;border:1px solid #D8C8A8;",
+                    "border-radius:4px;")
+    ),
+    htmltools::tags$div(id = paste0(box, "-out"), style = "color:#4A473F;margin-top:4px;")
+  )
+
+  widget <- htmlwidgets::prependContent(widget, search)
+  htmlwidgets::onRender(widget, "
+    function(el, x, data) {
+      var input = document.getElementById(data.box);
+      var out = document.getElementById(data.box + '-out');
+      if (!input) return;
+      function cells() { return el.querySelectorAll('svg [data-id]'); }
+      input.addEventListener('input', function() {
+        var q = input.value.trim().toLowerCase();
+        var hits = {};
+        var listed = [];
+        if (q.length >= 2) {
+          for (var i = 0; i < data.bin.length; i++) {
+            if (data.text[i].indexOf(q) !== -1) {
+              hits[data.bin[i]] = true;
+              listed.push(data.bin[i] + ' (' + data.label[i] + ')');
+            }
+          }
+        }
+        var any = listed.length > 0;
+        cells().forEach(function(c) {
+          var id = c.getAttribute('data-id') || '';
+          var hit = hits[id] === true;
+          if (!hit && id.indexOf('process:') === 0) {
+            var t = c.getAttribute('title') || '';
+            for (var b in hits) { if (t.indexOf(b + '&lt;') !== -1 || t.indexOf(b + '<') !== -1) { hit = true; break; } }
+          }
+          if (!any) { c.style.opacity = ''; c.style.stroke = ''; c.style.strokeWidth = ''; }
+          else if (hit) { c.style.opacity = '1'; c.style.stroke = '#1F1D1A'; c.style.strokeWidth = '1.2px'; }
+          else { c.style.opacity = '0.15'; c.style.stroke = ''; c.style.strokeWidth = ''; }
+        });
+        if (q.length < 2) { out.textContent = ''; }
+        else if (!any) { out.textContent = 'No MAG matches \u201c' + input.value + '\u201d'; }
+        else {
+          out.textContent = listed.length + ' MAG' + (listed.length > 1 ? 's' : '') + ': ' +
+            listed.slice(0, 25).join(', ') + (listed.length > 25 ? ', ...' : '');
+        }
+      });
+    }",
+    data = list(box = box, bin = ann$bin, text = text, label = label)
   )
 }
 

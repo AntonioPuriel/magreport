@@ -4,7 +4,9 @@
   tree (a ggiraph htmlwidget). Pointing at a MAG shows its name, taxonomy,
   MIMAG quality, CANT-HYD markers, highest abundance and response, and
   highlights it in every ring. Pointing at a coloured cell of a hydrocarbon ring
-  highlights every MAG of that process. ggiraph is suggested.
+  highlights every MAG of that process. A search box above the tree highlights
+  and lists the MAGs whose name, taxonomy, lineage or CANT-HYD markers contain
+  the text typed (for example "Alcanivorax" or "AhyA"). ggiraph is suggested.
 
 # magreport 0.6.0
 

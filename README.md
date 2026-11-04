@@ -152,7 +152,8 @@ plot_mag_tree(file.path(dir, "bac120.tree"), mags,
 With `interactive = TRUE` it returns an interactive figure to explore in a web
 browser: pointing at a MAG shows its name, taxonomy, MIMAG quality, CANT-HYD
 markers and abundance, and highlights it in every ring; pointing at a coloured
-cell of a hydrocarbon ring highlights all the MAGs of that process. Save it as
+cell of a hydrocarbon ring highlights all the MAGs of that process, and a search
+box finds MAGs by name, taxon or marker (for example "Alcanivorax" or "AhyA"). Save it as
 a single HTML file with `htmlwidgets::saveWidget(widget, "mag_tree.html")`.
 This needs ggiraph. You can try it on the
 [Marine Honour article](https://antoniopuriel.github.io/magreport/articles/marine-honour-tree.html)

@@ -66,7 +66,9 @@ the tree.}
 htmlwidget) instead of a \code{ggplot}. Pointing at a MAG shows its name,
 taxonomy, quality, markers and abundance, and highlights it in every ring;
 pointing at a coloured cell of a hydrocarbon ring highlights every MAG of
-that process. Save it with \code{htmlwidgets::saveWidget()}. Needs ggiraph.}
+that process. A search box above the tree highlights and lists the MAGs
+whose name, taxonomy, lineage or CANT-HYD markers contain the text typed.
+Save it with \code{htmlwidgets::saveWidget()}. Needs ggiraph.}
 }
 \value{
 A \code{ggplot} object, or a \code{girafe} htmlwidget when \code{interactive = TRUE}.

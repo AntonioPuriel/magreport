@@ -25,6 +25,9 @@ rooted on the Patescibacteriota.
 - **Point at a dark cell of a hydrocarbon ring** (alkanes, short-chain alkanes,
   aromatics, anaerobic): every MAG carrying markers of that process is
   highlighted, and the card gives how many there are.
+- **Type in the search box** above the tree a MAG name, a taxon or a CANT-HYD
+  marker (for example `Alcanivorax`, `Cycloclasticus` or `AhyA`): the matching
+  MAGs are highlighted in every ring and listed under the box.
 - The buttons at the top right save the figure as an image or show it full
   screen.
 
