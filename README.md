@@ -149,6 +149,13 @@ plot_mag_tree(file.path(dir, "bac120.tree"), mags,
 
 ![MAG tree, Marine Honour](man/figures/README-marine-honour-tree.png)
 
+With `interactive = TRUE` it returns an interactive figure to explore in a web
+browser: pointing at a MAG shows its name, taxonomy, MIMAG quality, CANT-HYD
+markers and abundance, and highlights it in every ring; pointing at a coloured
+cell of a hydrocarbon ring highlights all the MAGs of that process. Save it as
+a single HTML file with `htmlwidgets::saveWidget(widget, "mag_tree.html")`.
+This needs ggiraph.
+
 It needs ggtree from Bioconductor:
 `BiocManager::install("ggtree")`, plus `ape` and `ggnewscale`.
 

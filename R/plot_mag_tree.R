@@ -37,8 +37,13 @@
 #'   their bars are visible; `"linear"` keeps the bar length proportional.
 #' @param ring_labels If `TRUE`, writes the name of each ring in the opening of
 #'   the tree.
+#' @param interactive If `TRUE`, returns an interactive figure (a ggiraph
+#'   htmlwidget) instead of a `ggplot`. Pointing at a MAG shows its name,
+#'   taxonomy, quality, markers and abundance, and highlights it in every ring;
+#'   pointing at a coloured cell of a hydrocarbon ring highlights every MAG of
+#'   that process. Save it with `htmlwidgets::saveWidget()`. Needs ggiraph.
 #'
-#' @return A `ggplot` object.
+#' @return A `ggplot` object, or a `girafe` htmlwidget when `interactive = TRUE`.
 #' @export
 #'
 #' @details
@@ -71,6 +76,15 @@
 #'     genes = genes, abundance = abundance,
 #'     samples = samples, condition = "condition", contrast = c(O = "H", C = "L")
 #'   )
+#'
+#'   # Interactive version, to explore in a web browser
+#'   if (requireNamespace("ggiraph", quietly = TRUE)) {
+#'     widget <- plot_mag_tree(
+#'       file.path(dir, "bac120.tree"), mags, genes = genes,
+#'       abundance = abundance, interactive = TRUE
+#'     )
+#'     # htmlwidgets::saveWidget(widget, "mag_tree.html")
+#'   }
 #' }
 #' }
 plot_mag_tree <- function(tree,
@@ -85,12 +99,16 @@ plot_mag_tree <- function(tree,
                           n_lineages = 8,
                           outgroup = "Patescibacteriota",
                           bar_scale = c("sqrt", "linear"),
-                          ring_labels = TRUE) {
+                          ring_labels = TRUE,
+                          interactive = FALSE) {
   check_ggplot2()
   for (pkg in c("ggtree", "ggnewscale", "ape")) {
     if (!requireNamespace(pkg, quietly = TRUE)) {
       stop("Package '", pkg, "' is needed for plot_mag_tree(): see ?plot_mag_tree", call. = FALSE)
     }
+  }
+  if (isTRUE(interactive) && !requireNamespace("ggiraph", quietly = TRUE)) {
+    stop("Package 'ggiraph' is needed for interactive = TRUE", call. = FALSE)
   }
   bar_scale <- match.arg(bar_scale)
   stopifnot(is.data.frame(mags), all(c("bin", "quality") %in% names(mags)))
@@ -163,71 +181,14 @@ plot_mag_tree <- function(tree,
 
   ann$quality <- factor(ann$quality, levels = quality_levels())
 
-  tree <- ggtree::groupOTU(tree, split(ann$bin, ann$lineage), group_name = "branch_lineage")
-  p <- ggtree::ggtree(tree, layout = "fan", open.angle = 30, linewidth = 0.3,
-                      ggplot2::aes(colour = branch_lineage)) +
-    ggplot2::scale_colour_manual(values = c(lineage_cols, "0" = "#8C887D"), guide = "none")
-
-  # Rings are drawn as rectangles in the tree's own coordinates: x is the
-  # distance from the root, y the position of each tip. In the fan layout each
-  # rectangle becomes a sector of a ring.
-  tips <- p$data[p$data$isTip, c("label", "y")]
-  ann$y <- tips$y[match(ann$bin, tips$label)]
-  depth <- max(p$data$x, na.rm = TRUE)
-  ring_width <- 0.048 * depth
-  gap <- 0.006 * depth
-  edge <- depth + 0.06 * depth # inner edge of the next ring
-  rings <- data.frame(label = character(), centre = numeric())
-  key <- function(order) ggplot2::guide_legend(order = order, keyheight = 0.7, keywidth = 0.7)
-
-  add_ring <- function(p, values, scale, name, width = ring_width, extra_gap = 0) {
-    edge <<- edge + extra_gap
-    df <- data.frame(
-      xmin = edge, xmax = edge + width,
-      ymin = ann$y - 0.5, ymax = ann$y + 0.5,
-      value = values
-    )
-    rings <<- rbind(rings, data.frame(label = name, centre = edge + width / 2))
-    edge <<- edge + width + gap
-    p + ggplot2::geom_rect(
-      data = df, inherit.aes = FALSE,
-      ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = value)
-    ) + scale + ggnewscale::new_scale_fill()
-  }
-
-  p <- add_ring(p, ann$lineage, name = "Lineage",
-                ggplot2::scale_fill_manual(values = lineage_cols, name = "Lineage", guide = key(1)))
-  p <- add_ring(p, ann$novelty, name = "Novelty",
-                ggplot2::scale_fill_manual(values = novelty_colours, name = "Novelty (GTDB)",
-                                           drop = TRUE, guide = key(2)))
-  p <- add_ring(p, ann$quality, name = "MIMAG",
-                ggplot2::scale_fill_manual(
-                  values = quality_colours_tree, drop = TRUE,
-                  labels = c(
-                    high = "High: >90 % complete, <5 % contamination,\n5S, 16S and 23S rRNA, >= 18 tRNA types",
-                    medium = "Medium: >= 50 % complete, <10 % contamination",
-                    low = "Low: below medium"
-                  ),
-                  name = "MIMAG quality (Bowers et al. 2017)", guide = key(3)
-                ))
-
-  # One ring per hydrocarbon process
+  # Hydrocarbon processes and markers of each MAG
+  groups <- NULL
   if (!is.null(genes)) {
     groups <- hydrocarbon_groups(genes, any = FALSE)
     groups <- groups[groups$bin %in% ann$bin, , drop = FALSE]
-    processes <- levels(droplevels(groups$group))
-    short <- c(
-      "Alkanes (aerobic)" = "Alkanes", "Short-chain alkanes (aerobic)" = "Short alkanes",
-      "Aromatics and PAHs (aerobic)" = "Aromatics", "Anaerobic" = "Anaerobic", "Other" = "Other markers"
-    )
-    for (i in seq_along(processes)) {
-      present <- ann$bin %in% groups$bin[groups$group == processes[i]]
-      p <- add_ring(
-        p, factor(ifelse(present, "yes", "no"), levels = c("yes", "no")),
-        name = short[[processes[i]]], extra_gap = if (i == 1) 2 * gap else 0,
-        ggplot2::scale_fill_manual(values = c(yes = "#8A2E0F", no = "#F1EFEA"), guide = "none")
-      )
-    }
+    canthyd <- genes[genes$database == "CANT-HYD" & genes$bin %in% ann$bin, , drop = FALSE]
+    markers <- tapply(canthyd$marker, canthyd$bin, function(m) paste(sort(unique(m)), collapse = ", "))
+    ann$markers <- as.character(markers[ann$bin])
   }
 
   # Response to the disturbance
@@ -247,8 +208,104 @@ plot_mag_tree <- function(tree,
       x <- abundance[!is.na(cond) & cond == code, , drop = FALSE]
       as.numeric(tapply(x$rel_abundance, x$bin, mean)[ann$bin])
     }
-    ratio <- log2((mean_in(names(contrast)[1]) + 0.01) / (mean_in(names(contrast)[2]) + 0.01))
-    ann$response <- pmax(pmin(ratio, 6), -6)
+    ann$log2_ratio <- log2((mean_in(names(contrast)[1]) + 0.01) / (mean_in(names(contrast)[2]) + 0.01))
+    ann$response <- pmax(pmin(ann$log2_ratio, 6), -6)
+  }
+
+  # Highest relative abundance in any sample
+  if (!is.null(abundance)) {
+    top <- as.numeric(tapply(abundance$rel_abundance, abundance$bin, max)[ann$bin])
+    top[is.na(top)] <- 0
+    ann$top_abundance <- top
+  }
+
+  ann$tooltip <- mag_tooltip(ann, contrast)
+
+  tree <- ggtree::groupOTU(tree, split(ann$bin, ann$lineage), group_name = "branch_lineage")
+  p <- ggtree::ggtree(tree, layout = "fan", open.angle = 30, linewidth = 0.3,
+                      ggplot2::aes(colour = branch_lineage)) +
+    ggplot2::scale_colour_manual(values = c(lineage_cols, "0" = "#8C887D"), guide = "none")
+
+  # Rings are drawn as rectangles in the tree's own coordinates: x is the
+  # distance from the root, y the position of each tip. In the fan layout each
+  # rectangle becomes a sector of a ring.
+  tips <- p$data[p$data$isTip, c("label", "y")]
+  ann$y <- tips$y[match(ann$bin, tips$label)]
+  depth <- max(p$data$x, na.rm = TRUE)
+  ring_width <- 0.048 * depth
+  gap <- 0.006 * depth
+  edge <- depth + 0.06 * depth # inner edge of the next ring
+  rings <- data.frame(label = character(), centre = numeric())
+  key <- function(order) ggplot2::guide_legend(order = order, keyheight = 0.7, keywidth = 0.7)
+
+  # One rectangle per MAG; with interactive = TRUE each one carries a tooltip
+  # and an id: MAGs sharing an id are highlighted together
+  rects <- function(df) {
+    if (isTRUE(interactive)) {
+      ggiraph::geom_rect_interactive(
+        data = df, inherit.aes = FALSE,
+        ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = value,
+                     tooltip = tooltip, data_id = data_id)
+      )
+    } else {
+      ggplot2::geom_rect(
+        data = df, inherit.aes = FALSE,
+        ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = value)
+      )
+    }
+  }
+
+  add_ring <- function(p, values, scale, name, width = ring_width, extra_gap = 0,
+                       ids = ann$bin, tooltips = ann$tooltip) {
+    edge <<- edge + extra_gap
+    df <- data.frame(
+      xmin = edge, xmax = edge + width,
+      ymin = ann$y - 0.5, ymax = ann$y + 0.5,
+      value = values, tooltip = tooltips, data_id = ids
+    )
+    rings <<- rbind(rings, data.frame(label = name, centre = edge + width / 2))
+    edge <<- edge + width + gap
+    p + rects(df) + scale + ggnewscale::new_scale_fill()
+  }
+
+  p <- add_ring(p, ann$lineage, name = "Lineage",
+                ggplot2::scale_fill_manual(values = lineage_cols, name = "Lineage", guide = key(1)))
+  p <- add_ring(p, ann$novelty, name = "Novelty",
+                ggplot2::scale_fill_manual(values = novelty_colours, name = "Novelty (GTDB)",
+                                           drop = TRUE, guide = key(2)))
+  p <- add_ring(p, ann$quality, name = "MIMAG",
+                ggplot2::scale_fill_manual(
+                  values = quality_colours_tree, drop = TRUE,
+                  labels = c(
+                    high = "High: >90 % complete, <5 % contamination,\n5S, 16S and 23S rRNA, >= 18 tRNA types",
+                    medium = "Medium: >= 50 % complete, <10 % contamination",
+                    low = "Low: below medium"
+                  ),
+                  name = "MIMAG quality (Bowers et al. 2017)", guide = key(3)
+                ))
+
+  # One ring per hydrocarbon process
+  if (!is.null(groups)) {
+    processes <- levels(droplevels(groups$group))
+    short <- c(
+      "Alkanes (aerobic)" = "Alkanes", "Short-chain alkanes (aerobic)" = "Short alkanes",
+      "Aromatics and PAHs (aerobic)" = "Aromatics", "Anaerobic" = "Anaerobic", "Other" = "Other markers"
+    )
+    for (i in seq_along(processes)) {
+      present <- ann$bin %in% groups$bin[groups$group == processes[i]]
+      header <- paste0("<b>", processes[i], "</b>: ", sum(present), " MAGs<br/>")
+      p <- add_ring(
+        p, factor(ifelse(present, "yes", "no"), levels = c("yes", "no")),
+        name = short[[processes[i]]], extra_gap = if (i == 1) 2 * gap else 0,
+        ids = ifelse(present, paste0("process:", processes[i]), ann$bin),
+        tooltips = ifelse(present, paste0(header, ann$tooltip), ann$tooltip),
+        ggplot2::scale_fill_manual(values = c(yes = "#8A2E0F", no = "#F1EFEA"), guide = "none")
+      )
+    }
+  }
+
+  # Response to the disturbance
+  if ("response" %in% names(ann)) {
     p <- add_ring(
       p, ann$response, name = paste(contrast[[1]], "/", contrast[[2]]),
       width = 1.3 * ring_width, extra_gap = 2 * gap,
@@ -266,8 +323,7 @@ plot_mag_tree <- function(tree,
 
   # Outer bars: highest relative abundance in any sample
   if (!is.null(abundance)) {
-    top <- as.numeric(tapply(abundance$rel_abundance, abundance$bin, max)[ann$bin])
-    top[is.na(top)] <- 0
+    top <- ann$top_abundance
     transform <- if (bar_scale == "sqrt") sqrt else identity
     base <- edge + 2 * gap
     per_unit <- 0.45 * depth / transform(max(top))
@@ -280,15 +336,13 @@ plot_mag_tree <- function(tree,
       xmin = base, xmax = base + per_unit * transform(top),
       ymin = ann$y - 0.4, ymax = ann$y + 0.4,
       value = paste0("Highest relative abundance\nin any sample (%",
-                     if (bar_scale == "sqrt") ", square-root scale" else "", ")")
+                     if (bar_scale == "sqrt") ", square-root scale" else "", ")"),
+      tooltip = ann$tooltip, data_id = ann$bin
     )
     p <- p +
       ggplot2::annotate("segment", x = at, xend = at, y = 0.5, yend = n_tips + 0.5,
                         colour = "#E6E0D3", linewidth = 0.2) +
-      ggplot2::geom_rect(
-        data = bars, inherit.aes = FALSE,
-        ggplot2::aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = value)
-      ) +
+      rects(bars) +
       ggplot2::scale_fill_manual(values = "#7A7463", name = "Outer bars", guide = key(6)) +
       # Tick labels written across the opening, like the ring names, so close
       # ticks of the square-root scale do not overlap
@@ -307,12 +361,76 @@ plot_mag_tree <- function(tree,
     )
   }
 
-  p + ggplot2::theme(
+  p <- p + ggplot2::theme(
     legend.position = "right",
     legend.title = ggplot2::element_text(size = 8, face = "bold", colour = "#2B3119"),
     legend.text = ggplot2::element_text(size = 7, colour = "#2B3119"),
     plot.margin = ggplot2::margin(0, 0, 0, 0)
   )
+
+  if (!isTRUE(interactive)) {
+    return(p)
+  }
+
+  ggiraph::girafe(
+    ggobj = p, width_svg = 11, height_svg = 9,
+    options = list(
+      ggiraph::opts_hover(css = "stroke:#1F1D1A;stroke-width:1.2px;"),
+      ggiraph::opts_hover_inv(css = "opacity:0.35;"),
+      ggiraph::opts_tooltip(
+        css = paste(
+          "background:#FDFBF7;color:#2B3119;border:1px solid #D8C8A8;",
+          "border-radius:4px;padding:6px 8px;font-family:sans-serif;font-size:12px;"
+        ),
+        use_fill = FALSE
+      ),
+      ggiraph::opts_selection(type = "none"),
+      ggiraph::opts_toolbar(saveaspng = TRUE)
+    )
+  )
+}
+
+# Text shown when pointing at a MAG in the interactive tree
+mag_tooltip <- function(ann, contrast = NULL) {
+  esc <- function(x) {
+    x <- gsub("&", "&amp;", x, fixed = TRUE)
+    x <- gsub("<", "&lt;", x, fixed = TRUE)
+    gsub(">", "&gt;", x, fixed = TRUE)
+  }
+  named <- function(column) {
+    if (column %in% names(ann)) as.character(ann[[column]]) else rep(NA_character_, nrow(ann))
+  }
+  species <- named("species")
+  genus <- named("genus")
+  family <- named("family")
+  taxon <- ifelse(!is.na(species) & species != "", species,
+    ifelse(!is.na(genus) & genus != "", paste(genus, "sp."),
+      ifelse(!is.na(family) & family != "", paste(family, "(family)"), "unclassified")
+    )
+  )
+
+  lines <- paste0(
+    "<b>", esc(ann$bin), "</b><br/>",
+    "<i>", esc(taxon), "</i> (", esc(as.character(ann$lineage)), ")<br/>",
+    esc(as.character(ann$novelty)), "<br/>",
+    "MIMAG ", esc(as.character(ann$quality))
+  )
+  if (all(c("completeness", "contamination") %in% names(ann))) {
+    lines <- paste0(lines, ": ", round(as.numeric(ann$completeness), 1), " % complete, ",
+                    round(as.numeric(ann$contamination), 1), " % contamination")
+  }
+  if ("markers" %in% names(ann)) {
+    m <- ifelse(is.na(ann$markers), "none", esc(ann$markers))
+    lines <- paste0(lines, "<br/>CANT-HYD: ", m)
+  }
+  if ("top_abundance" %in% names(ann)) {
+    lines <- paste0(lines, "<br/>Highest abundance: ", signif(ann$top_abundance, 3), " %")
+  }
+  if ("log2_ratio" %in% names(ann) && !is.null(contrast)) {
+    lines <- paste0(lines, "<br/>log2 ", esc(contrast[[1]]), " / ", esc(contrast[[2]]), ": ",
+                    sprintf("%.2f", ann$log2_ratio))
+  }
+  lines
 }
 
 # Lineage colours: a categorical order checked for colour-blind separation
@@ -328,4 +446,6 @@ novelty_colours <- c(
 
 quality_colours_tree <- c(high = "#C9A227", medium = "#E4E1D9", low = "#B05A45")
 
-utils::globalVariables(c("branch_lineage", "xmin", "xmax", "ymin", "ymax", "value"))
+utils::globalVariables(c(
+  "branch_lineage", "xmin", "xmax", "ymin", "ymax", "value", "tooltip", "data_id"
+))

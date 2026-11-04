@@ -17,7 +17,8 @@ plot_mag_tree(
   n_lineages = 8,
   outgroup = "Patescibacteriota",
   bar_scale = c("sqrt", "linear"),
-  ring_labels = TRUE
+  ring_labels = TRUE,
+  interactive = FALSE
 )
 }
 \arguments{
@@ -60,9 +61,15 @@ their bars are visible; \code{"linear"} keeps the bar length proportional.}
 
 \item{ring_labels}{If \code{TRUE}, writes the name of each ring in the opening of
 the tree.}
+
+\item{interactive}{If \code{TRUE}, returns an interactive figure (a ggiraph
+htmlwidget) instead of a \code{ggplot}. Pointing at a MAG shows its name,
+taxonomy, quality, markers and abundance, and highlights it in every ring;
+pointing at a coloured cell of a hydrocarbon ring highlights every MAG of
+that process. Save it with \code{htmlwidgets::saveWidget()}. Needs ggiraph.}
 }
 \value{
-A \code{ggplot} object.
+A \code{ggplot} object, or a \code{girafe} htmlwidget when \code{interactive = TRUE}.
 }
 \description{
 Draws the MAG phylogeny as a circular tree, in the style of iTOL figures,
@@ -102,6 +109,15 @@ if (all(vapply(c("ggtree", "ggnewscale", "ape"),
     genes = genes, abundance = abundance,
     samples = samples, condition = "condition", contrast = c(O = "H", C = "L")
   )
+
+  # Interactive version, to explore in a web browser
+  if (requireNamespace("ggiraph", quietly = TRUE)) {
+    widget <- plot_mag_tree(
+      file.path(dir, "bac120.tree"), mags, genes = genes,
+      abundance = abundance, interactive = TRUE
+    )
+    # htmlwidgets::saveWidget(widget, "mag_tree.html")
+  }
 }
 }
 }

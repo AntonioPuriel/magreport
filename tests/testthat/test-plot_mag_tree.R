@@ -85,3 +85,34 @@ test_that("plot_mag_tree computes the response and checks its inputs", {
   renamed$tip.label <- paste0("x", seq_along(renamed$tip.label))
   expect_error(suppressMessages(plot_mag_tree(renamed, x$mags)), "tip names")
 })
+
+test_that("plot_mag_tree(interactive = TRUE) returns a widget with tooltips and ids", {
+  skip_tree()
+  skip_if_not_installed("ggiraph")
+  x <- mh_inputs()
+
+  w <- suppressMessages(plot_mag_tree(mh_path("bac120.tree"), x$mags,
+                                      genes = x$genes, abundance = x$abundance,
+                                      samples = x$samples, condition = "condition",
+                                      contrast = c(O = "H", C = "L"), interactive = TRUE))
+  expect_s3_class(w, "girafe")
+  svg <- w$x$html
+  # Each MAG has its own id, and the cells of a process share one
+  expect_match(svg, "T0.metabat2.156", fixed = TRUE)
+  expect_match(svg, "process:Alkanes (aerobic)", fixed = TRUE)
+  expect_match(svg, "process:Anaerobic", fixed = TRUE)
+
+  # Tooltip text of one MAG
+  tips <- magreport:::mag_tooltip(
+    data.frame(bin = "a<b", species = NA, genus = "Cycloclasticus", family = "x",
+               lineage = "Gammaproteobacteria", novelty = "New species", quality = "high",
+               completeness = 95.123, contamination = 1.2, markers = "NdoB, NdoC",
+               top_abundance = 2.1234, log2_ratio = 3.456),
+    contrast = c(O = "H", C = "L")
+  )
+  expect_match(tips, "a&lt;b", fixed = TRUE)
+  expect_match(tips, "Cycloclasticus sp.", fixed = TRUE)
+  expect_match(tips, "95.1 % complete", fixed = TRUE)
+  expect_match(tips, "CANT-HYD: NdoB, NdoC", fixed = TRUE)
+  expect_match(tips, "log2 H / L: 3.46", fixed = TRUE)
+})

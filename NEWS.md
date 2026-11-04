@@ -1,3 +1,11 @@
+# magreport 0.7.0
+
+* `plot_mag_tree(interactive = TRUE)` returns an interactive version of the
+  tree (a ggiraph htmlwidget). Pointing at a MAG shows its name, taxonomy,
+  MIMAG quality, CANT-HYD markers, highest abundance and response, and
+  highlights it in every ring. Pointing at a coloured cell of a hydrocarbon ring
+  highlights every MAG of that process. ggiraph is suggested.
+
 # magreport 0.6.0
 
 * `plot_mag_tree()` draws the MAGs as a circular tree with iTOL-style rings:
