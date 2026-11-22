@@ -1,3 +1,34 @@
+# magreport 0.8.0
+
+## The community without MAGs
+
+mag-pipeline 2.0 profiles the whole community besides recovering MAGs: a gene
+catalog of every contig with its abundance (TPM), taxonomy (CAT) and function
+(eggNOG, CANT-HYD, HADEG) in each sample, and a SingleM profile of the reads.
+magreport now reads and draws these tables.
+
+* `read_taxonomy_profile()` reads `taxonomy_per_sample.tsv`, the CAT profile of
+  the gene catalog, and adds the relative abundance of each taxon at each rank.
+* `read_singlem()` reads the SingleM profiles (of each sample, of all samples,
+  or the taxon-by-sample tables per rank) into the same columns, every rank
+  computed from the coverage of the reads.
+* `read_feature_profile()` reads the KEGG orthologue and hydrocarbon marker
+  profiles (`ko_per_sample.tsv`, `canthyd_per_sample.tsv`,
+  `hadeg_per_sample.tsv`); `read_profile_stats()` and `read_catalog_stats()`
+  read the annotated share of each sample and the size of the catalog.
+* `plot_community()` draws the composition of every sample at any rank, from
+  CAT or SingleM. `plot_profile_comparison()` compares the two views taxon by
+  taxon. `plot_annotation_fraction()` shows how much of each sample the
+  annotations explain, and `plot_feature_heatmap()` the abundance of genes or
+  markers, for example those of `hydrocarbon_kos()`.
+* `plot_abundance_timeline()` also follows genes, markers and taxa over time,
+  not only MAGs.
+* `read_pipeline()` finds the new tables and `mag_report()` adds a
+  "Community profile" section; it no longer needs MAGs, so a run with
+  `--workflow contigs` gets a report too.
+* New example data `example_contigs`: a small simulated run of the contig
+  branch, in the format of mag-pipeline 2.0.
+
 # magreport 0.7.0
 
 * `plot_mag_tree(interactive = TRUE)` returns an interactive version of the

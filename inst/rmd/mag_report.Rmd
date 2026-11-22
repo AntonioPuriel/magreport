@@ -70,6 +70,17 @@ if (has(run$mags)) {
     paste(sprintf("%d %s", counts$n, counts$quality), collapse = ", ")
   ))
 }
+if (has(run$catalog)) {
+  lines <- c(lines, sprintf(
+    "- **Gene catalog:** %s non-redundant genes from %s genes called",
+    format(run$catalog$catalog_genes, big.mark = ","),
+    format(run$catalog$genes_called, big.mark = ",")
+  ))
+}
+if (has(run$singlem)) {
+  lines <- c(lines, sprintf("- **SingleM:** profiles of %d samples from the reads",
+                            length(unique(run$singlem$sample))))
+}
 
 knitr::asis_output(paste(lines, collapse = "\n"))
 ```
@@ -156,6 +167,66 @@ plot_pathway_presence(run$kos, mags = run$mags)
 
 ```{r no-function, eval = !has(run$kos)}
 knitr::asis_output("_No functional annotation found: run the pipeline with --eggnog_db._")
+```
+
+## Community profile
+
+The whole community, without binning: the genes of every contig gathered in a
+non-redundant catalog, with their abundance (TPM) in each sample, their
+taxonomy (CAT) and function (eggNOG, CANT-HYD), and the profile of the reads
+with SingleM, which needs no assembly.
+
+```{r community-setup, include = FALSE}
+has_community <- has(run$catalog) || has(run$profile_stats) ||
+  has(run$contig_taxonomy) || has(run$singlem)
+n_samples <- length(unique(c(run$contig_taxonomy$sample, run$singlem$sample,
+                             run$profile_stats$sample)))
+wide <- max(8, 4 + 0.22 * n_samples)
+```
+
+```{r catalog, eval = has(run$catalog)}
+knitr::kable(run$catalog, format.args = list(big.mark = ","),
+             caption = "Genes called on the contigs and genes in the catalog")
+```
+
+```{r annotation-fraction, eval = has(run$profile_stats)}
+plot_annotation_fraction(run$profile_stats)
+```
+
+```{r cat-phylum, eval = has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
+plot_community(run$contig_taxonomy, rank = "phylum")
+```
+
+```{r cat-genus, eval = has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
+plot_community(run$contig_taxonomy, rank = "genus", top = 12)
+```
+
+```{r singlem-phylum, eval = has(run$singlem), fig.width = wide, fig.height = 5.5}
+plot_community(run$singlem, rank = "phylum")
+```
+
+```{r singlem-genus, eval = has(run$singlem), fig.width = wide, fig.height = 5.5}
+plot_community(run$singlem, rank = "genus", top = 12)
+```
+
+```{r comparison, eval = has(run$contig_taxonomy) && has(run$singlem), fig.width = 6.5, fig.height = 6}
+plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "phylum")
+plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "genus")
+```
+
+```{r canthyd-heatmap, eval = has(run$contig_canthyd), fig.width = wide, fig.height = 2 + 0.25 * length(unique(run$contig_canthyd$feature))}
+plot_feature_heatmap(run$contig_canthyd, top = 40)
+```
+
+```{r ko-heatmap, eval = has(run$contig_kos) && any(hydrocarbon_kos()$ko %in% run$contig_kos$feature), fig.width = wide, fig.height = 7}
+plot_feature_heatmap(run$contig_kos, features = hydrocarbon_kos())
+```
+
+```{r no-community, eval = !has_community}
+knitr::asis_output(paste(
+  "_No community profile found: run mag-pipeline 2.0 with --workflow contigs",
+  "or both (gene catalog, CAT with --cat_db) and --singlem_db._"
+))
 ```
 
 ## Session

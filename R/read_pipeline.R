@@ -11,6 +11,13 @@
 #'   each one a data frame or `NULL` when the table is not found. When the MIMAG
 #'   table exists, `abundance` is restricted to its genomes (the dereplicated
 #'   representatives).
+#'
+#'   The profiles of the community without MAGs (mag-pipeline 2.0.0 or later)
+#'   are in `catalog` ([read_catalog_stats()]), `profile_stats`
+#'   ([read_profile_stats()]), `contig_taxonomy` ([read_taxonomy_profile()]),
+#'   `contig_kos`, `contig_canthyd`, `contig_hadeg` ([read_feature_profile()])
+#'   and `singlem` ([read_singlem()]). For SingleM, the table of all samples is
+#'   preferred, then the profile of each sample, then the tables per rank.
 #'   The attribute `"files"` holds the paths that were used.
 #' @export
 #'
@@ -39,7 +46,14 @@ read_pipeline <- function(results_dir) {
     annotation = find_one("^annotation_stats\\.tsv$"),
     mimag       = find_one("^mimag_quality\\.tsv$"),
     hydrocarbon = find_one("^hydrocarbon_per_mag\\.tsv$"),
-    abundance   = find_one("^mag_abundance\\.tsv(\\.gz)?$")
+    abundance   = find_one("^mag_abundance\\.tsv(\\.gz)?$"),
+    catalog         = find_one("^gene_catalog\\.stats\\.tsv$"),
+    profile_stats   = find_one("^profile_stats\\.tsv$"),
+    contig_taxonomy = find_one("^taxonomy_per_sample\\.tsv(\\.gz)?$"),
+    contig_kos      = find_one("^ko_per_sample\\.tsv(\\.gz)?$"),
+    contig_canthyd  = find_one("^canthyd_per_sample\\.tsv(\\.gz)?$"),
+    contig_hadeg    = find_one("^hadeg_per_sample\\.tsv(\\.gz)?$"),
+    singlem         = find_singlem(results_dir)
   )
 
   read_if <- function(path, reader) {
@@ -63,6 +77,45 @@ read_pipeline <- function(results_dir) {
     read_mag_abundance(p, bins = if (is.null(out$mimag)) NULL else out$mimag$bin)
   }))
 
+  out["catalog"] <- list(read_if(files$catalog, read_catalog_stats))
+  out["profile_stats"] <- list(read_if(files$profile_stats, read_profile_stats))
+  out["contig_taxonomy"] <- list(read_if(files$contig_taxonomy, read_taxonomy_profile))
+  for (name in c("contig_kos", "contig_canthyd", "contig_hadeg")) {
+    out[name] <- list(read_if(files[[name]], function(p) {
+      read_feature_profile(p, total_tpm = out$profile_stats)
+    }))
+  }
+  out["singlem"] <- list(read_if(files$singlem, read_singlem_tables))
+
   attr(out, "files") <- files
   out
+}
+
+# The SingleM tables of a run: the profile of all samples, else those of each
+# sample, else the taxon-by-sample tables of every rank
+find_singlem <- function(results_dir) {
+  find_all <- function(pattern) {
+    sort(list.files(results_dir, pattern = pattern, recursive = TRUE, full.names = TRUE))
+  }
+  extras <- find_all("^singlem_profiles_with_extras\\.tsv(\\.gz)?$")
+  if (length(extras) > 0) {
+    return(extras[1])
+  }
+  per_sample <- find_all("\\.singlem\\.tsv(\\.gz)?$")
+  if (length(per_sample) > 0) {
+    return(per_sample)
+  }
+  ranks <- paste(taxonomic_ranks(), collapse = "|")
+  by_rank <- find_all(paste0("^singlem_(", ranks, ")\\.tsv(\\.gz)?$"))
+  if (length(by_rank) > 0) by_rank else NULL
+}
+
+read_singlem_tables <- function(paths) {
+  if (length(paths) > 1 && all(grepl("^singlem_[a-z]+\\.tsv", basename(paths)))) {
+    out <- do.call(rbind, lapply(paths, read_singlem))
+    attr(out, "source") <- "SingleM"
+    out
+  } else {
+    read_singlem(paths)
+  }
 }

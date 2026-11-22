@@ -1,5 +1,5 @@
 #' @keywords internal
-read_pipeline_table <- function(path, required = character()) {
+read_pipeline_table <- function(path, required = character(), ...) {
   if (!file.exists(path)) {
     stop("File not found: ", path, call. = FALSE)
   }
@@ -10,7 +10,8 @@ read_pipeline_table <- function(path, required = character()) {
     header = TRUE,
     stringsAsFactors = FALSE,
     # GTDB-Tk writes N/A, CheckM2 and the pipeline write NA
-    na.strings = c("NA", "N/A", "na", "")
+    na.strings = c("NA", "N/A", "na", ""),
+    ...
   )
 
   missing <- setdiff(required, names(x))

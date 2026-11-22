@@ -1,4 +1,4 @@
-#' Plot the abundance of groups of MAGs over time
+#' Plot the abundance of groups of MAGs, genes or taxa over time
 #'
 #' Sums the relative abundance of the MAGs of each group in every sample and
 #' draws its mean and standard deviation across replicates over time, with one
@@ -6,13 +6,25 @@
 #' how a set of genomes (for example, those carrying hydrocarbon degradation
 #' genes) responds to a disturbance.
 #'
-#' @param abundance A data frame returned by [read_mag_abundance()].
+#' The same works without MAGs, on the profiles of the gene catalog or of the
+#' reads: a functional profile from [read_feature_profile()] (KEGG orthologues
+#' or hydrocarbon markers), or a taxonomic profile from
+#' [read_taxonomy_profile()] or [read_singlem()] reduced to one rank. Then each
+#' feature or taxon plays the role of a bin, and `groups` gathers them (with a
+#' column `feature` or `taxon` instead of `bin`). Without `groups`, each one
+#' gets its own panel, up to 16. A gene with several KOs of the same group
+#' counts once per KO.
+#'
+#' @param abundance A data frame returned by [read_mag_abundance()],
+#'   [read_feature_profile()], [read_taxonomy_profile()] or [read_singlem()].
 #' @param samples A data frame with one row per sample: the column `sample`
 #'   and the columns named by `time` and `condition`, for example from
 #'   [parse_sample_names()].
 #' @param groups Optional data frame with the columns `bin` and `group`, for
 #'   example from [hydrocarbon_groups()]. Without it, a single panel shows the
-#'   total abundance of all the bins in `abundance`.
+#'   total abundance of all the bins in `abundance`. For a profile, the column
+#'   `feature` or `taxon` replaces `bin`; [hydrocarbon_kos()] (`ko` and
+#'   `pathway`) is also accepted.
 #' @param time Column of `samples` with the sampling time. Numeric values are
 #'   placed to scale; anything else is kept in order of appearance.
 #' @param condition Optional column of `samples` used to draw one line per
@@ -57,8 +69,26 @@ plot_abundance_timeline <- function(abundance,
   check_ggplot2()
   stopifnot(is.data.frame(abundance), is.data.frame(samples))
 
-  if (!all(c("bin", "sample", "rel_abundance") %in% names(abundance))) {
-    stop("abundance must come from read_mag_abundance()", call. = FALSE)
+  # MAGs (bin), functional profile (feature) or taxonomic profile (taxon)
+  unit <- intersect(c("bin", "feature", "taxon"), names(abundance))[1]
+  if (is.na(unit) || !all(c("sample", "rel_abundance") %in% names(abundance))) {
+    stop(
+      "abundance must come from read_mag_abundance(), read_feature_profile(), ",
+      "read_taxonomy_profile() or read_singlem()",
+      call. = FALSE
+    )
+  }
+  if (unit == "taxon") {
+    if ("rank" %in% names(abundance) && length(unique(abundance$rank)) > 1) {
+      stop(
+        "abundance holds several ranks: keep one, for example ",
+        "abundance[abundance$rank == \"genus\", ]",
+        call. = FALSE
+      )
+    }
+  }
+  if (unit != "bin") {
+    abundance$bin <- as.character(abundance[[unit]])
   }
   needed <- c("sample", time, condition)
   missing <- setdiff(needed, names(samples))
@@ -75,17 +105,36 @@ plot_abundance_timeline <- function(abundance,
   }
 
   if (is.null(groups)) {
-    groups <- data.frame(bin = unique(abundance$bin), group = "All MAGs")
+    if (unit == "bin") {
+      groups <- data.frame(bin = unique(abundance$bin), group = "All MAGs")
+    } else {
+      each <- unique(abundance$bin)
+      if (length(each) > 16) {
+        stop(
+          length(each), " ", unit, "s in abundance: give groups, or keep 16 at most",
+          call. = FALSE
+        )
+      }
+      groups <- data.frame(bin = each, group = each, stringsAsFactors = FALSE)
+    }
+  } else if (!"bin" %in% names(groups)) {
+    if (!"group" %in% names(groups) && "pathway" %in% names(groups)) {
+      groups$group <- groups$pathway
+    }
+    id <- intersect(c(unit, "feature", "taxon", "ko", "marker"), names(groups))[1]
+    if (!is.na(id)) {
+      groups$bin <- as.character(groups[[id]])
+    }
   }
   if (!all(c("bin", "group") %in% names(groups))) {
-    stop("groups needs the columns bin and group", call. = FALSE)
+    stop("groups needs the columns ", unit, " and group", call. = FALSE)
   }
 
   # Sum per sample and group; samples where no MAG of a group was detected
   # count as zero, not as missing
   hits <- merge(abundance[c("bin", "sample", "rel_abundance")], groups[c("bin", "group")], by = "bin")
   if (nrow(hits) == 0) {
-    stop("None of the bins in groups is in abundance", call. = FALSE)
+    stop("None of the ", unit, "s in groups is in abundance", call. = FALSE)
   }
   per_sample <- stats::aggregate(
     rel_abundance ~ sample + group, data = hits, FUN = sum
@@ -136,10 +185,14 @@ plot_abundance_timeline <- function(abundance,
     ggplot2::labs(
       x = time_label,
       y = "Relative abundance (%)",
-      title = "MAG abundance over time",
+      title = if (unit == "bin") "MAG abundance over time" else "Abundance over time",
       caption = paste(
         "Points: mean across replicates. Bars: standard deviation.",
-        "Relative abundance: share of the summed depth of all MAGs in the sample.",
+        switch(unit,
+          bin = "Relative abundance: share of the summed depth of all MAGs in the sample.",
+          feature = "Relative abundance: share of the TPM of the gene catalog in the sample.",
+          taxon = "Relative abundance: share of the sample at that rank."
+        ),
         sep = "\n"
       )
     ) +

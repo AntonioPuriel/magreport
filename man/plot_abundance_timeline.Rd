@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_abundance_timeline.R
 \name{plot_abundance_timeline}
 \alias{plot_abundance_timeline}
-\title{Plot the abundance of groups of MAGs over time}
+\title{Plot the abundance of groups of MAGs, genes or taxa over time}
 \usage{
 plot_abundance_timeline(
   abundance,
@@ -16,7 +16,8 @@ plot_abundance_timeline(
 )
 }
 \arguments{
-\item{abundance}{A data frame returned by \code{\link[=read_mag_abundance]{read_mag_abundance()}}.}
+\item{abundance}{A data frame returned by \code{\link[=read_mag_abundance]{read_mag_abundance()}},
+\code{\link[=read_feature_profile]{read_feature_profile()}}, \code{\link[=read_taxonomy_profile]{read_taxonomy_profile()}} or \code{\link[=read_singlem]{read_singlem()}}.}
 
 \item{samples}{A data frame with one row per sample: the column \code{sample}
 and the columns named by \code{time} and \code{condition}, for example from
@@ -24,7 +25,9 @@ and the columns named by \code{time} and \code{condition}, for example from
 
 \item{groups}{Optional data frame with the columns \code{bin} and \code{group}, for
 example from \code{\link[=hydrocarbon_groups]{hydrocarbon_groups()}}. Without it, a single panel shows the
-total abundance of all the bins in \code{abundance}.}
+total abundance of all the bins in \code{abundance}. For a profile, the column
+\code{feature} or \code{taxon} replaces \code{bin}; \code{\link[=hydrocarbon_kos]{hydrocarbon_kos()}} (\code{ko} and
+\code{pathway}) is also accepted.}
 
 \item{time}{Column of \code{samples} with the sampling time. Numeric values are
 placed to scale; anything else is kept in order of appearance.}
@@ -49,6 +52,16 @@ draws its mean and standard deviation across replicates over time, with one
 line per condition and one panel per group. It is the figure that answers
 how a set of genomes (for example, those carrying hydrocarbon degradation
 genes) responds to a disturbance.
+}
+\details{
+The same works without MAGs, on the profiles of the gene catalog or of the
+reads: a functional profile from \code{\link[=read_feature_profile]{read_feature_profile()}} (KEGG orthologues
+or hydrocarbon markers), or a taxonomic profile from
+\code{\link[=read_taxonomy_profile]{read_taxonomy_profile()}} or \code{\link[=read_singlem]{read_singlem()}} reduced to one rank. Then each
+feature or taxon plays the role of a bin, and \code{groups} gathers them (with a
+column \code{feature} or \code{taxon} instead of \code{bin}). Without \code{groups}, each one
+gets its own panel, up to 16. A gene with several KOs of the same group
+counts once per KO.
 }
 \examples{
 dir <- system.file("extdata", "marine_honour", package = "magreport")

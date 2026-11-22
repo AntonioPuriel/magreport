@@ -1,9 +1,11 @@
 #' Build an HTML report of a mag-pipeline run
 #'
 #' Reads the tables found in a results directory and renders a self-contained
-#' HTML report with the mapping, assembly, binning and MAG quality results.
-#' Sections without data, such as taxonomy when GTDB-Tk was not run, are left
-#' out instead of failing.
+#' HTML report with the mapping, assembly, binning and MAG quality results,
+#' and the profile of the community from the gene catalog and the reads (CAT,
+#' eggNOG, CANT-HYD and SingleM; mag-pipeline 2.0.0 or later). Sections without
+#' data, such as taxonomy when GTDB-Tk was not run, are left out instead of
+#' failing, so a run with `--workflow contigs` and no MAGs works too.
 #'
 #' @param results_dir Directory holding the output of a mag-pipeline run.
 #' @param output_file Path of the HTML file to write.
@@ -34,7 +36,8 @@ mag_report <- function(results_dir,
   }
 
   run <- read_pipeline(results_dir)
-  if (is.null(run$mags) && is.null(run$bins)) {
+  found <- c("mags", "bins", "mimag", "catalog", "profile_stats", "contig_taxonomy", "singlem")
+  if (all(vapply(run[found], is.null, logical(1)))) {
     stop("No mag-pipeline tables found in ", results_dir, call. = FALSE)
   }
 

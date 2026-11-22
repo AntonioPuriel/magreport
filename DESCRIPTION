@@ -1,13 +1,16 @@
 Package: magreport
 Title: Explore and Report MAG Recovery Results
-Version: 0.7.0
+Version: 0.8.0
 Authors@R: 
     person("Antonio", "Puriel Hernández", email = "apurielh@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "0009-0000-7631-1102"))
 Description: Reads the output tables of the mag-pipeline metagenomics workflow
     (assembly statistics, read mapping, bin statistics, CheckM2 quality and
     GTDB-Tk taxonomy) into tidy data frames, and summarises MAG recovery
-    following the MIMAG quality standards.
+    following the MIMAG quality standards. Also reads the profile of the
+    whole community without binning: the abundance, taxonomy (CAT) and
+    function (eggNOG, CANT-HYD, HADEG) of a gene catalog of every contig, and
+    the SingleM profile of the reads.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

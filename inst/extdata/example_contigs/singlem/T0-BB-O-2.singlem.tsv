@@ -1,0 +1,17 @@
+sample	coverage	taxonomy
+T0-BB-O-2	3.29	Root; d__Bacteria; p__Pseudomonadota; c__Gammaproteobacteria; o__Pseudomonadales; f__Alcanivoracaceae; g__Alcanivorax; s__Alcanivorax borkumensis
+T0-BB-O-2	4.32	Root; d__Bacteria; p__Pseudomonadota; c__Gammaproteobacteria; o__Pseudomonadales; f__Marinobacteraceae; g__Marinobacter
+T0-BB-O-2	3.87	Root; d__Bacteria; p__Pseudomonadota; c__Gammaproteobacteria; o__Pseudomonadales; f__Pseudomonadaceae; g__Pseudomonas
+T0-BB-O-2	4.97	Root; d__Bacteria; p__Pseudomonadota; c__Alphaproteobacteria; o__Rhodobacterales; f__Rhodobacteraceae; g__Sulfitobacter
+T0-BB-O-2	5.62	Root; d__Bacteria; p__Pseudomonadota; c__Alphaproteobacteria; o__Rhodobacterales; f__Rhodobacteraceae
+T0-BB-O-2	7.53	Root; d__Bacteria; p__Bacteroidota; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae; g__Polaribacter
+T0-BB-O-2	6.58	Root; d__Bacteria; p__Bacteroidota; c__Bacteroidia; o__Flavobacteriales; f__Flavobacteriaceae
+T0-BB-O-2	4.54	Root; d__Bacteria; p__Desulfobacterota; c__Desulfobulbia; o__Desulfobulbales; f__Desulfocapsaceae; g__Desulfocapsa
+T0-BB-O-2	3.33	Root; d__Bacteria; p__Desulfobacterota; c__Desulfobacteria
+T0-BB-O-2	3.17	Root; d__Bacteria; p__Actinomycetota; c__Acidimicrobiia; o__Acidimicrobiales; f__Ilumatobacteraceae; g__Ilumatobacter
+T0-BB-O-2	4.11	Root; d__Bacteria; p__Chloroflexota; c__Anaerolineae; o__Anaerolineales; f__Anaerolineaceae
+T0-BB-O-2	2.92	Root; d__Bacteria; p__Planctomycetota
+T0-BB-O-2	6.49	Root; d__Bacteria
+T0-BB-O-2	5.9	Root; d__Archaea; p__Thermoproteota; c__Nitrososphaeria; o__Nitrososphaerales; f__Nitrosopumilaceae; g__Nitrosopumilus
+T0-BB-O-2	1.86	Root; d__Archaea; p__Asgardarchaeota
+T0-BB-O-2	0.8	Root

@@ -29,6 +29,14 @@ reference:
   - read_mag_abundance
   - parse_sample_names
   - read_pipeline
+- title: Read the community profile
+  desc: The gene catalog of every contig and the SingleM profile of the reads (mag-pipeline 2.0)
+  contents:
+  - read_taxonomy_profile
+  - read_singlem
+  - read_feature_profile
+  - read_profile_stats
+  - read_catalog_stats
 - title: Summarise
   contents:
   - count_quality
@@ -41,6 +49,10 @@ reference:
   - plot_hydrocarbon_genes
   - plot_abundance_timeline
   - plot_mag_tree
+  - plot_community
+  - plot_profile_comparison
+  - plot_annotation_fraction
+  - plot_feature_heatmap
 - title: Report
   contents:
   - mag_report

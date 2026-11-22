@@ -25,9 +25,11 @@ The path of the report, invisibly.
 }
 \description{
 Reads the tables found in a results directory and renders a self-contained
-HTML report with the mapping, assembly, binning and MAG quality results.
-Sections without data, such as taxonomy when GTDB-Tk was not run, are left
-out instead of failing.
+HTML report with the mapping, assembly, binning and MAG quality results,
+and the profile of the community from the gene catalog and the reads (CAT,
+eggNOG, CANT-HYD and SingleM; mag-pipeline 2.0.0 or later). Sections without
+data, such as taxonomy when GTDB-Tk was not run, are left out instead of
+failing, so a run with \verb{--workflow contigs} and no MAGs works too.
 }
 \examples{
 \donttest{

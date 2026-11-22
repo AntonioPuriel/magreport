@@ -15,6 +15,13 @@ A list with the elements \code{mags}, \code{mimag}, \code{bins}, \code{mapping},
 each one a data frame or \code{NULL} when the table is not found. When the MIMAG
 table exists, \code{abundance} is restricted to its genomes (the dereplicated
 representatives).
+
+The profiles of the community without MAGs (mag-pipeline 2.0.0 or later)
+are in \code{catalog} (\code{\link[=read_catalog_stats]{read_catalog_stats()}}), \code{profile_stats}
+(\code{\link[=read_profile_stats]{read_profile_stats()}}), \code{contig_taxonomy} (\code{\link[=read_taxonomy_profile]{read_taxonomy_profile()}}),
+\code{contig_kos}, \code{contig_canthyd}, \code{contig_hadeg} (\code{\link[=read_feature_profile]{read_feature_profile()}})
+and \code{singlem} (\code{\link[=read_singlem]{read_singlem()}}). For SingleM, the table of all samples is
+preferred, then the profile of each sample, then the tables per rank.
 The attribute \code{"files"} holds the paths that were used.
 }
 \description{
