@@ -12,7 +12,10 @@ mag_report(
 )
 }
 \arguments{
-\item{results_dir}{Directory holding the output of a mag-pipeline run.}
+\item{results_dir}{Directory holding the output of a mag-pipeline run, or
+several, named by study, to compare them (see \code{\link[=read_pipeline]{read_pipeline()}}). With
+several studies the report adds a table of the studies, splits the
+quality plots by study and leaves out the per-sample composition plots.}
 
 \item{output_file}{Path of the HTML file to write.}
 

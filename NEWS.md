@@ -18,6 +18,13 @@
 * `mag_recovery()` computes, per sample and rank, the share of the SingleM (or
   CAT) profile in taxa with at least one MAG, and `plot_mag_recovery()` draws
   it. `mag_report()` shows it in "Community profile".
+* Several runs at once, for a catalog of studies: `read_pipeline(c(study1 =
+  dir1, study2 = dir2))` stacks every table with a `study` column, filling
+  with `NA` the columns only some runs have. `plot_gunc()` and
+  `mag_recovery()` join tables within each study, since bin and sample names
+  may repeat between studies. `summarise_studies()` gives one row per study,
+  and `mag_report()` takes several directories: it adds the table of studies,
+  splits the quality plots by study and gives the methods of each run.
 * New example data: the GUNC reports of the 1161 bins of Marine Honour
   (`extdata/marine_honour/gunc`).
 * New dependency: jsonlite.

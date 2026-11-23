@@ -53,7 +53,8 @@ test_that("plot_gunc draws against CheckM2 or GUNC contamination", {
   expect_equal(nrow(p$data), 281)
   expect_match(p$labels$subtitle, "0 of 281")
 
-  expect_error(plot_gunc(gunc, mags = data.frame(bin = "x", contamination = 1)), "No bin")
+  expect_warning(p <- plot_gunc(gunc, mags = data.frame(bin = "x", contamination = 1)), "No bin")
+  expect_identical(p$labels$x, "GUNC contamination portion")
 })
 
 write_run_info <- function(env = parent.frame()) {

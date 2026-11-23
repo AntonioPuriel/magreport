@@ -29,6 +29,7 @@ reference:
   - read_mag_abundance
   - parse_sample_names
   - read_pipeline
+  - summarise_studies
   - read_manifest
   - read_run_info
   - describe_run

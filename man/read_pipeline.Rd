@@ -28,6 +28,15 @@ The attribute \code{"files"} holds the paths that were used, and the attribute
 \code{"manifest"} the manifest of the run (\code{NULL} without one). The attribute
 \code{"run_info"} describes the run (pipeline version, databases, parameters):
 the manifest, or else \code{run_info.txt} read with \code{\link[=read_run_info]{read_run_info()}}.
+
+\strong{Several runs.} With several directories, or a named one, every table
+of every run is stacked with a first column \code{study} (the names of
+\code{results_dir}; without names, the directory names). Columns that only
+some runs have are filled with \code{NA}. Bin and sample names may repeat
+between studies, so join tables by \code{study} and \code{bin}, as \code{\link[=plot_gunc]{plot_gunc()}}
+and \code{\link[=mag_recovery]{mag_recovery()}} do. The attributes \code{"files"}, \code{"manifest"} and
+\code{"run_info"} become lists with one element per study, and the attribute
+\code{"studies"} holds the study names.
 }
 \description{
 Reads the output tables of mag-pipeline from a directory. When the
@@ -41,4 +50,12 @@ results_dir <- system.file("extdata", "example_run", package = "magreport")
 run <- read_pipeline(results_dir)
 names(run)
 nrow(run$mags)
+
+# Several runs, for example the studies of a catalog
+runs <- read_pipeline(c(
+  gut = system.file("extdata", "example_run", package = "magreport"),
+  sediment = system.file("extdata", "marine_honour", package = "magreport")
+))
+table(runs$mags$study)
+table(runs$mimag$study)
 }

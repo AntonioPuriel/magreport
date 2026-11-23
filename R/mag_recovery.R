@@ -20,7 +20,11 @@
 #' @param min_quality Lowest quality of the MAGs that count: `"medium"` (the
 #'   default) leaves low-quality bins out, `"low"` counts every MAG.
 #'
-#' @return A data frame with one row per sample and rank: `sample`, `rank`,
+#' With several runs read together ([read_pipeline()] with several
+#' directories), each study is computed with its own MAGs.
+#'
+#' @return A data frame with one row per sample and rank (and `study`, for
+#'   several runs): `sample`, `rank`,
 #'   `n_taxa_with_mag` (taxa of the profile with a MAG in that sample),
 #'   `classified` (% of the profile classified at that rank) and `recovered`
 #'   (% of the profile in taxa with a MAG). `recovered_of_classified` is
@@ -46,6 +50,22 @@ mag_recovery <- function(profile, mags,
   check_profile(profile)
   stopifnot(is.data.frame(mags))
   min_quality <- match.arg(min_quality)
+
+  # Several studies: the MAGs of each study against its own profile
+  if ("study" %in% names(profile) && "study" %in% names(mags)) {
+    studies <- intersect(unique(profile$study), unique(mags$study))
+    if (length(studies) == 0) {
+      stop("profile and mags have no study in common", call. = FALSE)
+    }
+    out <- do.call(rbind, lapply(studies, function(study) {
+      drop_study <- function(x) x[x$study == study, setdiff(names(x), "study"), drop = FALSE]
+      one <- mag_recovery(drop_study(profile), drop_study(mags),
+                          ranks = ranks, min_quality = min_quality)
+      cbind(data.frame(study = rep(study, nrow(one)), stringsAsFactors = FALSE), one)
+    }))
+    attr(out, "source") <- attr(profile, "source")
+    return(out)
+  }
 
   ranks <- intersect(ranks, names(mags))
   if (length(ranks) == 0) {
@@ -94,7 +114,7 @@ mag_recovery <- function(profile, mags,
 #' One point per sample at each rank: the share of the community profile in
 #' taxa with a MAG ([mag_recovery()]), with a box over the samples. The grey
 #' marks show the share classified at that rank, the most the MAGs could
-#' reach.
+#' reach. With several studies, points are coloured by study.
 #'
 #' @param recovery A data frame returned by [mag_recovery()].
 #'
@@ -121,8 +141,23 @@ plot_mag_recovery <- function(recovery) {
   }
   col <- magreport_colours()
   source <- attr(recovery, "source")
+  by_study <- "study" %in% names(recovery) && length(unique(recovery$study)) > 1
 
-  ggplot2::ggplot(recovery, ggplot2::aes(x = .data$rank)) +
+  points <- if (by_study) {
+    ggplot2::geom_point(
+      ggplot2::aes(y = .data$recovered, colour = .data$study),
+      position = ggplot2::position_jitter(width = 0.12, height = 0, seed = 1),
+      size = 1.8, alpha = 0.8
+    )
+  } else {
+    ggplot2::geom_point(
+      ggplot2::aes(y = .data$recovered),
+      position = ggplot2::position_jitter(width = 0.12, height = 0, seed = 1),
+      size = 1.8, alpha = 0.7, colour = col[["olive_dark"]]
+    )
+  }
+
+  p <- ggplot2::ggplot(recovery, ggplot2::aes(x = .data$rank)) +
     ggplot2::geom_point(
       ggplot2::aes(y = .data$classified),
       shape = 95, size = 8, colour = col[["sand_mid"]]
@@ -132,10 +167,7 @@ plot_mag_recovery <- function(recovery) {
       width = 0.5, outlier.shape = NA, fill = col[["olive"]], alpha = 0.25,
       colour = col[["olive_dark"]]
     ) +
-    ggplot2::geom_jitter(
-      ggplot2::aes(y = .data$recovered),
-      width = 0.12, height = 0, size = 1.8, alpha = 0.7, colour = col[["olive_dark"]]
-    ) +
+    points +
     ggplot2::scale_y_continuous(limits = c(0, 100)) +
     ggplot2::labs(
       x = NULL,
@@ -148,4 +180,8 @@ plot_mag_recovery <- function(recovery) {
       caption = "Grey marks: share classified at that rank"
     ) +
     theme_magreport()
+  if (by_study) {
+    p <- p + scale_colour_magreport(name = "Study")
+  }
+  p
 }

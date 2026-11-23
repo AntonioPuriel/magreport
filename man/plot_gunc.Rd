@@ -10,7 +10,8 @@ plot_gunc(gunc, mags = NULL)
 \item{gunc}{A data frame returned by \code{\link[=read_gunc]{read_gunc()}}.}
 
 \item{mags}{Optional data frame returned by \code{\link[=read_mag_quality]{read_mag_quality()}} or
-\code{\link[=read_mimag_quality]{read_mimag_quality()}}, joined to \code{gunc} by \code{bin}. Its \code{quality} colours
+\code{\link[=read_mimag_quality]{read_mimag_quality()}}, joined to \code{gunc} by \code{bin} (and \code{study}, for
+several runs read together). Its \code{quality} colours
 nothing here; it only provides the CheckM2 contamination.}
 }
 \value{
@@ -20,7 +21,8 @@ A \code{ggplot} object.
 Each point is a bin: the CheckM2 contamination on the x axis and the GUNC
 clade separation score on the y axis, with the GUNC threshold (0.45). Bins
 above the line are chimeric even when CheckM2 sees little contamination.
-Without CheckM2 results, the x axis is the GUNC contamination portion.
+Without CheckM2 results, or when none of the bins is in \code{mags}, the x axis
+is the GUNC contamination portion.
 }
 \examples{
 dir <- system.file("extdata", "marine_honour", package = "magreport")

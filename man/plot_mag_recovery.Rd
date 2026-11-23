@@ -16,7 +16,7 @@ A \code{ggplot} object.
 One point per sample at each rank: the share of the community profile in
 taxa with a MAG (\code{\link[=mag_recovery]{mag_recovery()}}), with a box over the samples. The grey
 marks show the share classified at that rank, the most the MAGs could
-reach.
+reach. With several studies, points are coloured by study.
 }
 \examples{
 singlem <- read_singlem(list.files(

@@ -9,7 +9,10 @@
 #' data, such as taxonomy when GTDB-Tk was not run, are left out instead of
 #' failing, so a run with `--workflow contigs` and no MAGs works too.
 #'
-#' @param results_dir Directory holding the output of a mag-pipeline run.
+#' @param results_dir Directory holding the output of a mag-pipeline run, or
+#'   several, named by study, to compare them (see [read_pipeline()]). With
+#'   several studies the report adds a table of the studies, splits the
+#'   quality plots by study and leaves out the per-sample composition plots.
 #' @param output_file Path of the HTML file to write.
 #' @param title Title shown at the top of the report.
 #' @param quiet Passed to [rmarkdown::render()]; `TRUE` hides the progress output.
@@ -56,7 +59,8 @@ mag_report <- function(results_dir,
     output_dir = dirname(output_file),
     intermediates_dir = tempdir(),
     knit_root_dir = tempdir(),
-    params = list(run = run, title = title, results_dir = normalizePath(results_dir)),
+    params = list(run = run, title = title,
+                  results_dir = paste(normalizePath(results_dir), collapse = ", ")),
     envir = new.env(parent = globalenv()),
     quiet = quiet
   )

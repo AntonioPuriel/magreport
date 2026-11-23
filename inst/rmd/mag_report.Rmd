@@ -19,6 +19,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
 library(magreport)
 run <- params$run
 has <- function(x) !is.null(x) && nrow(x) > 0
+studies <- attr(run, "studies")
+multi <- length(studies) > 1
 ```
 
 ```{css palette}
@@ -48,7 +50,7 @@ lines <- character()
 if (has(run$mapping)) {
   lines <- c(lines, sprintf("- **Samples:** %d", nrow(run$mapping)))
 }
-if (has(run$assembly)) {
+if (has(run$assembly) && !multi) {
   kept <- run$assembly[nrow(run$assembly), , drop = FALSE]
   lines <- c(lines, sprintf(
     "- **Assembly:** %s contigs, %.1f Mb, N50 %s bp",
@@ -83,6 +85,15 @@ if (has(run$singlem)) {
 }
 
 knitr::asis_output(paste(lines, collapse = "\n"))
+```
+
+```{r studies, eval = multi}
+knitr::kable(
+  summarise_studies(run), row.names = FALSE,
+  col.names = c("Study", "Pipeline", "Samples", "Bins", "High", "Medium", "Low", "GUNC fail"),
+  caption = paste("Studies. MAGs per quality: the dereplicated genomes (MIMAG) when",
+                  "the study has them, else every bin assessed by CheckM2")
+)
 ```
 
 ## Read mapping
@@ -122,11 +133,11 @@ knitr::kable(
 ## MAG quality
 
 ```{r quality-plot, eval = has(run$mags)}
-plot_mag_quality(run$mags, facet_by = if (length(unique(run$mags$binner)) > 1) "binner" else NULL)
+plot_mag_quality(run$mags, facet_by = if (multi) "study" else if (length(unique(run$mags$binner)) > 1) "binner" else NULL)
 ```
 
 ```{r quality-counts, eval = has(run$mags)}
-knitr::kable(count_quality(run$mags, by = "binner"),
+knitr::kable(count_quality(run$mags, by = if (multi) c("study", "binner") else "binner"),
              caption = "MAGs per quality category (MIMAG thresholds)")
 ```
 
@@ -151,11 +162,11 @@ gunc_mags <- if (has(run$mags)) run$mags else run$mimag
 ```
 
 ```{r gunc-plot, eval = has(run$gunc)}
-plot_gunc(run$gunc, mags = gunc_mags)
+suppressWarnings(plot_gunc(run$gunc, mags = gunc_mags))
 ```
 
 ```{r gunc-counts, eval = has(run$gunc)}
-counts <- as.data.frame.matrix(table(run$gunc$assembly, factor(run$gunc$pass, c(TRUE, FALSE))))
+counts <- as.data.frame.matrix(table(if (multi) paste(run$gunc$study, run$gunc$assembly) else run$gunc$assembly, factor(run$gunc$pass, c(TRUE, FALSE))))
 names(counts) <- c("Pass", "Fail")
 counts <- cbind(Assembly = rownames(counts), counts)
 knitr::kable(counts, row.names = FALSE, caption = "Bins that pass or fail GUNC, per assembly")
@@ -163,9 +174,9 @@ knitr::kable(counts, row.names = FALSE, caption = "Bins that pass or fail GUNC, 
 
 ```{r gunc-hidden, eval = has(run$gunc) && has(gunc_mags) && "quality" %in% names(gunc_mags)}
 hidden <- merge(
-  gunc_mags[, intersect(c("bin", "completeness", "contamination", "quality"), names(gunc_mags))],
-  run$gunc[!run$gunc$pass, c("bin", "taxonomic_level", "clade_separation_score", "contamination_portion")],
-  by = "bin"
+  gunc_mags[, intersect(c("study", "bin", "completeness", "contamination", "quality"), names(gunc_mags))],
+  run$gunc[!run$gunc$pass, c(intersect("study", names(run$gunc)), "bin", "taxonomic_level", "clade_separation_score", "contamination_portion")],
+  by = intersect(c("study", "bin"), names(run$gunc))
 )
 hidden <- hidden[!is.na(hidden$quality) & hidden$quality %in% c("high", "medium"), , drop = FALSE]
 if (nrow(hidden) == 0) {
@@ -202,7 +213,7 @@ knitr::kable(run$annotation, digits = 1,
              caption = "Genes called, annotated and distinct KEGG orthologues per MAG")
 ```
 
-```{r pathways, eval = has(run$kos), fig.height = 3 + 0.35 * length(unique(run$kos$bin))}
+```{r pathways, eval = !multi && has(run$kos), fig.height = 3 + 0.35 * length(unique(run$kos$bin))}
 plot_pathway_presence(run$kos, mags = run$mags)
 ```
 
@@ -234,23 +245,23 @@ knitr::kable(run$catalog, format.args = list(big.mark = ","),
 plot_annotation_fraction(run$profile_stats)
 ```
 
-```{r cat-phylum, eval = has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
+```{r cat-phylum, eval = !multi && has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
 plot_community(run$contig_taxonomy, rank = "phylum")
 ```
 
-```{r cat-genus, eval = has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
+```{r cat-genus, eval = !multi && has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
 plot_community(run$contig_taxonomy, rank = "genus", top = 12)
 ```
 
-```{r singlem-phylum, eval = has(run$singlem), fig.width = wide, fig.height = 5.5}
+```{r singlem-phylum, eval = !multi && has(run$singlem), fig.width = wide, fig.height = 5.5}
 plot_community(run$singlem, rank = "phylum")
 ```
 
-```{r singlem-genus, eval = has(run$singlem), fig.width = wide, fig.height = 5.5}
+```{r singlem-genus, eval = !multi && has(run$singlem), fig.width = wide, fig.height = 5.5}
 plot_community(run$singlem, rank = "genus", top = 12)
 ```
 
-```{r comparison, eval = has(run$contig_taxonomy) && has(run$singlem), fig.width = 6.5, fig.height = 6}
+```{r comparison, eval = !multi && has(run$contig_taxonomy) && has(run$singlem), fig.width = 6.5, fig.height = 6}
 plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "phylum")
 plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "genus")
 ```
@@ -288,11 +299,18 @@ knitr::kable(medians, digits = 1, row.names = FALSE,
              caption = "Median over the samples")
 ```
 
-```{r canthyd-heatmap, eval = has(run$contig_canthyd), fig.width = wide, fig.height = 2 + 0.25 * length(unique(run$contig_canthyd$feature))}
+```{r community-multi, eval = multi && has_community}
+knitr::asis_output(paste(
+  "_The composition of each sample is not drawn for several studies at once:",
+  "build the report of each study for it._"
+))
+```
+
+```{r canthyd-heatmap, eval = !multi && has(run$contig_canthyd), fig.width = wide, fig.height = 2 + 0.25 * length(unique(run$contig_canthyd$feature))}
 plot_feature_heatmap(run$contig_canthyd, top = 40)
 ```
 
-```{r ko-heatmap, eval = has(run$contig_kos) && any(hydrocarbon_kos()$ko %in% run$contig_kos$feature), fig.width = wide, fig.height = 7}
+```{r ko-heatmap, eval = !multi && has(run$contig_kos) && any(hydrocarbon_kos()$ko %in% run$contig_kos$feature), fig.width = wide, fig.height = 7}
 plot_feature_heatmap(run$contig_kos, features = hydrocarbon_kos())
 ```
 
@@ -307,7 +325,26 @@ knitr::asis_output(paste(
 
 ```{r methods-setup, include = FALSE}
 info <- attr(run, "run_info")
-methods <- if (!is.null(info)) describe_run(info)
+methods <- if (!multi && !is.null(info)) describe_run(info)
+```
+
+```{r methods-multi, eval = multi}
+blocks <- vapply(studies, function(study) {
+  one <- info[[study]]
+  if (is.null(one)) {
+    return(paste0("### ", study, "\n\n_No run information found._\n"))
+  }
+  d <- describe_run(one)
+  paste0(
+    "### ", study, "\n\n",
+    paste(knitr::kable(d$run, col.names = c("", ""), row.names = FALSE), collapse = "\n"),
+    if (nrow(d$databases) > 0) paste0("\n\n", paste(knitr::kable(
+      d$databases, col.names = c("Database", "Path", "Last modified"), row.names = FALSE),
+      collapse = "\n")) else "",
+    "\n"
+  )
+}, character(1))
+knitr::asis_output(paste(blocks, collapse = "\n"))
 ```
 
 ```{r methods-text, eval = !is.null(methods)}
@@ -354,7 +391,7 @@ knitr::asis_output(paste0(
 ))
 ```
 
-```{r no-methods, eval = is.null(methods)}
+```{r no-methods, eval = !multi && is.null(methods)}
 knitr::asis_output("_No run information found (manifest.json or run_info.txt)._")
 ```
 

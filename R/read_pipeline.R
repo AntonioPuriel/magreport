@@ -26,6 +26,15 @@
 #'   `"manifest"` the manifest of the run (`NULL` without one). The attribute
 #'   `"run_info"` describes the run (pipeline version, databases, parameters):
 #'   the manifest, or else `run_info.txt` read with [read_run_info()].
+#'
+#'   **Several runs.** With several directories, or a named one, every table
+#'   of every run is stacked with a first column `study` (the names of
+#'   `results_dir`; without names, the directory names). Columns that only
+#'   some runs have are filled with `NA`. Bin and sample names may repeat
+#'   between studies, so join tables by `study` and `bin`, as [plot_gunc()]
+#'   and [mag_recovery()] do. The attributes `"files"`, `"manifest"` and
+#'   `"run_info"` become lists with one element per study, and the attribute
+#'   `"studies"` holds the study names.
 #' @export
 #'
 #' @examples
@@ -33,7 +42,79 @@
 #' run <- read_pipeline(results_dir)
 #' names(run)
 #' nrow(run$mags)
+#'
+#' # Several runs, for example the studies of a catalog
+#' runs <- read_pipeline(c(
+#'   gut = system.file("extdata", "example_run", package = "magreport"),
+#'   sediment = system.file("extdata", "marine_honour", package = "magreport")
+#' ))
+#' table(runs$mags$study)
+#' table(runs$mimag$study)
 read_pipeline <- function(results_dir) {
+  if (length(results_dir) == 0) {
+    stop("No results directory given", call. = FALSE)
+  }
+  if (length(results_dir) == 1 && is.null(names(results_dir))) {
+    return(read_pipeline_one(results_dir))
+  }
+
+  studies <- names(results_dir)
+  if (is.null(studies)) {
+    studies <- basename(normalizePath(results_dir, mustWork = FALSE))
+  }
+  if (anyNA(studies) || any(studies == "")) {
+    stop("Every results directory needs a study name", call. = FALSE)
+  }
+  if (anyDuplicated(studies)) {
+    stop("Study names must be unique: ", paste(unique(studies[duplicated(studies)]), collapse = ", "),
+         "; name them, as in c(study1 = dir1, study2 = dir2)", call. = FALSE)
+  }
+
+  runs <- lapply(results_dir, read_pipeline_one)
+  names(runs) <- studies
+
+  out <- lapply(stats::setNames(names(runs[[1]]), names(runs[[1]])), function(table) {
+    bind_studies(lapply(runs, `[[`, table))
+  })
+  for (what in c("files", "manifest", "run_info")) {
+    attr(out, what) <- lapply(runs, attr, what)
+  }
+  attr(out, "studies") <- studies
+  out
+}
+
+# Stack the same table of several studies, with a first column `study`.
+# Columns missing in some studies are filled with NA; factors stay factors
+# when their levels agree.
+bind_studies <- function(tables) {
+  tables <- Filter(Negate(is.null), tables)
+  if (length(tables) == 0) {
+    return(NULL)
+  }
+  columns <- unique(unlist(lapply(tables, names)))
+  filled <- lapply(names(tables), function(study) {
+    x <- tables[[study]]
+    for (column in setdiff(columns, names(x))) {
+      x[[column]] <- rep(NA, nrow(x))
+    }
+    x <- x[, columns, drop = FALSE]
+    cbind(data.frame(study = rep(study, nrow(x)), stringsAsFactors = FALSE), x)
+  })
+  out <- do.call(rbind, filled)
+  rownames(out) <- NULL
+  source <- unique(unlist(lapply(tables, attr, "source")))
+  if (length(source) > 0) {
+    attr(out, "source") <- paste(source, collapse = " + ")
+  }
+  out
+}
+
+# Join key of a table: the bin, within its study when there are several
+bin_key <- function(x) {
+  if ("study" %in% names(x)) paste(x$study, x$bin, sep = "\r") else x$bin
+}
+
+read_pipeline_one <- function(results_dir) {
   if (!dir.exists(results_dir)) {
     stop("Directory not found: ", results_dir, call. = FALSE)
   }
@@ -155,4 +236,62 @@ read_singlem_tables <- function(paths) {
   } else {
     read_singlem(paths)
   }
+}
+
+#' Summarise several runs side by side
+#'
+#' One row per study of runs read together with [read_pipeline()]: samples,
+#' bins, MAGs of each quality, bins that fail GUNC and pipeline version. The
+#' MAGs are those of the MIMAG table (the dereplicated genomes) when a study
+#' has one, else those of the CheckM2 table.
+#'
+#' @param run A list returned by [read_pipeline()] with several directories.
+#'
+#' @return A data frame with one row per study and the columns `study`,
+#'   `pipeline`, `samples`, `bins`, `high`, `medium`, `low` and `gunc_fail`
+#'   (`NA` when the table behind a column is missing).
+#' @export
+#'
+#' @examples
+#' runs <- read_pipeline(c(
+#'   gut = system.file("extdata", "example_run", package = "magreport"),
+#'   sediment = system.file("extdata", "marine_honour", package = "magreport")
+#' ))
+#' summarise_studies(runs)
+summarise_studies <- function(run) {
+  studies <- attr(run, "studies")
+  if (is.null(studies)) {
+    stop("run holds a single run: read several with read_pipeline(c(a = dir1, b = dir2))",
+         call. = FALSE)
+  }
+
+  in_study <- function(x, study) {
+    if (is.null(x)) NULL else x[x$study == study, , drop = FALSE]
+  }
+
+  rows <- lapply(studies, function(study) {
+    samples <- unique(c(in_study(run$mapping, study)$sample,
+                        in_study(run$singlem, study)$sample,
+                        in_study(run$profile_stats, study)$sample))
+    mimag <- in_study(run$mimag, study)
+    mags <- if (!is.null(mimag) && nrow(mimag) > 0) mimag else in_study(run$mags, study)
+    count <- function(level) {
+      if (is.null(mags) || nrow(mags) == 0) NA_integer_ else sum(mags$quality == level, na.rm = TRUE)
+    }
+    gunc <- in_study(run$gunc, study)
+    info <- attr(run, "run_info")[[study]]
+    data.frame(
+      study = study,
+      pipeline = if (is.null(info$pipeline$version)) NA_character_ else info$pipeline$version,
+      samples = if (length(samples) == 0) NA_integer_ else length(samples),
+      bins = if (is.null(run$bins) || !study %in% run$bins$study) NA_integer_ else
+        nrow(in_study(run$bins, study)),
+      high = count("high"),
+      medium = count("medium"),
+      low = count("low"),
+      gunc_fail = if (is.null(gunc) || nrow(gunc) == 0) NA_integer_ else sum(!gunc$pass, na.rm = TRUE),
+      stringsAsFactors = FALSE
+    )
+  })
+  do.call(rbind, rows)
 }

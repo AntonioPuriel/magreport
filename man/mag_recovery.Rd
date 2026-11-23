@@ -21,10 +21,14 @@ mag_recovery(
 \item{ranks}{Ranks to compute.}
 
 \item{min_quality}{Lowest quality of the MAGs that count: \code{"medium"} (the
-default) leaves low-quality bins out, \code{"low"} counts every MAG.}
+default) leaves low-quality bins out, \code{"low"} counts every MAG.
+
+With several runs read together (\code{\link[=read_pipeline]{read_pipeline()}} with several
+directories), each study is computed with its own MAGs.}
 }
 \value{
-A data frame with one row per sample and rank: \code{sample}, \code{rank},
+A data frame with one row per sample and rank (and \code{study}, for
+several runs): \code{sample}, \code{rank},
 \code{n_taxa_with_mag} (taxa of the profile with a MAG in that sample),
 \code{classified} (\% of the profile classified at that rank) and \code{recovered}
 (\% of the profile in taxa with a MAG). \code{recovered_of_classified} is

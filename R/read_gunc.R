@@ -64,11 +64,13 @@ read_gunc <- function(path) {
 #' Each point is a bin: the CheckM2 contamination on the x axis and the GUNC
 #' clade separation score on the y axis, with the GUNC threshold (0.45). Bins
 #' above the line are chimeric even when CheckM2 sees little contamination.
-#' Without CheckM2 results, the x axis is the GUNC contamination portion.
+#' Without CheckM2 results, or when none of the bins is in `mags`, the x axis
+#' is the GUNC contamination portion.
 #'
 #' @param gunc A data frame returned by [read_gunc()].
 #' @param mags Optional data frame returned by [read_mag_quality()] or
-#'   [read_mimag_quality()], joined to `gunc` by `bin`. Its `quality` colours
+#'   [read_mimag_quality()], joined to `gunc` by `bin` (and `study`, for
+#'   several runs read together). Its `quality` colours
 #'   nothing here; it only provides the CheckM2 contamination.
 #'
 #' @return A `ggplot` object.
@@ -90,12 +92,15 @@ plot_gunc <- function(gunc, mags = NULL) {
   x_label <- "GUNC contamination portion"
   gunc$x <- gunc$contamination_portion
   if (!is.null(mags) && all(c("bin", "contamination") %in% names(mags))) {
-    gunc$x <- mags$contamination[match(gunc$bin, mags$bin)]
-    gunc <- gunc[!is.na(gunc$x), , drop = FALSE]
-    x_label <- "CheckM2 contamination (%)"
-  }
-  if (nrow(gunc) == 0) {
-    stop("No bin of gunc is in mags", call. = FALSE)
+    checkm2 <- mags$contamination[match(bin_key(gunc), bin_key(mags))]
+    if (all(is.na(checkm2))) {
+      warning("No bin of gunc is in mags: plotting the GUNC contamination portion",
+              call. = FALSE)
+    } else {
+      gunc$x <- checkm2
+      gunc <- gunc[!is.na(gunc$x), , drop = FALSE]
+      x_label <- "CheckM2 contamination (%)"
+    }
   }
 
   gunc$status <- factor(ifelse(gunc$pass, "pass", "fail"), levels = c("pass", "fail"))
