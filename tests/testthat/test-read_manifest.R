@@ -97,3 +97,34 @@ test_that("read_pipeline warns about listed files that are missing", {
   expect_null(run$mimag)
   expect_false(is.null(run$mags))
 })
+
+test_that("read_pipeline reads the compressed tables of report/", {
+  dir <- local_manifest_run()
+  plain <- read_pipeline(dir)
+
+  # report/ as mag-pipeline writes it: every .tsv and .txt gzipped, without
+  # the per-contig tables, and its own manifest
+  report <- file.path(dir, "report")
+  manifest <- jsonlite::fromJSON(file.path(dir, "manifest.json"), simplifyDataFrame = FALSE)
+  manifest$tables$depth <- NULL
+  manifest$tables <- lapply(manifest$tables, function(files) {
+    I(vapply(files, function(rel) {
+      dest <- file.path(report, paste0(rel, ".gz"))
+      dir.create(dirname(dest), recursive = TRUE, showWarnings = FALSE)
+      con <- gzfile(dest, "wb")
+      writeLines(readLines(file.path(dir, rel)), con)
+      close(con)
+      paste0(rel, ".gz")
+    }, character(1), USE.NAMES = FALSE))
+  })
+  manifest$bundle <- list(excluded = I("depth"))
+  jsonlite::write_json(manifest, file.path(report, "manifest.json"),
+                       auto_unbox = TRUE, null = "null", pretty = TRUE)
+
+  run <- read_pipeline(report)
+  expect_null(run$depth)
+  expect_identical(attr(run, "manifest")$bundle$excluded, "depth")
+  for (name in c("mags", "bins", "mapping", "assembly", "kos", "annotation")) {
+    expect_equal(run[[name]], plain[[name]], info = name)
+  }
+})
