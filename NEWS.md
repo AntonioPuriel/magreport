@@ -1,3 +1,9 @@
+# magreport 0.9.1
+
+* Reads `schema_version` 1.1 of the manifest (mag-pipeline 2.2.0) without a
+  warning. It lists the alignments and trees of GTDB-Tk and `--mag_tree`; the
+  alignment of `--mag_tree` is in `report/`.
+
 # magreport 0.9.0
 
 Goes with mag-pipeline 2.1.0: reads its manifest and `report/` folder, and

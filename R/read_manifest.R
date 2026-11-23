@@ -65,7 +65,7 @@ read_manifest <- function(path) {
 }
 
 # Highest schema_version of manifest.json this version of magreport reads
-manifest_schema <- c(major = 1L, minor = 0L)
+manifest_schema <- c(major = 1L, minor = 1L)
 
 check_schema_version <- function(version, path) {
   if (is.null(version)) {
