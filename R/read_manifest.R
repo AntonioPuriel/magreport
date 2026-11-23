@@ -133,9 +133,11 @@ manifest_files <- function(manifest) {
     if (length(files) == 0) NULL else files
   }
 
+  # Tables with one file per assembly are read whole; the others have one file
+  every_file <- c("depth", "assembly_stats")
   files <- lapply(manifest_table_names, function(name) {
     found <- existing(name)
-    if (is.null(found)) NULL else found[1]
+    if (is.null(found) || name %in% every_file) found else found[1]
   })
   names(files) <- names(manifest_table_names)
 

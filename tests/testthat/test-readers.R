@@ -58,3 +58,27 @@ test_that("read_depth reports a file without sample columns", {
 
   expect_error(read_depth(path), "No per-sample depth columns")
 })
+
+test_that("read_pipeline reads every assembly and depth table", {
+  dir <- withr::local_tempdir()
+  example <- function(file) system.file("extdata", "example_run", file, package = "magreport")
+  for (id in c("T0", "T1")) {
+    stats <- utils::read.delim(example("coassembly.contigs.stats.tsv"), stringsAsFactors = FALSE)
+    stats$assembly <- id
+    utils::write.table(stats, file.path(dir, paste0(id, ".contigs.stats.tsv")),
+                       sep = "\t", quote = FALSE, row.names = FALSE)
+    file.copy(example("coassembly.depth.txt"), file.path(dir, paste0(id, ".depth.txt")))
+  }
+  file.copy(example("mag_quality.tsv"), dir)
+
+  run <- read_pipeline(dir)
+  expect_setequal(unique(run$assembly$assembly), c("T0", "T1"))
+  expect_equal(nrow(run$assembly), 4)
+  expect_identical(names(run$depth)[1], "assembly")
+  expect_setequal(unique(run$depth$assembly), c("T0", "T1"))
+  one <- read_depth(example("coassembly.depth.txt"))
+  expect_equal(nrow(run$depth), 2 * nrow(one))
+
+  expect_null(read_pipeline(dir, depth = FALSE)$depth)
+  expect_null(attr(read_pipeline(dir, depth = FALSE), "files")$depth)
+})

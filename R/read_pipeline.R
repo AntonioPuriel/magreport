@@ -8,6 +8,9 @@
 #'
 #' @param results_dir Directory of the run: with `manifest.json` at its top, or
 #'   searched recursively.
+#' @param depth If `FALSE`, the contig depth tables are not read. They have one
+#'   row per contig and sample, several GB in large runs, and [mag_report()]
+#'   does not use them.
 #'
 #' @return A list with the elements `mags`, `mimag`, `bins`, `mapping`,
 #'   `depth`, `assembly`, `kos`, `annotation`, `hydrocarbon` and `abundance`,
@@ -50,12 +53,12 @@
 #' ))
 #' table(runs$mags$study)
 #' table(runs$mimag$study)
-read_pipeline <- function(results_dir) {
+read_pipeline <- function(results_dir, depth = TRUE) {
   if (length(results_dir) == 0) {
     stop("No results directory given", call. = FALSE)
   }
   if (length(results_dir) == 1 && is.null(names(results_dir))) {
-    return(read_pipeline_one(results_dir))
+    return(read_pipeline_one(results_dir, depth = depth))
   }
 
   studies <- names(results_dir)
@@ -70,7 +73,7 @@ read_pipeline <- function(results_dir) {
          "; name them, as in c(study1 = dir1, study2 = dir2)", call. = FALSE)
   }
 
-  runs <- lapply(results_dir, read_pipeline_one)
+  runs <- lapply(results_dir, read_pipeline_one, depth = depth)
   names(runs) <- studies
 
   out <- lapply(stats::setNames(names(runs[[1]]), names(runs[[1]])), function(table) {
@@ -114,7 +117,7 @@ bin_key <- function(x) {
   if ("study" %in% names(x)) paste(x$study, x$bin, sep = "\r") else x$bin
 }
 
-read_pipeline_one <- function(results_dir) {
+read_pipeline_one <- function(results_dir, depth = TRUE) {
   if (!dir.exists(results_dir)) {
     stop("Directory not found: ", results_dir, call. = FALSE)
   }
@@ -127,6 +130,9 @@ read_pipeline_one <- function(results_dir) {
     files <- find_pipeline_files(results_dir)
   }
 
+  if (!isTRUE(depth)) {
+    files["depth"] <- list(NULL)
+  }
   out <- read_pipeline_tables(files)
   attr(out, "files") <- files
   attr(out, "manifest") <- manifest
@@ -150,8 +156,8 @@ find_pipeline_files <- function(results_dir) {
     mags     = find_one("^mag_quality\\.tsv$"),
     bins     = find_one("^bin_summary\\.tsv$"),
     mapping  = find_one("^mapping_summary\\.tsv$"),
-    depth    = find_one("\\.depth\\.txt$"),
-    assembly = find_one("\\.contigs\\.stats\\.tsv$"),
+    depth    = find_all(results_dir, "\\.depth\\.txt(\\.gz)?$"),
+    assembly = find_all(results_dir, "\\.contigs\\.stats\\.tsv(\\.gz)?$"),
     kos        = find_one("^ko_per_mag\\.tsv$"),
     annotation = find_one("^annotation_stats\\.tsv$"),
     mimag       = find_one("^mimag_quality\\.tsv$"),
@@ -183,8 +189,10 @@ read_pipeline_tables <- function(files) {
     mags     = read_if(files$mags, read_mag_quality),
     bins     = read_if(files$bins, read_bin_summary),
     mapping  = read_if(files$mapping, read_mapping_summary),
-    depth    = read_if(files$depth, read_depth),
-    assembly = read_if(files$assembly, function(p) read_pipeline_table(p)),
+    depth    = read_if(files$depth, read_depths),
+    assembly = read_if(files$assembly, function(paths) {
+      do.call(rbind, lapply(paths, read_pipeline_table))
+    }),
     kos        = read_if(files$kos, read_ko_table),
     annotation = read_if(files$annotation, read_annotation_stats),
     mimag       = read_if(files$mimag, read_mimag_quality),
@@ -294,4 +302,17 @@ summarise_studies <- function(run) {
     )
   })
   do.call(rbind, rows)
+}
+
+# The depth tables of every assembly, stacked, with a first column `assembly`
+# taken from the file name (<assembly>.depth.txt)
+read_depths <- function(paths) {
+  tables <- lapply(paths, function(path) {
+    x <- read_depth(path)
+    assembly <- sub("\\.depth\\.txt(\\.gz)?$", "", basename(path))
+    cbind(data.frame(assembly = rep(assembly, nrow(x)), stringsAsFactors = FALSE), x)
+  })
+  out <- do.call(rbind, tables)
+  rownames(out) <- NULL
+  out
 }

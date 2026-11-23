@@ -25,6 +25,15 @@
   may repeat between studies. `summarise_studies()` gives one row per study,
   and `mag_report()` takes several directories: it adds the table of studies,
   splits the quality plots by study and gives the methods of each run.
+* `describe_run()` also returns `software`, the version of each tool as the
+  tool reported it during the run (`manifest.json` of mag-pipeline 2.1.0), and
+  the methods of the report list them.
+* `read_pipeline()` reads the assembly statistics and depth tables of every
+  assembly, not only the first one found: runs with `--assembly_mode group` or
+  `per_sample` have one per assembly. `depth` gains a first column `assembly`.
+  `read_pipeline(depth = FALSE)` skips the depth tables (several GB in large
+  runs), as `mag_report()` now does. The summary of the report gives the
+  total over the assemblies and the range of their N50.
 * New example data: the GUNC reports of the 1161 bins of Marine Honour
   (`extdata/marine_honour/gunc`).
 * New dependency: jsonlite.

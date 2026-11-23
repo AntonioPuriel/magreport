@@ -51,13 +51,26 @@ if (has(run$mapping)) {
   lines <- c(lines, sprintf("- **Samples:** %d", nrow(run$mapping)))
 }
 if (has(run$assembly) && !multi) {
-  kept <- run$assembly[nrow(run$assembly), , drop = FALSE]
-  lines <- c(lines, sprintf(
-    "- **Assembly:** %s contigs, %.1f Mb, N50 %s bp",
-    format(kept$n_contigs, big.mark = ","),
-    kept$total_length / 1e6,
-    format(kept$n50, big.mark = ",")
-  ))
+  # The contigs kept after length filtering: the last row of each assembly
+  kept <- run$assembly[!duplicated(run$assembly$assembly, fromLast = TRUE), , drop = FALSE]
+  if (nrow(kept) == 1) {
+    lines <- c(lines, sprintf(
+      "- **Assembly:** %s contigs, %.1f Mb, N50 %s bp",
+      format(kept$n_contigs, big.mark = ","),
+      kept$total_length / 1e6,
+      format(kept$n50, big.mark = ",")
+    ))
+  } else {
+    lines <- c(lines, sprintf(
+      "- **Assemblies:** %d, with %s contigs and %s in all, N50 from %s to %s bp",
+      nrow(kept),
+      format(sum(kept$n_contigs), big.mark = ","),
+      if (sum(kept$total_length) >= 1e9) sprintf("%.1f Gb", sum(kept$total_length) / 1e9) else
+        sprintf("%.1f Mb", sum(kept$total_length) / 1e6),
+      format(min(kept$n50), big.mark = ","),
+      format(max(kept$n50), big.mark = ",")
+    ))
+  }
 }
 if (has(run$bins)) {
   lines <- c(lines, sprintf("- **Bins:** %d from %s",
@@ -341,6 +354,9 @@ blocks <- vapply(studies, function(study) {
     if (nrow(d$databases) > 0) paste0("\n\n", paste(knitr::kable(
       d$databases, col.names = c("Database", "Path", "Last modified"), row.names = FALSE),
       collapse = "\n")) else "",
+    if (nrow(d$software) > 0) paste0("\n\n", paste(knitr::kable(
+      d$software, col.names = c("Tool", "Version"), row.names = FALSE),
+      collapse = "\n")) else "",
     "\n"
   )
 }, character(1))
@@ -363,6 +379,9 @@ knitr::asis_output(paste0(
   ", contigs of at least ", value(p$min_contig_length), " bp",
   if (isTRUE(p$dereplicate)) paste0(" and dereplication at ", value(p$derep_ani), " % ANI") else "",
   ".", db_text,
+  if (nrow(methods$software) > 0) paste0(" Tools: ",
+    paste(sprintf("%s %s", methods$software$tool, methods$software$version), collapse = ", "),
+    ".") else "",
   if (is.na(info$schema_version)) " Read from `run_info.txt`." else
     paste0(" Read from `manifest.json` (schema ", info$schema_version, ").")
 ))
@@ -375,6 +394,11 @@ knitr::kable(methods$run, col.names = c("", ""), row.names = FALSE, caption = "R
 ```{r methods-databases, eval = !is.null(methods) && nrow(methods$databases) > 0}
 knitr::kable(methods$databases, col.names = c("Database", "Path", "Last modified"),
              row.names = FALSE, caption = "Reference databases")
+```
+
+```{r methods-software, eval = !is.null(methods) && nrow(methods$software) > 0}
+knitr::kable(methods$software, col.names = c("Tool", "Version"), row.names = FALSE,
+             caption = "Versions of the tools, as each tool reported it during the run")
 ```
 
 ```{r methods-params, eval = !is.null(methods) && nrow(methods$params) > 0}

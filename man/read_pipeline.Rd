@@ -4,11 +4,15 @@
 \alias{read_pipeline}
 \title{Find and read every table of a mag-pipeline run}
 \usage{
-read_pipeline(results_dir)
+read_pipeline(results_dir, depth = TRUE)
 }
 \arguments{
 \item{results_dir}{Directory of the run: with \code{manifest.json} at its top, or
 searched recursively.}
+
+\item{depth}{If \code{FALSE}, the contig depth tables are not read. They have one
+row per contig and sample, several GB in large runs, and \code{\link[=mag_report]{mag_report()}}
+does not use them.}
 }
 \value{
 A list with the elements \code{mags}, \code{mimag}, \code{bins}, \code{mapping},

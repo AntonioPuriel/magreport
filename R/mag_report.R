@@ -40,7 +40,8 @@ mag_report <- function(results_dir,
     stop("Pandoc is needed to build the report. It ships with RStudio.", call. = FALSE)
   }
 
-  run <- read_pipeline(results_dir)
+  # The depth tables (one row per contig and sample) are not used by the report
+  run <- read_pipeline(results_dir, depth = FALSE)
   found <- c("mags", "bins", "mimag", "catalog", "profile_stats", "contig_taxonomy", "singlem")
   if (all(vapply(run[found], is.null, logical(1)))) {
     stop("No mag-pipeline tables found in ", results_dir, call. = FALSE)
