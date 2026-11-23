@@ -4,10 +4,15 @@
 \alias{read_pipeline}
 \title{Find and read every table of a mag-pipeline run}
 \usage{
-read_pipeline(results_dir)
+read_pipeline(results_dir, depth = TRUE)
 }
 \arguments{
-\item{results_dir}{Directory to search, recursively.}
+\item{results_dir}{Directory of the run: with \code{manifest.json} at its top, or
+searched recursively.}
+
+\item{depth}{If \code{FALSE}, the contig depth tables are not read. They have one
+row per contig and sample, several GB in large runs, and \code{\link[=mag_report]{mag_report()}}
+does not use them.}
 }
 \value{
 A list with the elements \code{mags}, \code{mimag}, \code{bins}, \code{mapping},
@@ -20,18 +25,41 @@ The profiles of the community without MAGs (mag-pipeline 2.0.0 or later)
 are in \code{catalog} (\code{\link[=read_catalog_stats]{read_catalog_stats()}}), \code{profile_stats}
 (\code{\link[=read_profile_stats]{read_profile_stats()}}), \code{contig_taxonomy} (\code{\link[=read_taxonomy_profile]{read_taxonomy_profile()}}),
 \code{contig_kos}, \code{contig_canthyd}, \code{contig_hadeg} (\code{\link[=read_feature_profile]{read_feature_profile()}})
-and \code{singlem} (\code{\link[=read_singlem]{read_singlem()}}). For SingleM, the table of all samples is
+and \code{singlem} (\code{\link[=read_singlem]{read_singlem()}}). The GUNC reports of every bin set
+(\code{--gunc_db}) are in \code{gunc} (\code{\link[=read_gunc]{read_gunc()}}). For SingleM, the table of all samples is
 preferred, then the profile of each sample, then the tables per rank.
-The attribute \code{"files"} holds the paths that were used.
+The attribute \code{"files"} holds the paths that were used, and the attribute
+\code{"manifest"} the manifest of the run (\code{NULL} without one). The attribute
+\code{"run_info"} describes the run (pipeline version, databases, parameters):
+the manifest, or else \code{run_info.txt} read with \code{\link[=read_run_info]{read_run_info()}}.
+
+\strong{Several runs.} With several directories, or a named one, every table
+of every run is stacked with a first column \code{study} (the names of
+\code{results_dir}; without names, the directory names). Columns that only
+some runs have are filled with \code{NA}. Bin and sample names may repeat
+between studies, so join tables by \code{study} and \code{bin}, as \code{\link[=plot_gunc]{plot_gunc()}}
+and \code{\link[=mag_recovery]{mag_recovery()}} do. The attributes \code{"files"}, \code{"manifest"} and
+\code{"run_info"} become lists with one element per study, and the attribute
+\code{"studies"} holds the study names.
 }
 \description{
-Looks for the output tables of mag-pipeline inside a directory, whatever the
-folder layout is: the \verb{results/} directory of a run, or a folder where the
-tables were copied together.
+Reads the output tables of mag-pipeline from a directory. When the
+directory holds \code{manifest.json} (mag-pipeline 2.1.0 or later), the tables
+it lists are read (\code{\link[=read_manifest]{read_manifest()}}). Otherwise the tables are looked for by
+name, whatever the folder layout is: the \verb{results/} directory of a run, or a
+folder where the tables were copied together.
 }
 \examples{
 results_dir <- system.file("extdata", "example_run", package = "magreport")
 run <- read_pipeline(results_dir)
 names(run)
 nrow(run$mags)
+
+# Several runs, for example the studies of a catalog
+runs <- read_pipeline(c(
+  gut = system.file("extdata", "example_run", package = "magreport"),
+  sediment = system.file("extdata", "marine_honour", package = "magreport")
+))
+table(runs$mags$study)
+table(runs$mimag$study)
 }

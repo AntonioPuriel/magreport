@@ -19,6 +19,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
 library(magreport)
 run <- params$run
 has <- function(x) !is.null(x) && nrow(x) > 0
+studies <- attr(run, "studies")
+multi <- length(studies) > 1
 ```
 
 ```{css palette}
@@ -48,14 +50,27 @@ lines <- character()
 if (has(run$mapping)) {
   lines <- c(lines, sprintf("- **Samples:** %d", nrow(run$mapping)))
 }
-if (has(run$assembly)) {
-  kept <- run$assembly[nrow(run$assembly), , drop = FALSE]
-  lines <- c(lines, sprintf(
-    "- **Assembly:** %s contigs, %.1f Mb, N50 %s bp",
-    format(kept$n_contigs, big.mark = ","),
-    kept$total_length / 1e6,
-    format(kept$n50, big.mark = ",")
-  ))
+if (has(run$assembly) && !multi) {
+  # The contigs kept after length filtering: the last row of each assembly
+  kept <- run$assembly[!duplicated(run$assembly$assembly, fromLast = TRUE), , drop = FALSE]
+  if (nrow(kept) == 1) {
+    lines <- c(lines, sprintf(
+      "- **Assembly:** %s contigs, %.1f Mb, N50 %s bp",
+      format(kept$n_contigs, big.mark = ","),
+      kept$total_length / 1e6,
+      format(kept$n50, big.mark = ",")
+    ))
+  } else {
+    lines <- c(lines, sprintf(
+      "- **Assemblies:** %d, with %s contigs and %s in all, N50 from %s to %s bp",
+      nrow(kept),
+      format(sum(kept$n_contigs), big.mark = ","),
+      if (sum(kept$total_length) >= 1e9) sprintf("%.1f Gb", sum(kept$total_length) / 1e9) else
+        sprintf("%.1f Mb", sum(kept$total_length) / 1e6),
+      format(min(kept$n50), big.mark = ","),
+      format(max(kept$n50), big.mark = ",")
+    ))
+  }
 }
 if (has(run$bins)) {
   lines <- c(lines, sprintf("- **Bins:** %d from %s",
@@ -83,6 +98,15 @@ if (has(run$singlem)) {
 }
 
 knitr::asis_output(paste(lines, collapse = "\n"))
+```
+
+```{r studies, eval = multi}
+knitr::kable(
+  summarise_studies(run), row.names = FALSE,
+  col.names = c("Study", "Pipeline", "Samples", "Bins", "High", "Medium", "Low", "GUNC fail"),
+  caption = paste("Studies. MAGs per quality: the dereplicated genomes (MIMAG) when",
+                  "the study has them, else every bin assessed by CheckM2")
+)
 ```
 
 ## Read mapping
@@ -122,11 +146,11 @@ knitr::kable(
 ## MAG quality
 
 ```{r quality-plot, eval = has(run$mags)}
-plot_mag_quality(run$mags, facet_by = if (length(unique(run$mags$binner)) > 1) "binner" else NULL)
+plot_mag_quality(run$mags, facet_by = if (multi) "study" else if (length(unique(run$mags$binner)) > 1) "binner" else NULL)
 ```
 
 ```{r quality-counts, eval = has(run$mags)}
-knitr::kable(count_quality(run$mags, by = "binner"),
+knitr::kable(count_quality(run$mags, by = if (multi) c("study", "binner") else "binner"),
              caption = "MAGs per quality category (MIMAG thresholds)")
 ```
 
@@ -142,6 +166,47 @@ knitr::kable(
 
 ```{r no-mags, eval = !has(run$mags)}
 knitr::asis_output("_No CheckM2 results found: run the pipeline without --skip_checkm2._")
+```
+
+## Chimeras (GUNC)
+
+```{r gunc-setup, include = FALSE}
+gunc_mags <- if (has(run$mags)) run$mags else run$mimag
+```
+
+```{r gunc-plot, eval = has(run$gunc)}
+suppressWarnings(plot_gunc(run$gunc, mags = gunc_mags))
+```
+
+```{r gunc-counts, eval = has(run$gunc)}
+counts <- as.data.frame.matrix(table(if (multi) paste(run$gunc$study, run$gunc$assembly) else run$gunc$assembly, factor(run$gunc$pass, c(TRUE, FALSE))))
+names(counts) <- c("Pass", "Fail")
+counts <- cbind(Assembly = rownames(counts), counts)
+knitr::kable(counts, row.names = FALSE, caption = "Bins that pass or fail GUNC, per assembly")
+```
+
+```{r gunc-hidden, eval = has(run$gunc) && has(gunc_mags) && "quality" %in% names(gunc_mags)}
+hidden <- merge(
+  gunc_mags[, intersect(c("study", "bin", "completeness", "contamination", "quality"), names(gunc_mags))],
+  run$gunc[!run$gunc$pass, c(intersect("study", names(run$gunc)), "bin", "taxonomic_level", "clade_separation_score", "contamination_portion")],
+  by = intersect(c("study", "bin"), names(run$gunc))
+)
+hidden <- hidden[!is.na(hidden$quality) & hidden$quality %in% c("high", "medium"), , drop = FALSE]
+if (nrow(hidden) == 0) {
+  knitr::asis_output("_Every bin of high or medium CheckM2 quality passes GUNC._")
+} else {
+  hidden <- hidden[order(-hidden$clade_separation_score), ]
+  knitr::kable(
+    utils::head(hidden, 25), row.names = FALSE, digits = 2,
+    caption = sprintf(paste(
+      "%d bins of high or medium CheckM2 quality that GUNC finds chimeric",
+      "(up to 25 shown, highest clade separation score first)"), nrow(hidden))
+  )
+}
+```
+
+```{r no-gunc, eval = !has(run$gunc)}
+knitr::asis_output("_No GUNC reports found: run the pipeline with --gunc_db._")
 ```
 
 ## Taxonomy
@@ -161,7 +226,7 @@ knitr::kable(run$annotation, digits = 1,
              caption = "Genes called, annotated and distinct KEGG orthologues per MAG")
 ```
 
-```{r pathways, eval = has(run$kos), fig.height = 3 + 0.35 * length(unique(run$kos$bin))}
+```{r pathways, eval = !multi && has(run$kos), fig.height = 3 + 0.35 * length(unique(run$kos$bin))}
 plot_pathway_presence(run$kos, mags = run$mags)
 ```
 
@@ -193,32 +258,72 @@ knitr::kable(run$catalog, format.args = list(big.mark = ","),
 plot_annotation_fraction(run$profile_stats)
 ```
 
-```{r cat-phylum, eval = has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
+```{r cat-phylum, eval = !multi && has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
 plot_community(run$contig_taxonomy, rank = "phylum")
 ```
 
-```{r cat-genus, eval = has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
+```{r cat-genus, eval = !multi && has(run$contig_taxonomy), fig.width = wide, fig.height = 5.5}
 plot_community(run$contig_taxonomy, rank = "genus", top = 12)
 ```
 
-```{r singlem-phylum, eval = has(run$singlem), fig.width = wide, fig.height = 5.5}
+```{r singlem-phylum, eval = !multi && has(run$singlem), fig.width = wide, fig.height = 5.5}
 plot_community(run$singlem, rank = "phylum")
 ```
 
-```{r singlem-genus, eval = has(run$singlem), fig.width = wide, fig.height = 5.5}
+```{r singlem-genus, eval = !multi && has(run$singlem), fig.width = wide, fig.height = 5.5}
 plot_community(run$singlem, rank = "genus", top = 12)
 ```
 
-```{r comparison, eval = has(run$contig_taxonomy) && has(run$singlem), fig.width = 6.5, fig.height = 6}
+```{r comparison, eval = !multi && has(run$contig_taxonomy) && has(run$singlem), fig.width = 6.5, fig.height = 6}
 plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "phylum")
 plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "genus")
 ```
 
-```{r canthyd-heatmap, eval = has(run$contig_canthyd), fig.width = wide, fig.height = 2 + 0.25 * length(unique(run$contig_canthyd$feature))}
+```{r recovery-setup, include = FALSE}
+# MAGs with taxonomy: the dereplicated set (MIMAG table) if there is one
+recovery_mags <- if (has(run$mimag)) run$mimag else run$mags
+recovery_profile <- if (has(run$singlem)) run$singlem else run$contig_taxonomy
+has_recovery <- has(recovery_mags) && has(recovery_profile) &&
+  "phylum" %in% names(recovery_mags) && !all(is.na(recovery_mags$phylum))
+recovery <- if (has_recovery) mag_recovery(recovery_profile, recovery_mags)
+```
+
+```{r recovery, eval = has_recovery}
+knitr::asis_output(paste(
+  "### Community represented by the MAGs
+
+",
+  "Share of the community in taxa with at least one MAG of medium or high",
+  "quality, at each rank. Taxa are matched by their GTDB name, so names that",
+  "differ between the GTDB releases of SingleM and GTDB-Tk are missed."
+))
+```
+
+```{r recovery-plot, eval = has_recovery}
+plot_mag_recovery(recovery)
+```
+
+```{r recovery-table, eval = has_recovery}
+medians <- stats::aggregate(cbind(classified, recovered, recovered_of_classified) ~ rank,
+                            data = recovery, FUN = stats::median)
+knitr::kable(medians, digits = 1, row.names = FALSE,
+             col.names = c("Rank", "Classified (%)", "In taxa with a MAG (%)",
+                           "Of the classified (%)"),
+             caption = "Median over the samples")
+```
+
+```{r community-multi, eval = multi && has_community}
+knitr::asis_output(paste(
+  "_The composition of each sample is not drawn for several studies at once:",
+  "build the report of each study for it._"
+))
+```
+
+```{r canthyd-heatmap, eval = !multi && has(run$contig_canthyd), fig.width = wide, fig.height = 2 + 0.25 * length(unique(run$contig_canthyd$feature))}
 plot_feature_heatmap(run$contig_canthyd, top = 40)
 ```
 
-```{r ko-heatmap, eval = has(run$contig_kos) && any(hydrocarbon_kos()$ko %in% run$contig_kos$feature), fig.width = wide, fig.height = 7}
+```{r ko-heatmap, eval = !multi && has(run$contig_kos) && any(hydrocarbon_kos()$ko %in% run$contig_kos$feature), fig.width = wide, fig.height = 7}
 plot_feature_heatmap(run$contig_kos, features = hydrocarbon_kos())
 ```
 
@@ -227,6 +332,91 @@ knitr::asis_output(paste(
   "_No community profile found: run mag-pipeline 2.0 with --workflow contigs",
   "or both (gene catalog, CAT with --cat_db) and --singlem_db._"
 ))
+```
+
+## Methods
+
+```{r methods-setup, include = FALSE}
+info <- attr(run, "run_info")
+methods <- if (!multi && !is.null(info)) describe_run(info)
+```
+
+```{r methods-multi, eval = multi}
+blocks <- vapply(studies, function(study) {
+  one <- info[[study]]
+  if (is.null(one)) {
+    return(paste0("### ", study, "\n\n_No run information found._\n"))
+  }
+  d <- describe_run(one)
+  paste0(
+    "### ", study, "\n\n",
+    paste(knitr::kable(d$run, col.names = c("", ""), row.names = FALSE), collapse = "\n"),
+    if (nrow(d$databases) > 0) paste0("\n\n", paste(knitr::kable(
+      d$databases, col.names = c("Database", "Path", "Last modified"), row.names = FALSE),
+      collapse = "\n")) else "",
+    if (nrow(d$software) > 0) paste0("\n\n", paste(knitr::kable(
+      d$software, col.names = c("Tool", "Version"), row.names = FALSE),
+      collapse = "\n")) else "",
+    "\n"
+  )
+}, character(1))
+knitr::asis_output(paste(blocks, collapse = "\n"))
+```
+
+```{r methods-text, eval = !is.null(methods)}
+p <- info$params
+value <- function(x, default = "-") if (is.null(x)) default else paste(x, collapse = ", ")
+dbs <- methods$databases
+db_text <- if (nrow(dbs) > 0) {
+  paste0(" Reference databases (path, last modified): ",
+         paste(sprintf("%s (%s)", dbs$database, ifelse(is.na(dbs$modified), "date unknown", dbs$modified)),
+               collapse = "; "), ".")
+} else ""
+knitr::asis_output(paste0(
+  "Results produced by mag-pipeline ", value(info$pipeline$version), " (Nextflow ",
+  value(info$pipeline$nextflow), ") with assembly mode `", value(p$assembly_mode),
+  "`, binners `", value(p$binners), "`", if (isTRUE(p$refine)) " refined with DAS_Tool" else "",
+  ", contigs of at least ", value(p$min_contig_length), " bp",
+  if (isTRUE(p$dereplicate)) paste0(" and dereplication at ", value(p$derep_ani), " % ANI") else "",
+  ".", db_text,
+  if (nrow(methods$software) > 0) paste0(" Tools: ",
+    paste(sprintf("%s %s", methods$software$tool, methods$software$version), collapse = ", "),
+    ".") else "",
+  if (is.na(info$schema_version)) " Read from `run_info.txt`." else
+    paste0(" Read from `manifest.json` (schema ", info$schema_version, ").")
+))
+```
+
+```{r methods-run, eval = !is.null(methods)}
+knitr::kable(methods$run, col.names = c("", ""), row.names = FALSE, caption = "Run")
+```
+
+```{r methods-databases, eval = !is.null(methods) && nrow(methods$databases) > 0}
+knitr::kable(methods$databases, col.names = c("Database", "Path", "Last modified"),
+             row.names = FALSE, caption = "Reference databases")
+```
+
+```{r methods-software, eval = !is.null(methods) && nrow(methods$software) > 0}
+knitr::kable(methods$software, col.names = c("Tool", "Version"), row.names = FALSE,
+             caption = "Versions of the tools, as each tool reported it during the run")
+```
+
+```{r methods-params, eval = !is.null(methods) && nrow(methods$params) > 0}
+knitr::asis_output(paste0(
+  "<details><summary>Parameters of the run (", nrow(methods$params), ")</summary>
+
+",
+  paste(knitr::kable(methods$params, col.names = c("Parameter", "Value"), row.names = FALSE),
+        collapse = "
+"),
+  "
+
+</details>"
+))
+```
+
+```{r no-methods, eval = !multi && is.null(methods)}
+knitr::asis_output("_No run information found (manifest.json or run_info.txt)._")
 ```
 
 ## Session

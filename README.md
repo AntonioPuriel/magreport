@@ -53,6 +53,32 @@ path <- system.file("extdata", "example_run", "mag_quality.tsv", package = "magr
 head(read_mag_quality(path))
 ```
 
+## Compatibility with mag-pipeline
+
+Which version of magreport reads the output of each version of [mag-pipeline](https://github.com/AntonioPuriel/mag-pipeline):
+
+| mag-pipeline | New output read by magreport | magreport |
+|---|---|---|
+| < 1.4.0 | `mag_quality.tsv`, `bin_summary.tsv`, `mapping_summary.tsv`, depth and assembly tables | any |
+| 1.4.0 | `ko_per_mag.tsv`, `annotation_stats.tsv` (eggNOG) | any |
+| 1.4.0 | `mag_abundance.tsv` | ≥ 0.5.0 |
+| 1.7.0 | GUNC reports (`--gunc_db`) | ≥ 0.9.0 |
+| 1.8.0 | `mimag_quality.tsv` (`--mimag`) | ≥ 0.5.0 |
+| 1.9.0 | `hydrocarbon_per_mag.tsv` (CANT-HYD, HADEG) | ≥ 0.5.0 |
+| 2.0.0 | `bac120.tree` (`--mag_tree`) | ≥ 0.6.0 |
+| 2.0.0 | gene catalog profiles (`--workflow contigs` or `both`) and SingleM | ≥ 0.8.0 |
+| 2.1.0 | `manifest.json` (`schema_version` 1.0) and the `report/` folder | ≥ 0.9.0 |
+
+- A newer magreport always reads older runs: without `manifest.json` it finds
+  the tables by name, and it reads `run_info.txt` for the methods.
+- An older magreport ignores the tables it does not know. Before 0.9.0 it does
+  not read `manifest.json` nor the gzipped tables of `report/`: point it to the
+  whole results directory instead.
+- The manifest has its own version: magreport reads the `schema_version` it
+  knows and newer minor versions (with a warning), and refuses a newer major
+  version, which renames or removes tables. See
+  [docs/manifest.md](https://github.com/AntonioPuriel/mag-pipeline/blob/main/docs/manifest.md).
+
 ## Functions
 
 | Function | Reads |

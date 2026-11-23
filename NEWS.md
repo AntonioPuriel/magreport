@@ -1,3 +1,46 @@
+# magreport 0.9.0
+
+Goes with mag-pipeline 2.1.0: reads its manifest and `report/` folder, and
+compares several runs, for a catalog of studies. Older runs are still read.
+
+* `read_manifest()` reads `manifest.json`, which mag-pipeline 2.1.0 and later
+  write in the results directory: pipeline version, run, databases, parameters
+  and the list of tables of the run. `read_pipeline()` uses it when it is
+  there, so it no longer guesses file names, and keeps it in the attribute
+  `"manifest"`. Without a manifest (mag-pipeline 2.0.0 or earlier) the tables
+  are still found by name. magreport reads `schema_version` 1.x.
+* `read_run_info()` reads `run_info.txt` of older runs into the same form, and
+  `describe_run()` turns either into tables for the methods of a paper:
+  versions, dates, databases with their modification date and parameters.
+* `read_gunc()` reads the GUNC chimera reports (`--gunc_db`) and `plot_gunc()`
+  draws the clade separation score of every bin against its CheckM2
+  contamination. `read_pipeline()` returns them in `gunc`.
+* `mag_report()` has two new sections: "Chimeras (GUNC)", with the bins that
+  CheckM2 rates high or medium but GUNC finds chimeric, and "Methods", with
+  the pipeline, databases and parameters of the run.
+* `mag_recovery()` computes, per sample and rank, the share of the SingleM (or
+  CAT) profile in taxa with at least one MAG, and `plot_mag_recovery()` draws
+  it. `mag_report()` shows it in "Community profile".
+* Several runs at once, for a catalog of studies: `read_pipeline(c(study1 =
+  dir1, study2 = dir2))` stacks every table with a `study` column, filling
+  with `NA` the columns only some runs have. `plot_gunc()` and
+  `mag_recovery()` join tables within each study, since bin and sample names
+  may repeat between studies. `summarise_studies()` gives one row per study,
+  and `mag_report()` takes several directories: it adds the table of studies,
+  splits the quality plots by study and gives the methods of each run.
+* `describe_run()` also returns `software`, the version of each tool as the
+  tool reported it during the run (`manifest.json` of mag-pipeline 2.1.0), and
+  the methods of the report list them.
+* `read_pipeline()` reads the assembly statistics and depth tables of every
+  assembly, not only the first one found: runs with `--assembly_mode group` or
+  `per_sample` have one per assembly. `depth` gains a first column `assembly`.
+  `read_pipeline(depth = FALSE)` skips the depth tables (several GB in large
+  runs), as `mag_report()` now does. The summary of the report gives the
+  total over the assemblies and the range of their N50.
+* New example data: the GUNC reports of the 1161 bins of Marine Honour
+  (`extdata/marine_honour/gunc`).
+* New dependency: jsonlite.
+
 # magreport 0.8.0
 
 ## The community without MAGs
