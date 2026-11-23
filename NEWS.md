@@ -1,4 +1,7 @@
-# magreport (development version)
+# magreport 0.9.0
+
+Goes with mag-pipeline 2.1.0: reads its manifest and `report/` folder, and
+compares several runs, for a catalog of studies. Older runs are still read.
 
 * `read_manifest()` reads `manifest.json`, which mag-pipeline 2.1.0 and later
   write in the results directory: pipeline version, run, databases, parameters
