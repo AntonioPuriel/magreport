@@ -27,7 +27,9 @@ The path of the report, invisibly.
 Reads the tables found in a results directory and renders a self-contained
 HTML report with the mapping, assembly, binning and MAG quality results,
 and the profile of the community from the gene catalog and the reads (CAT,
-eggNOG, CANT-HYD and SingleM; mag-pipeline 2.0.0 or later). Sections without
+eggNOG, CANT-HYD and SingleM; mag-pipeline 2.0.0 or later), the GUNC chimera
+check and the methods of the run (versions, databases and parameters, from
+\code{manifest.json} or \code{run_info.txt}). Sections without
 data, such as taxonomy when GTDB-Tk was not run, are left out instead of
 failing, so a run with \verb{--workflow contigs} and no MAGs works too.
 }

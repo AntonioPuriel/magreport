@@ -6,6 +6,17 @@
   there, so it no longer guesses file names, and keeps it in the attribute
   `"manifest"`. Without a manifest (mag-pipeline 2.0.0 or earlier) the tables
   are still found by name. magreport reads `schema_version` 1.x.
+* `read_run_info()` reads `run_info.txt` of older runs into the same form, and
+  `describe_run()` turns either into tables for the methods of a paper:
+  versions, dates, databases with their modification date and parameters.
+* `read_gunc()` reads the GUNC chimera reports (`--gunc_db`) and `plot_gunc()`
+  draws the clade separation score of every bin against its CheckM2
+  contamination. `read_pipeline()` returns them in `gunc`.
+* `mag_report()` has two new sections: "Chimeras (GUNC)", with the bins that
+  CheckM2 rates high or medium but GUNC finds chimeric, and "Methods", with
+  the pipeline, databases and parameters of the run.
+* New example data: the GUNC reports of the 1161 bins of Marine Honour
+  (`extdata/marine_honour/gunc`).
 * New dependency: jsonlite.
 
 # magreport 0.8.0

@@ -30,6 +30,9 @@ reference:
   - parse_sample_names
   - read_pipeline
   - read_manifest
+  - read_run_info
+  - describe_run
+  - read_gunc
 - title: Read the community profile
   desc: The gene catalog of every contig and the SingleM profile of the reads (mag-pipeline 2.0)
   contents:
@@ -44,6 +47,7 @@ reference:
 - title: Plot
   contents:
   - plot_mag_quality
+  - plot_gunc
   - plot_mapping_rates
   - plot_taxonomy
   - plot_pathway_presence

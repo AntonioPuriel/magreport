@@ -144,6 +144,47 @@ knitr::kable(
 knitr::asis_output("_No CheckM2 results found: run the pipeline without --skip_checkm2._")
 ```
 
+## Chimeras (GUNC)
+
+```{r gunc-setup, include = FALSE}
+gunc_mags <- if (has(run$mags)) run$mags else run$mimag
+```
+
+```{r gunc-plot, eval = has(run$gunc)}
+plot_gunc(run$gunc, mags = gunc_mags)
+```
+
+```{r gunc-counts, eval = has(run$gunc)}
+counts <- as.data.frame.matrix(table(run$gunc$assembly, factor(run$gunc$pass, c(TRUE, FALSE))))
+names(counts) <- c("Pass", "Fail")
+counts <- cbind(Assembly = rownames(counts), counts)
+knitr::kable(counts, row.names = FALSE, caption = "Bins that pass or fail GUNC, per assembly")
+```
+
+```{r gunc-hidden, eval = has(run$gunc) && has(gunc_mags) && "quality" %in% names(gunc_mags)}
+hidden <- merge(
+  gunc_mags[, intersect(c("bin", "completeness", "contamination", "quality"), names(gunc_mags))],
+  run$gunc[!run$gunc$pass, c("bin", "taxonomic_level", "clade_separation_score", "contamination_portion")],
+  by = "bin"
+)
+hidden <- hidden[!is.na(hidden$quality) & hidden$quality %in% c("high", "medium"), , drop = FALSE]
+if (nrow(hidden) == 0) {
+  knitr::asis_output("_Every bin of high or medium CheckM2 quality passes GUNC._")
+} else {
+  hidden <- hidden[order(-hidden$clade_separation_score), ]
+  knitr::kable(
+    utils::head(hidden, 25), row.names = FALSE, digits = 2,
+    caption = sprintf(paste(
+      "%d bins of high or medium CheckM2 quality that GUNC finds chimeric",
+      "(up to 25 shown, highest clade separation score first)"), nrow(hidden))
+  )
+}
+```
+
+```{r no-gunc, eval = !has(run$gunc)}
+knitr::asis_output("_No GUNC reports found: run the pipeline with --gunc_db._")
+```
+
 ## Taxonomy
 
 ```{r taxonomy, eval = has(run$mags) && "phylum" %in% names(run$mags) && !all(is.na(run$mags$phylum))}
@@ -227,6 +268,61 @@ knitr::asis_output(paste(
   "_No community profile found: run mag-pipeline 2.0 with --workflow contigs",
   "or both (gene catalog, CAT with --cat_db) and --singlem_db._"
 ))
+```
+
+## Methods
+
+```{r methods-setup, include = FALSE}
+info <- attr(run, "run_info")
+methods <- if (!is.null(info)) describe_run(info)
+```
+
+```{r methods-text, eval = !is.null(methods)}
+p <- info$params
+value <- function(x, default = "-") if (is.null(x)) default else paste(x, collapse = ", ")
+dbs <- methods$databases
+db_text <- if (nrow(dbs) > 0) {
+  paste0(" Reference databases (path, last modified): ",
+         paste(sprintf("%s (%s)", dbs$database, ifelse(is.na(dbs$modified), "date unknown", dbs$modified)),
+               collapse = "; "), ".")
+} else ""
+knitr::asis_output(paste0(
+  "Results produced by mag-pipeline ", value(info$pipeline$version), " (Nextflow ",
+  value(info$pipeline$nextflow), ") with assembly mode `", value(p$assembly_mode),
+  "`, binners `", value(p$binners), "`", if (isTRUE(p$refine)) " refined with DAS_Tool" else "",
+  ", contigs of at least ", value(p$min_contig_length), " bp",
+  if (isTRUE(p$dereplicate)) paste0(" and dereplication at ", value(p$derep_ani), " % ANI") else "",
+  ".", db_text,
+  if (is.na(info$schema_version)) " Read from `run_info.txt`." else
+    paste0(" Read from `manifest.json` (schema ", info$schema_version, ").")
+))
+```
+
+```{r methods-run, eval = !is.null(methods)}
+knitr::kable(methods$run, col.names = c("", ""), row.names = FALSE, caption = "Run")
+```
+
+```{r methods-databases, eval = !is.null(methods) && nrow(methods$databases) > 0}
+knitr::kable(methods$databases, col.names = c("Database", "Path", "Last modified"),
+             row.names = FALSE, caption = "Reference databases")
+```
+
+```{r methods-params, eval = !is.null(methods) && nrow(methods$params) > 0}
+knitr::asis_output(paste0(
+  "<details><summary>Parameters of the run (", nrow(methods$params), ")</summary>
+
+",
+  paste(knitr::kable(methods$params, col.names = c("Parameter", "Value"), row.names = FALSE),
+        collapse = "
+"),
+  "
+
+</details>"
+))
+```
+
+```{r no-methods, eval = is.null(methods)}
+knitr::asis_output("_No run information found (manifest.json or run_info.txt)._")
 ```
 
 ## Session

@@ -19,10 +19,13 @@
 #'   are in `catalog` ([read_catalog_stats()]), `profile_stats`
 #'   ([read_profile_stats()]), `contig_taxonomy` ([read_taxonomy_profile()]),
 #'   `contig_kos`, `contig_canthyd`, `contig_hadeg` ([read_feature_profile()])
-#'   and `singlem` ([read_singlem()]). For SingleM, the table of all samples is
+#'   and `singlem` ([read_singlem()]). The GUNC reports of every bin set
+#'   (`--gunc_db`) are in `gunc` ([read_gunc()]). For SingleM, the table of all samples is
 #'   preferred, then the profile of each sample, then the tables per rank.
 #'   The attribute `"files"` holds the paths that were used, and the attribute
-#'   `"manifest"` the manifest of the run (`NULL` without one).
+#'   `"manifest"` the manifest of the run (`NULL` without one). The attribute
+#'   `"run_info"` describes the run (pipeline version, databases, parameters):
+#'   the manifest, or else `run_info.txt` read with [read_run_info()].
 #' @export
 #'
 #' @examples
@@ -46,6 +49,11 @@ read_pipeline <- function(results_dir) {
   out <- read_pipeline_tables(files)
   attr(out, "files") <- files
   attr(out, "manifest") <- manifest
+  attr(out, "run_info") <- if (!is.null(manifest)) {
+    manifest
+  } else if (!is.null(files$run_info)) {
+    read_run_info(files$run_info)
+  }
   out
 }
 
@@ -74,8 +82,15 @@ find_pipeline_files <- function(results_dir) {
     contig_kos      = find_one("^ko_per_sample\\.tsv(\\.gz)?$"),
     contig_canthyd  = find_one("^canthyd_per_sample\\.tsv(\\.gz)?$"),
     contig_hadeg    = find_one("^hadeg_per_sample\\.tsv(\\.gz)?$"),
-    singlem         = find_singlem(results_dir)
+    singlem         = find_singlem(results_dir),
+    gunc            = find_all(results_dir, "\\.gunc\\.tsv(\\.gz)?$"),
+    run_info        = find_one("^run_info\\.txt$")
   )
+}
+
+find_all <- function(results_dir, pattern) {
+  hits <- sort(list.files(results_dir, pattern = pattern, recursive = TRUE, full.names = TRUE))
+  if (length(hits) == 0) NULL else hits
 }
 
 read_pipeline_tables <- function(files) {
@@ -109,6 +124,7 @@ read_pipeline_tables <- function(files) {
     }))
   }
   out["singlem"] <- list(read_if(files$singlem, read_singlem_tables))
+  out["gunc"] <- list(read_if(files$gunc, read_gunc))
   out
 }
 

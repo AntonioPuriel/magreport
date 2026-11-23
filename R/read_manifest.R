@@ -141,6 +141,9 @@ manifest_files <- function(manifest) {
 
   # SingleM: the profile of all samples, else those of each sample
   files["singlem"] <- list(existing("singlem")[1] %||% existing("singlem_per_sample"))
+  # GUNC: one report per assembly and bin set, all of them
+  files["gunc"] <- list(existing("gunc"))
+  files["run_info"] <- list(NULL)
 
   if (length(missing) > 0) {
     warning(

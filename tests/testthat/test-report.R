@@ -8,7 +8,7 @@ test_that("read_pipeline finds every table", {
   expect_named(run, c(
     "mags", "bins", "mapping", "depth", "assembly", "kos", "annotation",
     "mimag", "hydrocarbon", "abundance", "catalog", "profile_stats",
-    "contig_taxonomy", "contig_kos", "contig_canthyd", "contig_hadeg", "singlem"
+    "contig_taxonomy", "contig_kos", "contig_canthyd", "contig_hadeg", "singlem", "gunc"
   ))
   expect_s3_class(run$mags, "data.frame")
   expect_s3_class(run$bins, "data.frame")

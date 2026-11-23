@@ -21,10 +21,13 @@ The profiles of the community without MAGs (mag-pipeline 2.0.0 or later)
 are in \code{catalog} (\code{\link[=read_catalog_stats]{read_catalog_stats()}}), \code{profile_stats}
 (\code{\link[=read_profile_stats]{read_profile_stats()}}), \code{contig_taxonomy} (\code{\link[=read_taxonomy_profile]{read_taxonomy_profile()}}),
 \code{contig_kos}, \code{contig_canthyd}, \code{contig_hadeg} (\code{\link[=read_feature_profile]{read_feature_profile()}})
-and \code{singlem} (\code{\link[=read_singlem]{read_singlem()}}). For SingleM, the table of all samples is
+and \code{singlem} (\code{\link[=read_singlem]{read_singlem()}}). The GUNC reports of every bin set
+(\code{--gunc_db}) are in \code{gunc} (\code{\link[=read_gunc]{read_gunc()}}). For SingleM, the table of all samples is
 preferred, then the profile of each sample, then the tables per rank.
 The attribute \code{"files"} holds the paths that were used, and the attribute
-\code{"manifest"} the manifest of the run (\code{NULL} without one).
+\code{"manifest"} the manifest of the run (\code{NULL} without one). The attribute
+\code{"run_info"} describes the run (pipeline version, databases, parameters):
+the manifest, or else \code{run_info.txt} read with \code{\link[=read_run_info]{read_run_info()}}.
 }
 \description{
 Reads the output tables of mag-pipeline from a directory. When the
