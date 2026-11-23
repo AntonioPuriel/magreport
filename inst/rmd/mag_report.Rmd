@@ -255,6 +255,39 @@ plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "phylum")
 plot_profile_comparison(run$contig_taxonomy, run$singlem, rank = "genus")
 ```
 
+```{r recovery-setup, include = FALSE}
+# MAGs with taxonomy: the dereplicated set (MIMAG table) if there is one
+recovery_mags <- if (has(run$mimag)) run$mimag else run$mags
+recovery_profile <- if (has(run$singlem)) run$singlem else run$contig_taxonomy
+has_recovery <- has(recovery_mags) && has(recovery_profile) &&
+  "phylum" %in% names(recovery_mags) && !all(is.na(recovery_mags$phylum))
+recovery <- if (has_recovery) mag_recovery(recovery_profile, recovery_mags)
+```
+
+```{r recovery, eval = has_recovery}
+knitr::asis_output(paste(
+  "### Community represented by the MAGs
+
+",
+  "Share of the community in taxa with at least one MAG of medium or high",
+  "quality, at each rank. Taxa are matched by their GTDB name, so names that",
+  "differ between the GTDB releases of SingleM and GTDB-Tk are missed."
+))
+```
+
+```{r recovery-plot, eval = has_recovery}
+plot_mag_recovery(recovery)
+```
+
+```{r recovery-table, eval = has_recovery}
+medians <- stats::aggregate(cbind(classified, recovered, recovered_of_classified) ~ rank,
+                            data = recovery, FUN = stats::median)
+knitr::kable(medians, digits = 1, row.names = FALSE,
+             col.names = c("Rank", "Classified (%)", "In taxa with a MAG (%)",
+                           "Of the classified (%)"),
+             caption = "Median over the samples")
+```
+
 ```{r canthyd-heatmap, eval = has(run$contig_canthyd), fig.width = wide, fig.height = 2 + 0.25 * length(unique(run$contig_canthyd$feature))}
 plot_feature_heatmap(run$contig_canthyd, top = 40)
 ```

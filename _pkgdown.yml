@@ -56,6 +56,8 @@ reference:
   - plot_mag_tree
   - plot_community
   - plot_profile_comparison
+  - mag_recovery
+  - plot_mag_recovery
   - plot_annotation_fraction
   - plot_feature_heatmap
 - title: Report

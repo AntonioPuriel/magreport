@@ -15,6 +15,9 @@
 * `mag_report()` has two new sections: "Chimeras (GUNC)", with the bins that
   CheckM2 rates high or medium but GUNC finds chimeric, and "Methods", with
   the pipeline, databases and parameters of the run.
+* `mag_recovery()` computes, per sample and rank, the share of the SingleM (or
+  CAT) profile in taxa with at least one MAG, and `plot_mag_recovery()` draws
+  it. `mag_report()` shows it in "Community profile".
 * New example data: the GUNC reports of the 1161 bins of Marine Honour
   (`extdata/marine_honour/gunc`).
 * New dependency: jsonlite.
