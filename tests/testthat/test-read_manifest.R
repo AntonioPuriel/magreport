@@ -61,6 +61,10 @@ test_that("read_manifest reads every section and makes paths absolute", {
 test_that("read_manifest checks schema_version", {
   expect_error(read_manifest(local_manifest_run("2.0")), "schema_version 2.0")
   expect_warning(read_manifest(local_manifest_run("1.7")), "newer")
+  # 1.1 (mag-pipeline 2.2.0) adds the GTDB-Tk and --mag_tree alignments
+  expect_silent(read_manifest(local_manifest_run("1.1", extra_tables = list(
+    mag_tree_msa = "06_taxonomy/mag_tree/bac120.user_msa.fasta.gz"
+  ))))
   expect_error(read_manifest(local_manifest_run("uno")), "Invalid schema_version")
   expect_error(read_manifest(withr::local_tempdir()), "Manifest not found")
 })
