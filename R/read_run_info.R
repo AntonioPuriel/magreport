@@ -125,14 +125,16 @@ parse_param <- function(x) {
 #' Describe a mag-pipeline run for the methods of a paper
 #'
 #' Turns the run information ([read_manifest()] or [read_run_info()]) into
-#' three tables: the pipeline and the run, the reference databases with their
-#' dates, and the parameters that were set.
+#' four tables: the pipeline and the run, the reference databases with their
+#' dates, the versions of the tools (manifests of mag-pipeline 2.1.0 or later)
+#' and the parameters that were set.
 #'
 #' @param info A list returned by [read_manifest()] or [read_run_info()], or a
 #'   run returned by [read_pipeline()] (its attribute `"run_info"` is used).
 #'
-#' @return A list of three data frames: `run` (columns `item` and `value`),
-#'   `databases` (`database`, `path`, `modified`) and `params` (`parameter`,
+#' @return A list of four data frames: `run` (columns `item` and `value`),
+#'   `databases` (`database`, `path`, `modified`), `software` (`tool`,
+#'   `version`; empty for runs without versions) and `params` (`parameter`,
 #'   `value`; parameters left at `null` are not shown).
 #' @export
 #'
@@ -200,5 +202,13 @@ describe_run <- function(info) {
     row.names = NULL
   )
 
-  list(run = run, databases = databases, params = params)
+  software <- Filter(Negate(is.null), info$software)
+  software <- data.frame(
+    tool = names(software) %||% character(),
+    version = vapply(software, text, character(1)),
+    stringsAsFactors = FALSE,
+    row.names = NULL
+  )
+
+  list(run = run, databases = databases, software = software, params = params)
 }

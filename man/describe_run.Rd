@@ -11,14 +11,16 @@ describe_run(info)
 run returned by \code{\link[=read_pipeline]{read_pipeline()}} (its attribute \code{"run_info"} is used).}
 }
 \value{
-A list of three data frames: \code{run} (columns \code{item} and \code{value}),
-\code{databases} (\code{database}, \code{path}, \code{modified}) and \code{params} (\code{parameter},
+A list of four data frames: \code{run} (columns \code{item} and \code{value}),
+\code{databases} (\code{database}, \code{path}, \code{modified}), \code{software} (\code{tool},
+\code{version}; empty for runs without versions) and \code{params} (\code{parameter},
 \code{value}; parameters left at \code{null} are not shown).
 }
 \description{
 Turns the run information (\code{\link[=read_manifest]{read_manifest()}} or \code{\link[=read_run_info]{read_run_info()}}) into
-three tables: the pipeline and the run, the reference databases with their
-dates, and the parameters that were set.
+four tables: the pipeline and the run, the reference databases with their
+dates, the versions of the tools (manifests of mag-pipeline 2.1.0 or later)
+and the parameters that were set.
 }
 \examples{
 path <- tempfile(fileext = ".txt")

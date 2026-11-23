@@ -116,7 +116,8 @@ test_that("describe_run gives the tables of the methods", {
   info <- read_run_info(write_run_info())
   methods <- describe_run(info)
 
-  expect_identical(names(methods), c("run", "databases", "params"))
+  expect_identical(names(methods), c("run", "databases", "software", "params"))
+  expect_equal(nrow(methods$software), 0)
   expect_identical(methods$run$value[methods$run$item == "Version"], "2.0.0")
   expect_equal(nrow(methods$databases), 3)
   expect_true(is.na(methods$databases$modified[methods$databases$database == "singlem"]))
@@ -140,4 +141,18 @@ test_that("read_pipeline keeps the run information and the GUNC reports", {
   expect_null(attr(run, "manifest"))
   expect_identical(attr(run, "run_info")$pipeline$version, "2.0.0")
   expect_identical(describe_run(run)$run$value[1], "AntonioPuriel/mag-pipeline")
+})
+
+test_that("describe_run lists the versions of the tools of a manifest", {
+  dir <- withr::local_tempdir()
+  writeLines(
+    '{"schema_version": "1.0",
+      "pipeline": {"name": "AntonioPuriel/mag-pipeline", "version": "2.1.0"},
+      "software": {"checkm2": "1.0.1", "fastp": "0.23.4", "prodigal": "2.6.3, 2.6.2"},
+      "tables": {}}',
+    file.path(dir, "manifest.json")
+  )
+  methods <- describe_run(read_manifest(dir))
+  expect_identical(methods$software$tool, c("checkm2", "fastp", "prodigal"))
+  expect_identical(methods$software$version, c("1.0.1", "0.23.4", "2.6.3, 2.6.2"))
 })
