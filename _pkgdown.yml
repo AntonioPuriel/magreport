@@ -29,6 +29,7 @@ reference:
   - read_mag_abundance
   - parse_sample_names
   - read_pipeline
+  - read_manifest
 - title: Read the community profile
   desc: The gene catalog of every contig and the SingleM profile of the reads (mag-pipeline 2.0)
   contents:

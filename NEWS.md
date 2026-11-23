@@ -1,3 +1,13 @@
+# magreport (development version)
+
+* `read_manifest()` reads `manifest.json`, which mag-pipeline 2.1.0 and later
+  write in the results directory: pipeline version, run, databases, parameters
+  and the list of tables of the run. `read_pipeline()` uses it when it is
+  there, so it no longer guesses file names, and keeps it in the attribute
+  `"manifest"`. Without a manifest (mag-pipeline 2.0.0 or earlier) the tables
+  are still found by name. magreport reads `schema_version` 1.x.
+* New dependency: jsonlite.
+
 # magreport 0.8.0
 
 ## The community without MAGs

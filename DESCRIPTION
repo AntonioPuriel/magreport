@@ -1,6 +1,6 @@
 Package: magreport
 Title: Explore and Report MAG Recovery Results
-Version: 0.8.0
+Version: 0.8.0.9000
 Authors@R: 
     person("Antonio", "Puriel Hernández", email = "apurielh@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "0009-0000-7631-1102"))
@@ -18,6 +18,7 @@ Depends:
     R (>= 4.1)
 Imports: 
     grDevices,
+    jsonlite,
     stats,
     rlang,
     utils

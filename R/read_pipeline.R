@@ -1,10 +1,13 @@
 #' Find and read every table of a mag-pipeline run
 #'
-#' Looks for the output tables of mag-pipeline inside a directory, whatever the
-#' folder layout is: the `results/` directory of a run, or a folder where the
-#' tables were copied together.
+#' Reads the output tables of mag-pipeline from a directory. When the
+#' directory holds `manifest.json` (mag-pipeline 2.1.0 or later), the tables
+#' it lists are read ([read_manifest()]). Otherwise the tables are looked for by
+#' name, whatever the folder layout is: the `results/` directory of a run, or a
+#' folder where the tables were copied together.
 #'
-#' @param results_dir Directory to search, recursively.
+#' @param results_dir Directory of the run: with `manifest.json` at its top, or
+#'   searched recursively.
 #'
 #' @return A list with the elements `mags`, `mimag`, `bins`, `mapping`,
 #'   `depth`, `assembly`, `kos`, `annotation`, `hydrocarbon` and `abundance`,
@@ -18,7 +21,8 @@
 #'   `contig_kos`, `contig_canthyd`, `contig_hadeg` ([read_feature_profile()])
 #'   and `singlem` ([read_singlem()]). For SingleM, the table of all samples is
 #'   preferred, then the profile of each sample, then the tables per rank.
-#'   The attribute `"files"` holds the paths that were used.
+#'   The attribute `"files"` holds the paths that were used, and the attribute
+#'   `"manifest"` the manifest of the run (`NULL` without one).
 #' @export
 #'
 #' @examples
@@ -31,12 +35,29 @@ read_pipeline <- function(results_dir) {
     stop("Directory not found: ", results_dir, call. = FALSE)
   }
 
+  manifest <- NULL
+  if (file.exists(file.path(results_dir, "manifest.json"))) {
+    manifest <- read_manifest(results_dir)
+    files <- manifest_files(manifest)
+  } else {
+    files <- find_pipeline_files(results_dir)
+  }
+
+  out <- read_pipeline_tables(files)
+  attr(out, "files") <- files
+  attr(out, "manifest") <- manifest
+  out
+}
+
+# The tables of a run without manifest.json (mag-pipeline 2.0.0 or earlier, or
+# tables copied together), found by name
+find_pipeline_files <- function(results_dir) {
   find_one <- function(pattern) {
     hits <- list.files(results_dir, pattern = pattern, recursive = TRUE, full.names = TRUE)
     if (length(hits) == 0) NULL else hits[1]
   }
 
-  files <- list(
+  list(
     mags     = find_one("^mag_quality\\.tsv$"),
     bins     = find_one("^bin_summary\\.tsv$"),
     mapping  = find_one("^mapping_summary\\.tsv$"),
@@ -55,7 +76,9 @@ read_pipeline <- function(results_dir) {
     contig_hadeg    = find_one("^hadeg_per_sample\\.tsv(\\.gz)?$"),
     singlem         = find_singlem(results_dir)
   )
+}
 
+read_pipeline_tables <- function(files) {
   read_if <- function(path, reader) {
     if (is.null(path)) NULL else reader(path)
   }
@@ -86,8 +109,6 @@ read_pipeline <- function(results_dir) {
     }))
   }
   out["singlem"] <- list(read_if(files$singlem, read_singlem_tables))
-
-  attr(out, "files") <- files
   out
 }
 

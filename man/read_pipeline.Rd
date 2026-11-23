@@ -7,7 +7,8 @@
 read_pipeline(results_dir)
 }
 \arguments{
-\item{results_dir}{Directory to search, recursively.}
+\item{results_dir}{Directory of the run: with \code{manifest.json} at its top, or
+searched recursively.}
 }
 \value{
 A list with the elements \code{mags}, \code{mimag}, \code{bins}, \code{mapping},
@@ -22,12 +23,15 @@ are in \code{catalog} (\code{\link[=read_catalog_stats]{read_catalog_stats()}}),
 \code{contig_kos}, \code{contig_canthyd}, \code{contig_hadeg} (\code{\link[=read_feature_profile]{read_feature_profile()}})
 and \code{singlem} (\code{\link[=read_singlem]{read_singlem()}}). For SingleM, the table of all samples is
 preferred, then the profile of each sample, then the tables per rank.
-The attribute \code{"files"} holds the paths that were used.
+The attribute \code{"files"} holds the paths that were used, and the attribute
+\code{"manifest"} the manifest of the run (\code{NULL} without one).
 }
 \description{
-Looks for the output tables of mag-pipeline inside a directory, whatever the
-folder layout is: the \verb{results/} directory of a run, or a folder where the
-tables were copied together.
+Reads the output tables of mag-pipeline from a directory. When the
+directory holds \code{manifest.json} (mag-pipeline 2.1.0 or later), the tables
+it lists are read (\code{\link[=read_manifest]{read_manifest()}}). Otherwise the tables are looked for by
+name, whatever the folder layout is: the \verb{results/} directory of a run, or a
+folder where the tables were copied together.
 }
 \examples{
 results_dir <- system.file("extdata", "example_run", package = "magreport")
