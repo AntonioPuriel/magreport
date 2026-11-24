@@ -1,6 +1,6 @@
 Package: magreport
 Title: Explore and Report MAG Recovery Results
-Version: 0.9.1
+Version: 0.10.0
 Authors@R: 
     person("Antonio", "Puriel Hernández", email = "apurielh@gmail.com",
            role = c("aut", "cre"), comment = c(ORCID = "0009-0000-7631-1102"))
@@ -10,7 +10,8 @@ Description: Reads the output tables of the mag-pipeline metagenomics workflow
     following the MIMAG quality standards. Also reads the profile of the
     whole community without binning: the abundance, taxonomy (CAT) and
     function (eggNOG, CANT-HYD, HADEG) of a gene catalog of every contig, and
-    the SingleM profile of the reads.
+    the SingleM profile of the reads, and writes every table ready for other
+    tools (TSV, Excel and phyloseq).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -31,9 +32,11 @@ Suggests:
     ggplot2,
     ggtree,
     knitr,
+    phyloseq,
     rmarkdown,
     testthat (>= 3.0.0),
-    withr
+    withr,
+    writexl
 Config/testthat/edition: 3
 URL: https://antoniopuriel.github.io/magreport, https://github.com/AntonioPuriel/magreport
 BugReports: https://github.com/AntonioPuriel/magreport/issues

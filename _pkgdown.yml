@@ -64,6 +64,7 @@ reference:
 - title: Report
   contents:
   - mag_report
+  - export_tables
 - title: Colours and theme
   desc: The olive and desert palette used by every plot
   contents:

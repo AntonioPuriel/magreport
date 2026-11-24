@@ -37,6 +37,9 @@ count_quality(mags, by = "binner")
 run <- read_pipeline(results)
 mag_report(results, "mag_report.html")
 
+# Every table, ready for other tools: TSV, Excel and phyloseq
+export_tables(run, "magreport_tables")
+
 plot_mag_quality(mags, facet_by = "binner")
 plot_mapping_rates(mapping)
 plot_taxonomy(mags, rank = "phylum", fill_by = "quality")
@@ -97,6 +100,7 @@ Which version of magreport reads the output of each version of [mag-pipeline](ht
 | `count_quality()` | Counts MAGs per MIMAG quality category |
 | `read_pipeline()` | Finds and reads every table of a run in one call |
 | `mag_report()` | Renders a full HTML report of a run |
+| `export_tables()` | Writes every table of a run for other tools: summaries, sample matrices, long tables, methods, Excel and phyloseq |
 
 ## Plots
 
@@ -227,6 +231,18 @@ genus name take the closest named rank, marked with its initial.
 with the mapping, assembly, binning, MAG quality and taxonomy sections. Sections
 without data are skipped with a note, so a run without GTDB-Tk or CheckM2 still
 produces a valid report.
+
+With `tables = TRUE` it also writes `magreport_tables/` next to the report
+(`export_tables()`), so the same results can be analysed with other tools:
+
+- `samples.tsv`, `assemblies.tsv`, `bins.tsv` and `mags.tsv`, one row per item;
+- `matrices/`, one row per MAG, taxon, KO or marker and one column per sample,
+  each abundance twice: as measured (depth, TPM, SingleM coverage) and as a
+  percentage of the sample;
+- `long/`, the same data in tidy form, and `methods/`, the versions, databases
+  and parameters of the run;
+- `magreport_tables.xlsx` (with writexl) and `phyloseq/*.rds` (with phyloseq);
+- `README.txt`, which describes every file and its units.
 
 ## Documentation
 

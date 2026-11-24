@@ -25,6 +25,17 @@
 #'   and `singlem` ([read_singlem()]). The GUNC reports of every bin set
 #'   (`--gunc_db`) are in `gunc` ([read_gunc()]). For SingleM, the table of all samples is
 #'   preferred, then the profile of each sample, then the tables per rank.
+#'   The clusters of the dereplication (`--dereplicate`) are in `clusters`,
+#'   with the columns `representative` and `member`.
+#'
+#'   **Abundance of the MAGs.** When the directory holds
+#'   `mag_abundance_all_samples.tsv`, the reads of every sample mapped to the
+#'   dereplicated MAGs (for example with CoverM, when the pipeline mapped each
+#'   sample only to its own assembly), it is read instead of
+#'   `mag_abundance.tsv`. Either way `abundance` is restricted to the
+#'   dereplicated MAGs: those of the MIMAG table, else the representatives of
+#'   `clusters`.
+#'
 #'   The attribute `"files"` holds the paths that were used, and the attribute
 #'   `"manifest"` the manifest of the run (`NULL` without one). The attribute
 #'   `"run_info"` describes the run (pipeline version, databases, parameters):
@@ -130,6 +141,12 @@ read_pipeline_one <- function(results_dir, depth = TRUE) {
     files <- find_pipeline_files(results_dir)
   }
 
+  # The reads of every sample mapped to the MAGs, when they were mapped apart
+  all_samples <- find_all(results_dir, "^mag_abundance_all_samples\\.tsv(\\.gz)?$")
+  if (!is.null(all_samples)) {
+    files["abundance"] <- list(all_samples[1])
+  }
+
   if (!isTRUE(depth)) {
     files["depth"] <- list(NULL)
   }
@@ -171,6 +188,7 @@ find_pipeline_files <- function(results_dir) {
     contig_hadeg    = find_one("^hadeg_per_sample\\.tsv(\\.gz)?$"),
     singlem         = find_singlem(results_dir),
     gunc            = find_all(results_dir, "\\.gunc\\.tsv(\\.gz)?$"),
+    clusters        = find_one("^dereplication_clusters\\.tsv$"),
     run_info        = find_one("^run_info\\.txt$")
   )
 }
@@ -199,9 +217,18 @@ read_pipeline_tables <- function(files) {
     hydrocarbon = read_if(files$hydrocarbon, read_hydrocarbon_genes)
   )
 
+  clusters <- read_if(files$clusters, function(p) {
+    read_pipeline_table(p, required = c("representative", "member"))
+  })
+
   # list() keeps the element when the table is missing (NULL)
   out["abundance"] <- list(read_if(files$abundance, function(p) {
-    read_mag_abundance(p, bins = if (is.null(out$mimag)) NULL else out$mimag$bin)
+    bins <- if (!is.null(out$mimag)) {
+      out$mimag$bin
+    } else if (!is.null(clusters) && nrow(clusters) > 0) {
+      unique(clusters$representative)
+    }
+    read_mag_abundance(p, bins = bins)
   }))
 
   out["catalog"] <- list(read_if(files$catalog, read_catalog_stats))
@@ -214,6 +241,7 @@ read_pipeline_tables <- function(files) {
   }
   out["singlem"] <- list(read_if(files$singlem, read_singlem_tables))
   out["gunc"] <- list(read_if(files$gunc, read_gunc))
+  out["clusters"] <- list(clusters)
   out
 }
 

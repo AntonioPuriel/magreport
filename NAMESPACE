@@ -2,6 +2,7 @@
 
 export(count_quality)
 export(describe_run)
+export(export_tables)
 export(hydrocarbon_groups)
 export(hydrocarbon_kos)
 export(mag_recovery)

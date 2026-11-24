@@ -16,6 +16,9 @@
 #' @param output_file Path of the HTML file to write.
 #' @param title Title shown at the top of the report.
 #' @param quiet Passed to [rmarkdown::render()]; `TRUE` hides the progress output.
+#' @param tables If `TRUE`, also write every table of the run, ready for other
+#'   tools, in `magreport_tables/` next to the report ([export_tables()]: TSV,
+#'   Excel and phyloseq). A path writes them there instead.
 #'
 #' @return The path of the report, invisibly.
 #' @export
@@ -30,7 +33,8 @@
 mag_report <- function(results_dir,
                        output_file = "mag_report.html",
                        title = "MAG recovery report",
-                       quiet = TRUE) {
+                       quiet = TRUE,
+                       tables = FALSE) {
   for (pkg in c("rmarkdown", "knitr", "ggplot2")) {
     if (!requireNamespace(pkg, quietly = TRUE)) {
       stop("Package '", pkg, "' is needed to build the report.", call. = FALSE)
@@ -53,6 +57,15 @@ mag_report <- function(results_dir,
   }
 
   output_file <- normalizePath(output_file, mustWork = FALSE)
+
+  if (!isFALSE(tables)) {
+    tables_dir <- if (isTRUE(tables)) {
+      file.path(dirname(output_file), "magreport_tables")
+    } else {
+      as.character(tables)
+    }
+    export_tables(run, tables_dir)
+  }
 
   rmarkdown::render(
     input = template,

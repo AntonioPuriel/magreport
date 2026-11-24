@@ -112,7 +112,8 @@ manifest_table_names <- c(
   contig_taxonomy = "taxonomy_per_sample",
   contig_kos      = "ko_per_sample",
   contig_canthyd  = "canthyd_per_sample",
-  contig_hadeg    = "hadeg_per_sample"
+  contig_hadeg    = "hadeg_per_sample",
+  clusters        = "dereplication"
 )
 
 # The files read_pipeline() uses, taken from the manifest. A table listed but
