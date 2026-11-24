@@ -8,7 +8,8 @@ mag_report(
   results_dir,
   output_file = "mag_report.html",
   title = "MAG recovery report",
-  quiet = TRUE
+  quiet = TRUE,
+  tables = FALSE
 )
 }
 \arguments{
@@ -22,6 +23,10 @@ quality plots by study and leaves out the per-sample composition plots.}
 \item{title}{Title shown at the top of the report.}
 
 \item{quiet}{Passed to \code{\link[rmarkdown:render]{rmarkdown::render()}}; \code{TRUE} hides the progress output.}
+
+\item{tables}{If \code{TRUE}, also write every table of the run, ready for other
+tools, in \verb{magreport_tables/} next to the report (\code{\link[=export_tables]{export_tables()}}: TSV,
+Excel and phyloseq). A path writes them there instead.}
 }
 \value{
 The path of the report, invisibly.

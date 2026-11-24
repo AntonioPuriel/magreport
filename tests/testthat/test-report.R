@@ -8,7 +8,8 @@ test_that("read_pipeline finds every table", {
   expect_named(run, c(
     "mags", "bins", "mapping", "depth", "assembly", "kos", "annotation",
     "mimag", "hydrocarbon", "abundance", "catalog", "profile_stats",
-    "contig_taxonomy", "contig_kos", "contig_canthyd", "contig_hadeg", "singlem", "gunc"
+    "contig_taxonomy", "contig_kos", "contig_canthyd", "contig_hadeg", "singlem", "gunc",
+    "clusters"
   ))
   expect_s3_class(run$mags, "data.frame")
   expect_s3_class(run$bins, "data.frame")
@@ -73,6 +74,20 @@ test_that("mag_report reports a run without MAGs", {
   expect_true(any(grepl("Community profile", html)))
   expect_true(any(grepl("Gene catalog:", html)))
   expect_false(any(grepl("No community profile found", html)))
+})
+
+test_that("mag_report writes the tables next to the report with tables = TRUE", {
+  skip_if_not_installed("rmarkdown")
+  skip_if_not_installed("ggplot2")
+  skip_if_not(rmarkdown::pandoc_available(), "pandoc is not available")
+
+  dir <- withr::local_tempdir()
+  mag_report(system.file("extdata", "example_contigs", package = "magreport"),
+             file.path(dir, "report.html"), tables = TRUE)
+
+  expect_true(file.exists(file.path(dir, "report.html")))
+  expect_true(file.exists(file.path(dir, "magreport_tables", "README.txt")))
+  expect_true(file.exists(file.path(dir, "magreport_tables", "matrices", "singlem_genus_relative.tsv")))
 })
 
 test_that("mag_report fails clearly on an empty directory", {

@@ -1,3 +1,34 @@
+# magreport 0.10.0
+
+* `export_tables()` writes every table of a run ready for other tools (R,
+  Python, Excel, vegan, phyloseq): one row per sample, assembly, bin and MAG
+  (`mags.tsv` joins quality, taxonomy, GUNC, abundance across samples, KOs and
+  hydrocarbon markers); feature x sample matrices of the MAGs, the CAT and
+  SingleM profiles of every rank and the KEGG, CANT-HYD and HADEG profiles of
+  the gene catalog, each as measured (depth, TPM, coverage) and as a
+  percentage of the sample; the long tables; the methods of the run; an Excel
+  file with the summaries and matrices (needs writexl); phyloseq objects of
+  the MAGs and of the SingleM lineages (needs phyloseq); and a `README.txt`
+  that describes every file and its units. With several studies the samples
+  and bins of the matrices are named `<study>__<name>`.
+* `export_tables()` notes in the README when every MAG has reads in a single
+  sample (each sample mapped only to its own assembly): the MAG matrices then
+  cannot compare a MAG between samples.
+* `mag_report(tables = TRUE)` also writes those tables in `magreport_tables/`
+  next to the report.
+* `read_pipeline()` reads the dereplication clusters
+  (`dereplication_clusters.tsv`, `--dereplicate`) into `clusters`, and
+  restricts the MAG abundance to their representatives when there is no MIMAG
+  table. `mags.tsv` then holds the representatives, with the size of their
+  cluster.
+* When the results hold `mag_abundance_all_samples.tsv` (every sample mapped to
+  the dereplicated MAGs, for example with CoverM after a run that mapped each
+  sample only to its own assembly), `read_pipeline()` reads it instead of
+  `mag_abundance.tsv`. Its extra columns become new outputs of
+  `export_tables()`: the % of the reads of each sample in each MAG
+  (`matrices/mag_reads_pct.tsv`, and `reads_in_mags_pct` in `samples.tsv`)
+  and the covered fraction of each MAG.
+
 # magreport 0.9.1
 
 * Reads `schema_version` 1.1 of the manifest (mag-pipeline 2.2.0) without a

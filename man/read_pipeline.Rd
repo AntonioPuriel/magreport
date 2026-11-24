@@ -28,6 +28,17 @@ are in \code{catalog} (\code{\link[=read_catalog_stats]{read_catalog_stats()}}),
 and \code{singlem} (\code{\link[=read_singlem]{read_singlem()}}). The GUNC reports of every bin set
 (\code{--gunc_db}) are in \code{gunc} (\code{\link[=read_gunc]{read_gunc()}}). For SingleM, the table of all samples is
 preferred, then the profile of each sample, then the tables per rank.
+The clusters of the dereplication (\code{--dereplicate}) are in \code{clusters},
+with the columns \code{representative} and \code{member}.
+
+\strong{Abundance of the MAGs.} When the directory holds
+\code{mag_abundance_all_samples.tsv}, the reads of every sample mapped to the
+dereplicated MAGs (for example with CoverM, when the pipeline mapped each
+sample only to its own assembly), it is read instead of
+\code{mag_abundance.tsv}. Either way \code{abundance} is restricted to the
+dereplicated MAGs: those of the MIMAG table, else the representatives of
+\code{clusters}.
+
 The attribute \code{"files"} holds the paths that were used, and the attribute
 \code{"manifest"} the manifest of the run (\code{NULL} without one). The attribute
 \code{"run_info"} describes the run (pipeline version, databases, parameters):
